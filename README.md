@@ -9,8 +9,7 @@ The repository for Team 3 in class 9808 of DESN2000, for the project of creating
 * William Lee
 
 # Repo 
-To start, clone the repo and make sure you have node installed and just run *npm install* and everything should download for a few minutes.
-If all good, then run *expo start* and see how it is!
+Starting soon...
 
 # Project Stages
 ## Sprint 1
