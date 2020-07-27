@@ -40,6 +40,7 @@ export function HomeScreen({ navigation }) {
             cost={tripDetails["cost"]}
             legs={tripDetails["legs"]}
             navigation={navigation}
+            key={key}
           />
         ))}
       </View>

@@ -10,12 +10,12 @@ import {
   routesTabFocused,
   schedulesTabFocused,
   balanceTabFocused,
-} from "./constants";
+} from "../constants";
 import { NavigationContainer } from "@react-navigation/native";
-import { HomeScreen } from "./screens/HomeScreen";
-import { BalanceScreen } from "./screens/BalanceScreen";
-import { SchedulesScreen } from "./screens/SchedulesScreen";
-import { RoutesScreen } from "./screens/RoutesScreen";
+import { HomeScreen } from "../screens/HomeScreen";
+import { BalanceScreen } from "../screens/BalanceScreen";
+import { SchedulesScreen } from "../screens/SchedulesScreen";
+import { RoutesScreen } from "../screens/RoutesScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 export const Tab = createBottomTabNavigator();
 
