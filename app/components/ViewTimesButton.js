@@ -2,7 +2,7 @@ import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { MAIN_PRIMARY_COLOUR } from "../constants";
 
-export function ViewTimesButton({ navigation }) {
+export function ViewTimesButton({ navigation, editMode }) {
   return (
     <TouchableOpacity
       style={{
@@ -14,7 +14,10 @@ export function ViewTimesButton({ navigation }) {
         borderRadius: 24,
         marginTop: 12,
         alignSelf: "flex-end",
+        elevation: 2,
+        opacity: editMode ? 0.6 : 1,
       }}
+      disabled={editMode}
       onPress={() => navigation.navigate("ROUTES")}
     >
       <Text

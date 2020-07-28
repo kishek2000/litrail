@@ -14,6 +14,17 @@ import routesIconFocused from "../assets/routes-focused.png";
 import schedulesIconFocused from "../assets/schedules-focused.png";
 import balanceIconFocused from "../assets/balance-focused.png";
 
+import editImage from "../assets/edit.png";
+import editImageFocused from "../assets/edit-focused.png";
+import addImage from "../assets/add.png";
+
+import logoInnerImage from "../assets/logo_inner.png";
+export const logoInnerIcon = logoInnerImage;
+
+export const editIcon = editImage;
+export const editIconFocused = editImageFocused;
+export const addIcon = addImage;
+
 export const homeTab = homeIcon;
 export const routesTab = routesIcon;
 export const schedulesTab = schedulesIcon;

@@ -10,6 +10,7 @@ export function TripCardTransport({ legs }) {
       style={{
         flexDirection: "row",
         // justifyContent: "space-between",
+        paddingVertical: 14,
       }}
     >
       {legs.map((item, key) => (
