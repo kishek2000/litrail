@@ -62,6 +62,8 @@ export const MenuBar = [
   },
 ];
 
+export const UserTrips = [];
+
 export const DefinedTrips = [
   {
     startStop: "Bella Vista Station",
