@@ -18,6 +18,7 @@ import { ScheduleScreen } from "../screens/SchedulesScreen";
 import { RoutesScreen } from "../screens/RoutesScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Logo } from "../components/Logo";
+import { User } from "../classes/User";
 export const Tab = createBottomTabNavigator();
 
 export function CreateNavigation() {
@@ -27,6 +28,7 @@ export function CreateNavigation() {
         tabBarOptions={{
           style: {
             height: 70,
+            // display: "nbone"
           },
         }}
         screenOptions={({ route }) => ({
@@ -157,3 +159,5 @@ export function CreateNavigation() {
     </NavigationContainer>
   );
 }
+
+// 4 tabs, one for each screen

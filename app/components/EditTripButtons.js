@@ -29,10 +29,8 @@ export function EditTripButton({
       }}
       disabled={disabledState}
       onPress={() => {
-        !currentState &&
-          subtext === "Add Trip" &&
-          navigation.navigate("ROUTES");
-        setState && setState(!currentState);
+        subtext === "Add Trip" && navigation.navigate("ROUTES"); // We have pressed on Add Trip
+        setState && setState(!currentState); // We have pressed on Edit Trip
       }}
     >
       {subtext === "Edit Trip" && currentState ? (

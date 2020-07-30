@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View } from "react-native";
 import { MAIN_PRIMARY_COLOUR } from "../constants";
 import { TripCardDurationOrCost } from "./TripCardDurationOrCost";
 import { ViewTimesButton } from "./ViewTimesButton";
 import { TripCardDotsColumn } from "./TripCardDotsColumn";
 import { TripCardStops } from "./TripCardStops";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export function SavedTripCard({
   startStop,
@@ -15,9 +16,12 @@ export function SavedTripCard({
   legs,
   navigation,
   editMode,
+  keyValue,
 }) {
+  const [selected, setSelected] = useState(false);
+  console.log("key is ", keyValue);
   return (
-    <View
+    <TouchableOpacity
       style={{
         backgroundColor: "white",
         padding: 24,
@@ -25,12 +29,19 @@ export function SavedTripCard({
         alignSelf: "center",
         height: 175,
         borderRadius: 24,
+        borderColor: selected ? MAIN_PRIMARY_COLOUR : "none",
+        borderWidth: selected ? 4 : 0,
         marginTop: 16,
         boxShadow: "0px 1px 2px rgba(58, 57, 87, 0.3)",
         flexDirection: "row",
         justifyContent: "space-between",
         elevation: 2,
         alignItems: "center",
+      }}
+      disabled={!editMode}
+      onPress={() => {
+        setSelected(!selected);
+        console.log(keyValue);
       }}
     >
       <TripCardDotsColumn dots={10} />
@@ -79,6 +90,6 @@ export function SavedTripCard({
         </View>
         <ViewTimesButton navigation={navigation} editMode={editMode} />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }

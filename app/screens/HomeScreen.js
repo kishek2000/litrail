@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import { Text, View, SafeAreaView, ScrollView } from "react-native";
 import {
   MAIN_PRIMARY_COLOUR,
-  ScreenHeadingStyles,
   DefinedTrips,
   editIcon,
   addIcon,
 } from "../constants";
 import { SavedTripCard } from "../components/SavedTripCard";
 import { EditTripButton } from "../components/EditTripButtons";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { User } from "../classes/User";
 
 export function HomeScreen({ navigation }) {
   const [editMode, setEditMode] = useState(false);
+  const newUser = new User();
+  const currentUserTrips = newUser.savedTrips;
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -85,20 +88,42 @@ export function HomeScreen({ navigation }) {
               Select trips to delete or drag to reorder.
             </Text>
           )}
-          {DefinedTrips.map((tripDetails, key) => (
-            <SavedTripCard
-              startStop={tripDetails["startStop"]}
-              endStop={tripDetails["endStop"]}
-              nextTripTime={tripDetails["nextTripTime"]}
-              duration={tripDetails["duration"]}
-              cost={tripDetails["cost"]}
-              legs={tripDetails["legs"]}
-              navigation={navigation}
-              key={key}
-              editMode={editMode}
-            />
+          {DefinedTrips.map((tripDetails, index) => (
+            <>
+              <SavedTripCard
+                startStop={tripDetails["startStop"]}
+                endStop={tripDetails["endStop"]}
+                nextTripTime={tripDetails["nextTripTime"]}
+                duration={tripDetails["duration"]}
+                cost={tripDetails["cost"]}
+                legs={tripDetails["legs"]}
+                navigation={navigation}
+                keyValue={index}
+                editMode={editMode}
+              />
+              {console.log(index)}
+            </>
           ))}
           <View style={{ marginBottom: 32 }} />
+          {editMode && (
+            <View
+              style={{
+                position: "absolute",
+                bottom: 0,
+                alignSelf: "center",
+                width: "100%",
+                height: 80,
+                zIndex: 1,
+                backgroundColor: "black",
+              }}
+            >
+              <TouchableOpacity
+                style={{ width: 50, height: 50, backgroundColor: "black" }}
+              >
+                <Text>Deletion</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>
