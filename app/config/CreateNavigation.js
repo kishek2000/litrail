@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, Text } from "react-native";
 import {
   MAIN_PRIMARY_COLOUR,
@@ -22,13 +22,14 @@ import { User } from "../classes/User";
 export const Tab = createBottomTabNavigator();
 
 export function CreateNavigation() {
+  const [editMode, setEditMode] = useState(false);
   return (
     <NavigationContainer>
       <Tab.Navigator
         tabBarOptions={{
           style: {
             height: 70,
-            // display: "nbone"
+            display: editMode ? "none" : null,
           },
         }}
         screenOptions={({ route }) => ({
@@ -150,7 +151,12 @@ export function CreateNavigation() {
           },
         })}
       >
-        <Tab.Screen name="HOME" component={HomeScreen} />
+        <Tab.Screen
+          name="HOME"
+          children={() => (
+            <HomeScreen editMode={editMode} setEditMode={setEditMode} />
+          )}
+        />
         <Tab.Screen name="ROUTES" component={RoutesScreen} />
         <Tab.Screen name="SCHEDULE" component={ScheduleScreen} />
         <Tab.Screen name="BALANCE" component={BalanceScreen} />

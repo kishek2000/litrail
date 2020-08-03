@@ -1,8 +1,8 @@
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
-import { MAIN_PRIMARY_COLOUR } from "../constants";
+import { MAIN_PRIMARY_COLOUR } from "../../constants";
 
-export function ViewTimesButton({ navigation, editMode }) {
+export function ViewTimesButton({ navigation, editMode, navigateTo }) {
   return (
     <TouchableOpacity
       style={{
