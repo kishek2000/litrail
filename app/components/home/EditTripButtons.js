@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, TouchableOpacity, Image } from "react-native";
-import { MAIN_PRIMARY_COLOUR, editIconFocused } from "../constants";
+import { MAIN_PRIMARY_COLOUR, editIconFocused } from "../../constants";
 import { NavigationHelpersContext } from "@react-navigation/native";
 
 export function EditTripButton({

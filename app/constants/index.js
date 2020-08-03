@@ -43,6 +43,8 @@ export const ScreenHeadingStyles = {
   marginTop: 84,
 };
 
+export const Locations = ["Bella Vista Station", "QVB", "UNSW"];
+
 export const MenuBar = [
   {
     name: "HOME",
@@ -87,6 +89,31 @@ export const DefinedTrips = [
       {
         image: walkIcon,
         desc: "700m",
+      },
+    ],
+  },
+  {
+    startStop: "Bella Vista Station",
+    endStop: "UNSW",
+    nextTripTime: "7 MIN",
+    duration: "~ 1h 8m",
+    cost: "$5.99",
+    legs: [
+      {
+        image: trainIcon,
+        desc: "18 Min",
+      },
+      {
+        image: trainIcon,
+        desc: "35 Min",
+      },
+      {
+        image: walkIcon,
+        desc: "600m",
+      },
+      {
+        image: busIcon,
+        desc: "15 Min",
       },
     ],
   },

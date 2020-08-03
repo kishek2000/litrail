@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { MAIN_PRIMARY_COLOUR } from "../constants";
+import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { Ionicons } from "@expo/vector-icons";
 import { TripCardTransportIndividual } from "./TripCardTransportIndividual";
 

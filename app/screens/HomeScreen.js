@@ -6,13 +6,14 @@ import {
   editIcon,
   addIcon,
 } from "../constants";
-import { SavedTripCard } from "../components/SavedTripCard";
-import { EditTripButton } from "../components/EditTripButtons";
+import { SavedTripCard } from "../components/home/SavedTripCard";
+import { EditTripButton } from "../components/home/EditTripButtons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { User } from "../classes/User";
+import { useNavigation } from "@react-navigation/native";
 
-export function HomeScreen({ navigation }) {
-  const [editMode, setEditMode] = useState(false);
+export function HomeScreen({ editMode, setEditMode }) {
+  const navigation = useNavigation();
   const newUser = new User();
   const currentUserTrips = newUser.savedTrips;
   return (
@@ -101,31 +102,34 @@ export function HomeScreen({ navigation }) {
                 keyValue={index}
                 editMode={editMode}
               />
-              {console.log(index)}
             </>
           ))}
-          <View style={{ marginBottom: 32 }} />
-          {editMode && (
-            <View
-              style={{
-                position: "absolute",
-                bottom: 0,
-                alignSelf: "center",
-                width: "100%",
-                height: 80,
-                zIndex: 1,
-                backgroundColor: "black",
-              }}
-            >
-              <TouchableOpacity
-                style={{ width: 50, height: 50, backgroundColor: "black" }}
-              >
-                <Text>Deletion</Text>
-              </TouchableOpacity>
-            </View>
-          )}
+          <View style={{ marginBottom: editMode ? 100 : 32 }} />
         </View>
       </ScrollView>
+      {editMode && (
+        <View
+          style={{
+            position: "absolute",
+            bottom: 0,
+            alignSelf: "center",
+            width: "100%",
+            height: 60,
+            zIndex: 1,
+            backgroundColor: "white",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingHorizontal: 48,
+          }}
+        >
+          <TouchableOpacity
+            style={{ width: 100, height: 40, backgroundColor: "black" }}
+          >
+            <Text>Deletion</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </SafeAreaView>
   );
 }
