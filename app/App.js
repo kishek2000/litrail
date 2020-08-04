@@ -1,21 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { AppLoading } from "expo";
+import {
+  useFonts,
+  WorkSans_300Light,
+  WorkSans_400Regular,
+  WorkSans_500Medium,
+  WorkSans_700Bold,
+  WorkSans_800ExtraBold,
+} from "@expo-google-fonts/work-sans";
+import { CreateNavigation } from "./config/CreateNavigation";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  let [fontsLoaded] = useFonts({
+    WorkSans_300Light,
+    WorkSans_400Regular,
+    WorkSans_500Medium,
+    WorkSans_700Bold,
+    WorkSans_800ExtraBold,
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return <CreateNavigation />;
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
