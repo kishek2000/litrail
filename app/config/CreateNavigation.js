@@ -12,10 +12,10 @@ import {
   balanceTabFocused,
 } from "../constants";
 import { NavigationContainer } from "@react-navigation/native";
-import { HomeScreen } from "../screens/HomeScreen";
-import { BalanceScreen } from "../screens/BalanceScreen";
-import { ScheduleScreen } from "../screens/SchedulesScreen";
-import { RoutesScreen } from "../screens/RoutesScreen";
+import { HomeScreen } from "../screens/home/HomeScreen";
+import { BalanceScreen } from "../screens/balance/BalanceScreen";
+import { ScheduleScreen } from "../screens/schedules/SchedulesScreen";
+import { RoutesScreen } from "../screens/routes/RoutesScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Logo } from "../components/Logo";
 import { User } from "../classes/User";

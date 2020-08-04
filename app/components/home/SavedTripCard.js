@@ -17,6 +17,7 @@ export function SavedTripCard({
   navigation,
   editMode,
   keyValue,
+  navigateTo,
 }) {
   const [selected, setSelected] = useState(false);
   return (
@@ -31,7 +32,6 @@ export function SavedTripCard({
         borderColor: selected ? MAIN_PRIMARY_COLOUR : "none",
         borderWidth: selected ? 4 : 0,
         marginTop: 16,
-        boxShadow: "0px 1px 2px rgba(58, 57, 87, 0.3)",
         flexDirection: "row",
         justifyContent: "space-between",
         elevation: 2,
@@ -50,7 +50,7 @@ export function SavedTripCard({
           flexDirection: "column",
           justifyContent: "space-between",
           textAlign: "right",
-          width: 110,
+          maxWidth: 110,
         }}
       >
         <Text
@@ -89,7 +89,7 @@ export function SavedTripCard({
         <ViewTimesButton
           navigation={navigation}
           editMode={editMode}
-          navigateTo={"ROUTES"}
+          navigateTo={navigateTo}
         />
       </View>
     </TouchableOpacity>

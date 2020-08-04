@@ -50,7 +50,12 @@ export function AllPossibleRoutes({ navigation, locationRoutes }) {
             cost={trip["cost"]}
             legs={trip["legs"]}
             navigation={navigation}
-            navigateTo={"TripDetails"}
+            navigateTo={{
+              route: "TripTimes",
+              params: {
+                tripId: trip["id"],
+              },
+            }}
             keyValue={key}
           />
         ))}

@@ -3,8 +3,7 @@ import { View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 
-export function TripCardDotsColumn() {
-  const dots = 10;
+export function TripCardDotsColumn({ dots }) {
   return (
     <View
       style={{

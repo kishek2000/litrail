@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { View, SafeAreaView, Text } from "react-native";
-import { ScreenHeadingStyles, MAIN_PRIMARY_COLOUR } from "../constants";
+import { ScreenHeadingStyles, MAIN_PRIMARY_COLOUR } from "../../constants";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ScrollView } from "react-native-gesture-handler";
-import { TripCreation } from "../components/routes/TripCreation";
-
+import { TripCreation } from "../../components/routes/TripCreation";
+import { TripTimes } from "./TripTimes";
+import { TripDetails } from "./TripDetails";
+import { TripDetailsExpanded } from "./TripDetailsExpanded";
 // Within each screen, you can have a stack of screens
 // Creating a stack nav, react navigation docs
 // 4 screens in stack:
@@ -15,13 +17,16 @@ import { TripCreation } from "../components/routes/TripCreation";
 
 const Stack = createStackNavigator();
 
-export function RoutesScreen({ navigation }) {
+export function RoutesScreen({ navigation, route }) {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="RoutesHome" component={RoutesHomeScreen} />
-      {/* <Stack.Screen name="TripTimes" component={Notifications} /> */}
-      {/* <Stack.Screen name="TripDetails" component={Profile} /> */}
-      {/* <Stack.Screen name="TripDetailsExpanded" component={Settings} /> */}
+      <Stack.Screen name="TripTimes" component={TripTimes} />
+      <Stack.Screen name="TripDetails" component={TripDetails} />
+      <Stack.Screen
+        name="TripDetailsExpanded"
+        component={TripDetailsExpanded}
+      />
     </Stack.Navigator>
   );
 }

@@ -73,6 +73,7 @@ export const DefinedTrips = [
     nextTripTime: "5 MIN",
     duration: "~ 1h 20m",
     cost: "$6.99",
+    id: 0,
     legs: [
       {
         image: busIcon,
@@ -98,6 +99,7 @@ export const DefinedTrips = [
     nextTripTime: "7 MIN",
     duration: "~ 1h 8m",
     cost: "$5.99",
+    id: 1,
     legs: [
       {
         image: trainIcon,
@@ -123,6 +125,7 @@ export const DefinedTrips = [
     nextTripTime: "9 MIN",
     duration: "~ 33m",
     cost: "$3.99",
+    id: 2,
     legs: [
       {
         image: trainIcon,
@@ -140,11 +143,25 @@ export const DefinedTrips = [
     nextTripTime: "6 MIN",
     duration: "~ 45m",
     cost: "$4.99",
+    id: 3,
     legs: [
       {
         image: busIcon,
         desc: "45 Min",
       },
     ],
+  },
+];
+
+export const AllTripTimes = [
+  {
+    tripId: 0,
+    timesInterval: 8,
+    status: "ON TIME",
+    startStopExtended: "Bella Vista Station - Platform 2",
+    endStopExtended: "UNSW",
+    startHour: 12,
+    startMinute: 5,
+    totalMinutes: 45,
   },
 ];
