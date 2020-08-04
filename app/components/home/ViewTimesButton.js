@@ -18,7 +18,13 @@ export function ViewTimesButton({ navigation, editMode, navigateTo }) {
         opacity: editMode ? 0.6 : 1,
       }}
       disabled={editMode}
-      onPress={() => navigation.navigate("ROUTES")}
+      onPress={() => {
+        if (navigateTo) {
+          navigation.navigate(navigateTo["route"], navigateTo["params"]);
+        } else {
+          navigation.navigate("ROUTES");
+        }
+      }}
     >
       <Text
         style={{

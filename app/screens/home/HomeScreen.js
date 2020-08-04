@@ -5,11 +5,11 @@ import {
   DefinedTrips,
   editIcon,
   addIcon,
-} from "../constants";
-import { SavedTripCard } from "../components/home/SavedTripCard";
-import { EditTripButton } from "../components/home/EditTripButtons";
+} from "../../constants";
+import { SavedTripCard } from "../../components/home/SavedTripCard";
+import { EditTripButton } from "../../components/home/EditTripButtons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { User } from "../classes/User";
+import { User } from "../../classes/User";
 import { useNavigation } from "@react-navigation/native";
 
 export function HomeScreen({ editMode, setEditMode }) {
@@ -99,6 +99,14 @@ export function HomeScreen({ editMode, setEditMode }) {
                 cost={tripDetails["cost"]}
                 legs={tripDetails["legs"]}
                 navigation={navigation}
+                ////////////////////////// NEED TO FIGURE OUT HOW TO VIEW TIMES FROM HOME SCREEN ///////////////////////
+                // navigateTo={{
+                //   route: "ROUTES",
+                //   params: {
+                //     tripId: tripDetails["id"],
+                //   },
+                // }}
+                ////////////////////////// NEED TO FIGURE OUT HOW TO VIEW TIMES FROM HOME SCREEN ///////////////////////
                 keyValue={index}
                 editMode={editMode}
               />

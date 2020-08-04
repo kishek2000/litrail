@@ -1,8 +1,8 @@
 import React from "react";
 import { View, SafeAreaView, Text } from "react-native";
-import { MAIN_PRIMARY_COLOUR, ScreenHeadingStyles } from "../constants";
+import { ScreenHeadingStyles, MAIN_PRIMARY_COLOUR } from "../../constants";
 
-export function BalanceScreen({ navigation }) {
+export function ScheduleScreen({ navigation }) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View
@@ -13,7 +13,7 @@ export function BalanceScreen({ navigation }) {
           position: "relative",
         }}
       >
-        <Text style={ScreenHeadingStyles}>Balance</Text>
+        <Text style={ScreenHeadingStyles}>Schedule</Text>
         <Text
           style={{
             fontSize: 18,
@@ -22,7 +22,7 @@ export function BalanceScreen({ navigation }) {
             fontFamily: "WorkSans_400Regular",
           }}
         >
-          View and manage your Opal Balance.
+          Manage your reminders, or view your history.
         </Text>
       </View>
     </SafeAreaView>
