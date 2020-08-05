@@ -18,6 +18,7 @@ export function SeeMoreButton({ navigation }) {
         elevation: 2,
       }}
       onPress={() => {
+        console.log("see more pressed");
         navigation.navigate("TripDetails");
       }}
     >
