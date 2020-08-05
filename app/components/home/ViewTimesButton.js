@@ -19,6 +19,7 @@ export function ViewTimesButton({ navigation, editMode, navigateTo }) {
       }}
       disabled={editMode}
       onPress={() => {
+        console.log("PRESSED!!!!!!!!")
         if (navigateTo) {
           navigation.navigate(navigateTo["route"], navigateTo["params"]);
         } else {
