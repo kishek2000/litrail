@@ -18,6 +18,9 @@ import editImage from "../assets/edit.png";
 import editImageFocused from "../assets/edit-focused.png";
 import addImage from "../assets/add.png";
 
+import expandIconImage from "../assets/expand.png";
+export const expandIcon = expandIconImage;
+
 import logoInnerImage from "../assets/logo_inner.png";
 export const logoInnerIcon = logoInnerImage;
 
