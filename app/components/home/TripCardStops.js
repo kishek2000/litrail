@@ -16,7 +16,7 @@ export function TripCardStops({
         flexDirection: "column",
         justifyContent: "space-between",
         height: "100%",
-        marginRight: 16,
+        width: "57.5%",
       }}
     >
       <View style={{ flexDirection: "column" }}>
