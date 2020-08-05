@@ -67,13 +67,73 @@ export function ExpandButton() {
   )
 }
 
+export function TripDetailsInfoCorner() {
+  const starting_in = 5;
+  const last_updated = 56;
+  return <View style={{
+    height: Dimensions.get("screen").height * 0.1,
+    width: "30%",
+    borderTopRightRadius: Dimensions.get("screen").width * 0.05,
+    borderBottomLeftRadius: Dimensions.get("screen").width * 0.05,
+    backgroundColor: MAIN_PRIMARY_COLOUR,
+    alignItems: "center"
+  }}
+  >
+    <Text style={{
+      marginTop: Dimensions.get("screen").height * 0.01,
+      color: "white",
+      fontFamily: "WorkSans_300Light",
+      fontSize: Dimensions.get("screen").height * 0.015,
+    }}> STARTING IN</Text>
+    <Text style={{
+      marginTop: Dimensions.get("screen").height * -0.01,
+      color: "white",
+      fontFamily: "WorkSans_700Bold",
+      fontSize: Dimensions.get("screen").height * 0.03,
+    }}>{starting_in} MIN</Text>
+    <Text style={{
+      color: "white",
+      fontFamily: "WorkSans_500Medium",
+      fontSize: Dimensions.get("screen").height * 0.01,
+    }}>Updated {last_updated} s ago</Text>
+  </View>
+} 
+
+
+export function TripDetailsBody() {
+  const start_in = 5;
+  const last_updated = 56;
+  return (
+    <View style={{
+      marginTop: Dimensions.get("screen").height * 0.015,
+      height: Dimensions.get("screen").height * 0.6,
+      width: Dimensions.get("screen").width * 0.9,
+      borderRadius: Dimensions.get("screen").width * 0.06,
+      backgroundColor: "white",
+      flex: 1,
+      flexDirection: "row"
+    }}>
+      <View style={{
+        width: "70%"
+      }}>
+        <Text>Testing</Text>
+      </View>
+
+      <TripDetailsInfoCorner></TripDetailsInfoCorner>
+
+      
+    </View>
+  );
+}
+
+
 export function TripDetails({ navigation, route }) {
   console.log("TRIP DETAILS REACHED");
   return (
     <SafeAreaView style={{
       flex: 1,
       flexDirection: "column",
-      alignItems: "center"
+      alignItems: "center",
     }}>
         <View style={{
           flexDirection: "row"
@@ -82,6 +142,15 @@ export function TripDetails({ navigation, route }) {
           <Text style={TestScreenHeadingStyles}>Trip Details</Text>
           <ExpandButton></ExpandButton>
         </View>
+        <View style={{
+          marginTop: Dimensions.get("screen").height * 0.005
+        }}>
+          <Text style={{
+            fontFamily: "WorkSans_500Medium",
+            fontSize: Dimensions.get("screen").width * 0.035,
+          }}>View the seat availability and stops of your trip.</Text>
+        </View>
+        <TripDetailsBody></TripDetailsBody>
        
     </SafeAreaView>
   );
