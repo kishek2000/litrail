@@ -24,8 +24,8 @@ export function SavedTripCard({
     <TouchableOpacity
       style={{
         backgroundColor: "white",
-        padding: 24,
-        width: "95%",
+        padding: selected ? 20 : 24,
+        // width: "100%",
         alignSelf: "center",
         height: 175,
         borderRadius: 24,
@@ -33,7 +33,6 @@ export function SavedTripCard({
         borderWidth: selected ? 4 : 0,
         marginTop: 16,
         flexDirection: "row",
-        justifyContent: "space-between",
         elevation: 2,
         alignItems: "center",
       }}
@@ -45,12 +44,13 @@ export function SavedTripCard({
     >
       <TripCardDotsColumn dots={10} />
       <TripCardStops startStop={startStop} endStop={endStop} legs={legs} />
+      <View style={{ marginRight: 16 }} />
       <View
         style={{
           flexDirection: "column",
           justifyContent: "space-between",
           textAlign: "right",
-          maxWidth: 110,
+          width: 110,
         }}
       >
         <Text
