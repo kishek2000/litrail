@@ -25,7 +25,7 @@ export function HomeScreen({ editMode, setEditMode }) {
             backgroundColor: "#EEEEEE",
             alignItems: "center",
             position: "relative",
-            paddingHorizontal: 8,
+            paddingHorizontal: 16,
           }}
         >
           <Text
@@ -54,13 +54,11 @@ export function HomeScreen({ editMode, setEditMode }) {
             style={{
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "space-between",
               alignSelf: "center",
               marginLeft: 72,
               marginRight: 72,
               marginTop: 8,
               marginBottom: 16,
-              width: "70%",
             }}
           >
             <EditTripButton
@@ -69,6 +67,7 @@ export function HomeScreen({ editMode, setEditMode }) {
               navigation={navigation}
               disabledState={editMode}
             />
+            <View style={{ marginRight: 8 }} />
             <EditTripButton
               subtext="Edit Trip"
               icon={editIcon}
@@ -127,14 +126,57 @@ export function HomeScreen({ editMode, setEditMode }) {
             backgroundColor: "white",
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: "center",
             paddingHorizontal: 48,
           }}
         >
           <TouchableOpacity
-            style={{ width: 100, height: 40, backgroundColor: "black" }}
+            style={{
+              width: 100,
+              // height: 40,
+              backgroundColor: MAIN_PRIMARY_COLOUR,
+              elevation: 2,
+              paddingHorizontal: 16,
+              paddingVertical: 8,
+              borderRadius: 24,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            <Text>Deletion</Text>
+            <Text
+              style={{
+                color: "white",
+                fontFamily: "WorkSans_700Bold",
+                fontSize: 12,
+              }}
+            >
+              CLEAR
+            </Text>
+          </TouchableOpacity>
+          <View style={{ marginRight: 8 }} />
+          <TouchableOpacity
+            style={{
+              width: 100,
+              // height: 40,
+              backgroundColor: "#C90808",
+              elevation: 2,
+              paddingHorizontal: 16,
+              paddingVertical: 8,
+              borderRadius: 24,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <View style={{ marginRight: 8 }} />
+            <Text
+              style={{
+                color: "white",
+                fontFamily: "WorkSans_700Bold",
+                fontSize: 12,
+              }}
+            >
+              DELETE
+            </Text>
           </TouchableOpacity>
         </View>
       )}
