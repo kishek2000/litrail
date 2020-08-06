@@ -11,14 +11,8 @@ import { EditTripButton } from "../../components/home/EditTripButtons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
-export function HomeScreen({
-  editMode,
-  setEditMode,
-  getCurrentUserTrips,
-  currentUserTrips,
-}) {
+export function HomeScreen({ editMode, setEditMode, currentUserTrips }) {
   const navigation = useNavigation();
-  getCurrentUserTrips();
   return (
     <HomeContainer
       editMode={editMode}

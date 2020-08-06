@@ -4,6 +4,7 @@ import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { LocationButton } from "./LocationButton";
 import { LocationInputBox } from "./LocationInputBox";
 import { AllPossibleRoutes } from "./AllPossibleRoutes";
+import { TextInput } from "react-native-gesture-handler";
 
 export function CreateByLocation({
   navigation,
@@ -83,3 +84,44 @@ export function CreateByLocation({
     </View>
   );
 }
+
+// DRAFT FOR REFACTORING THE ABOVE
+
+// export const DummyComponent = () => {
+//   return (
+//     <LocationInput
+//       placeholder="Enter start..."
+//       options={["Bella Vista Station", "Ryde"]}
+//       onChange={(value) => {
+//         setStartLocation(value);
+//       }}
+//     />
+//     <LocationInput
+//       placeholder="Enter dest..."
+//       options={["Bella Vista Station", "Ryde"]}
+//       onChange={(value) => {
+//         setDestLocation(value);
+//       }}
+//     />
+//   );
+// };
+
+// export const LocationInput = ({ placeholder, options, onChange }) => {
+//   const [value, setValue] = useState(undefined);
+//   const [isValid, setIsValid] = useState(false);
+//   return (
+//     <View>
+//       <TextInput
+//         style={{ borderRadius: 16, backgroundColor: "white", padding: 16 }}
+//         onChangeText={(text) => {
+//           setValue(text);
+//           if (options.includes(text)) {
+//             onChange(text);
+//             setIsValid(true);
+//           }
+//         }}
+//       />
+//       {!isValid && <View />} {/* Render options until valid one not found */}
+//     </View>
+//   );
+// };

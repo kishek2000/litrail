@@ -24,14 +24,7 @@ export const Tab = createBottomTabNavigator();
 export function CreateNavigation() {
   const [editMode, setEditMode] = useState(false);
   const newUser = new User();
-  const [currentUserTrips, setCurrentUserTrips] = useState(
-    newUser.getSavedTrips()
-  );
-
-  const getCurrentUserTrips = useCallback(() => {
-    console.log("finding again");
-    setCurrentUserTrips(newUser.getSavedTrips());
-  }, [setCurrentUserTrips]);
+  const [currentUserTrips, setCurrentUserTrips] = useState([]);
 
   return (
     <NavigationContainer>
@@ -136,19 +129,9 @@ export function CreateNavigation() {
                 />
               );
             } else if (route.name === "BALANCE") {
-              return focused ? (
+              return (
                 <Image
-                  source={balanceTabFocused}
-                  style={{
-                    width: 36,
-                    height: 28,
-                    resizeMode: "contain",
-                    marginBottom: -10,
-                  }}
-                />
-              ) : (
-                <Image
-                  source={balanceTab}
+                  source={focused ? balanceTabFocused : balanceTab}
                   style={{
                     width: 36,
                     height: 28,
@@ -167,7 +150,6 @@ export function CreateNavigation() {
             <HomeScreen
               editMode={editMode}
               setEditMode={setEditMode}
-              getCurrentUserTrips={getCurrentUserTrips}
               currentUserTrips={currentUserTrips}
             />
           )}
@@ -178,6 +160,7 @@ export function CreateNavigation() {
             <RoutesScreen
               currentUser={newUser}
               setCurrentUserTrips={setCurrentUserTrips}
+              currentUserTrips={currentUserTrips}
             />
           )}
         />

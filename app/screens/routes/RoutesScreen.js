@@ -18,7 +18,12 @@ import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
 
-export function RoutesScreen({ route, setCurrentUserTrips, currentUser }) {
+export function RoutesScreen({
+  route,
+  setCurrentUserTrips,
+  currentUserTrips,
+  currentUser,
+}) {
   const navigation = useNavigation();
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -27,6 +32,7 @@ export function RoutesScreen({ route, setCurrentUserTrips, currentUser }) {
         name="TripTimes"
         children={() => (
           <TripTimes
+            currentUserTrips={currentUserTrips}
             setCurrentUserTrips={setCurrentUserTrips}
             currentUser={currentUser}
           />

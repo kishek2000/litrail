@@ -14,87 +14,17 @@ import {
 import { TripTimeCard } from "./TripTimeCard";
 import { GetAllTimes } from "./GetAllTimes";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { TripFacade } from "../../classes/User";
 
-export function TripTimes({ currentUser, setCurrentUserTrips }) {
+export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
   const navigation = useNavigation();
   const route = useRoute();
-
+  const [isSaved, setIsSaved] = useState(false);
   const tripTime = AllTripTimes.filter((trip) => {
     return trip["tripId"] === route.params.tripId;
   });
   if (tripTime.length === 0) {
-    return (
-      <SafeAreaView
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: "#EEEEEE",
-            alignItems: "center",
-            position: "relative",
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              marginTop: 84,
-            }}
-          >
-            <TouchableOpacity onPress={() => navigation.navigate("RoutesHome")}>
-              <Text
-                style={{
-                  fontFamily: "WorkSans_400Regular",
-                  fontSize: 16,
-                  marginRight: 18,
-                }}
-              >
-                BACK
-              </Text>
-            </TouchableOpacity>
-            <Text
-              style={{
-                fontSize: 54,
-                fontFamily: "WorkSans_500Medium",
-                color: MAIN_PRIMARY_COLOUR,
-                marginRight: 48,
-              }}
-            >
-              Trip Times
-            </Text>
-          </View>
-          <Text
-            style={{
-              fontSize: 18,
-              color: MAIN_PRIMARY_COLOUR,
-              marginTop: 8,
-              fontFamily: "WorkSans_400Regular",
-            }}
-          >
-            View the incoming times of your trip.
-          </Text>
-          <Text
-            style={{
-              fontSize: 18,
-              color: MAIN_PRIMARY_COLOUR,
-              marginTop: 32,
-              paddingHorizontal: 36,
-              textTransform: "uppercase",
-              textAlign: "center",
-              fontFamily: "WorkSans_800ExtraBold",
-            }}
-          >
-            There are currently no times available for your trip.
-          </Text>
-        </View>
-      </SafeAreaView>
-    );
+    return <TripTimesHeader />;
   }
   const tripDetails = [];
   DefinedTrips.filter((trip) => {
@@ -193,10 +123,11 @@ export function TripTimes({ currentUser, setCurrentUserTrips }) {
               paddingVertical: 10,
             }}
             onPress={() => {
-              console.log("saving");
-              currentUser.addTrip(route.params.tripId);
-              console.log(currentUser.getSavedTrips());
-              // setCurrentUserTrips(currentUser.getSavedTrips());
+              const trip = TripFacade.get(route.params.tripId);
+              if (!currentUserTrips.includes(trip)) {
+                setCurrentUserTrips(currentUserTrips.concat([trip]));
+                setIsSaved(true);
+              }
             }}
           >
             <Text
@@ -207,7 +138,7 @@ export function TripTimes({ currentUser, setCurrentUserTrips }) {
                 textAlign: "left",
               }}
             >
-              + Save Trip
+              {isSaved ? "Trip Already Saved" : "+ Save Trip"}
             </Text>
           </TouchableOpacity>
         </View>
@@ -230,6 +161,81 @@ export function TripTimes({ currentUser, setCurrentUserTrips }) {
           />
         </View>
         <View style={{ marginBottom: 38 }} />
+      </View>
+    </SafeAreaView>
+  );
+}
+
+function TripTimesHeader() {
+  return (
+    <SafeAreaView
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "#EEEEEE",
+          alignItems: "center",
+          position: "relative",
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: 84,
+          }}
+        >
+          <TouchableOpacity onPress={() => navigation.navigate("RoutesHome")}>
+            <Text
+              style={{
+                fontFamily: "WorkSans_400Regular",
+                fontSize: 16,
+                marginRight: 18,
+              }}
+            >
+              BACK
+            </Text>
+          </TouchableOpacity>
+          <Text
+            style={{
+              fontSize: 54,
+              fontFamily: "WorkSans_500Medium",
+              color: MAIN_PRIMARY_COLOUR,
+              marginRight: 48,
+            }}
+          >
+            Trip Times
+          </Text>
+        </View>
+        <Text
+          style={{
+            fontSize: 18,
+            color: MAIN_PRIMARY_COLOUR,
+            marginTop: 8,
+            fontFamily: "WorkSans_400Regular",
+          }}
+        >
+          View the incoming times of your trip.
+        </Text>
+        <Text
+          style={{
+            fontSize: 18,
+            color: MAIN_PRIMARY_COLOUR,
+            marginTop: 32,
+            paddingHorizontal: 36,
+            textTransform: "uppercase",
+            textAlign: "center",
+            fontFamily: "WorkSans_800ExtraBold",
+          }}
+        >
+          There are currently no times available for your trip.
+        </Text>
       </View>
     </SafeAreaView>
   );
