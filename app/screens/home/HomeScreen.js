@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Text, View, SafeAreaView, ScrollView } from "react-native";
 import {
   MAIN_PRIMARY_COLOUR,
@@ -9,13 +9,33 @@ import {
 import { SavedTripCard } from "../../components/home/SavedTripCard";
 import { EditTripButton } from "../../components/home/EditTripButtons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { User } from "../../classes/User";
 import { useNavigation } from "@react-navigation/native";
 
-export function HomeScreen({ editMode, setEditMode }) {
+export function HomeScreen({
+  editMode,
+  setEditMode,
+  getCurrentUserTrips,
+  currentUserTrips,
+}) {
   const navigation = useNavigation();
-  const newUser = new User();
-  const currentUserTrips = newUser.savedTrips;
+  getCurrentUserTrips();
+  return (
+    <HomeContainer
+      editMode={editMode}
+      setEditMode={setEditMode}
+      allUserTrips={currentUserTrips}
+      navigation={navigation}
+    />
+  );
+}
+
+export function HomeContainer({
+  editMode,
+  setEditMode,
+  allUserTrips,
+  navigation,
+}) {
+  console.log("trips", allUserTrips);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -55,8 +75,7 @@ export function HomeScreen({ editMode, setEditMode }) {
               flexDirection: "row",
               alignItems: "center",
               alignSelf: "center",
-              marginLeft: 72,
-              marginRight: 72,
+              justifyContent: "center",
               marginTop: 8,
               marginBottom: 16,
             }}
@@ -66,15 +85,20 @@ export function HomeScreen({ editMode, setEditMode }) {
               icon={addIcon}
               navigation={navigation}
               disabledState={editMode}
+              noEdit={allUserTrips.length}
             />
-            <View style={{ marginRight: 8 }} />
-            <EditTripButton
-              subtext="Edit Trip"
-              icon={editIcon}
-              navigation={navigation}
-              setState={setEditMode}
-              currentState={editMode}
-            />
+            {allUserTrips.length > 0 && (
+              <>
+                <View style={{ marginRight: 8 }} />
+                <EditTripButton
+                  subtext="Edit Trip"
+                  icon={editIcon}
+                  navigation={navigation}
+                  setState={setEditMode}
+                  currentState={editMode}
+                />
+              </>
+            )}
           </View>
           {editMode && (
             <Text
@@ -88,29 +112,46 @@ export function HomeScreen({ editMode, setEditMode }) {
               Select trips to delete or drag to reorder.
             </Text>
           )}
-          {DefinedTrips.map((tripDetails, index) => (
-            <>
-              <SavedTripCard
-                startStop={tripDetails["startStop"]}
-                endStop={tripDetails["endStop"]}
-                nextTripTime={tripDetails["nextTripTime"]}
-                duration={tripDetails["duration"]}
-                cost={tripDetails["cost"]}
-                legs={tripDetails["legs"]}
-                navigation={navigation}
-                ////////////////////////// NEED TO FIGURE OUT HOW TO VIEW TIMES FROM HOME SCREEN ///////////////////////
-                // navigateTo={{
-                //   route: "ROUTES",
-                //   params: {
-                //     tripId: tripDetails["id"],
-                //   },
-                // }}
-                ////////////////////////// NEED TO FIGURE OUT HOW TO VIEW TIMES FROM HOME SCREEN ///////////////////////
-                keyValue={index}
-                editMode={editMode}
-              />
-            </>
-          ))}
+          {allUserTrips.length > 0 ? (
+            allUserTrips.map((tripDetails, index) => (
+              <>
+                <SavedTripCard
+                  startStop={tripDetails["startStop"]}
+                  endStop={tripDetails["endStop"]}
+                  nextTripTime={tripDetails["nextTripTime"]}
+                  duration={tripDetails["duration"]}
+                  cost={tripDetails["cost"]}
+                  legs={tripDetails["legs"]}
+                  navigation={navigation}
+                  navigateTo={{
+                    route: "ROUTES",
+                    arg: {
+                      screen: "TripTimes",
+                      params: {
+                        tripId: tripDetails["id"],
+                      },
+                    },
+                  }}
+                  keyValue={index}
+                  editMode={editMode}
+                />
+              </>
+            ))
+          ) : (
+            <Text
+              style={{
+                fontSize: 20,
+                color: MAIN_PRIMARY_COLOUR,
+                marginTop: 8,
+                textAlign: "center",
+                paddingHorizontal: 24,
+                fontFamily: "WorkSans_400Regular",
+                opacity: editMode ? 0.4 : 1,
+              }}
+            >
+              You currently have no saved trips. Add a trip to begin!
+            </Text>
+          )}
           <View style={{ marginBottom: editMode ? 100 : 32 }} />
         </View>
       </ScrollView>

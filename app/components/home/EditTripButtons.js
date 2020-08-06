@@ -10,6 +10,7 @@ export function EditTripButton({
   setState,
   currentState,
   disabledState,
+  noEdit,
 }) {
   return (
     <TouchableOpacity
@@ -19,17 +20,19 @@ export function EditTripButton({
             ? MAIN_PRIMARY_COLOUR
             : "white",
         elevation: 1,
+        width: subtext === "Add Trip" && !noEdit ? "100%" : null,
         borderRadius: 24,
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
         paddingHorizontal: 24,
         paddingVertical: 10,
         opacity: disabledState ? 0.4 : 1,
       }}
       disabled={disabledState}
       onPress={() => {
-        subtext === "Add Trip" && navigation.navigate("ROUTES"); // We have pressed on Add Trip
+        subtext === "Add Trip" &&
+          navigation.navigate("ROUTES", { screen: "RoutesHome" }); // We have pressed on Add Trip
         setState && setState(!currentState); // We have pressed on Edit Trip
       }}
     >
@@ -64,6 +67,7 @@ export function EditTripButton({
             subtext === "Edit Trip" && currentState
               ? "white"
               : MAIN_PRIMARY_COLOUR,
+          textAlign: "left",
         }}
       >
         {subtext}

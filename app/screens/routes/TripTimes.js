@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { View, SafeAreaView, Text } from "react-native";
 import {
   ScreenHeadingStyles,
@@ -13,11 +13,89 @@ import {
 } from "react-native-gesture-handler";
 import { TripTimeCard } from "./TripTimeCard";
 import { GetAllTimes } from "./GetAllTimes";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-export function TripTimes({ navigation, route }) {
+export function TripTimes({ currentUser, setCurrentUserTrips }) {
+  const navigation = useNavigation();
+  const route = useRoute();
+
   const tripTime = AllTripTimes.filter((trip) => {
     return trip["tripId"] === route.params.tripId;
   });
+  if (tripTime.length === 0) {
+    return (
+      <SafeAreaView
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: "#EEEEEE",
+            alignItems: "center",
+            position: "relative",
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              marginTop: 84,
+            }}
+          >
+            <TouchableOpacity onPress={() => navigation.navigate("RoutesHome")}>
+              <Text
+                style={{
+                  fontFamily: "WorkSans_400Regular",
+                  fontSize: 16,
+                  marginRight: 18,
+                }}
+              >
+                BACK
+              </Text>
+            </TouchableOpacity>
+            <Text
+              style={{
+                fontSize: 54,
+                fontFamily: "WorkSans_500Medium",
+                color: MAIN_PRIMARY_COLOUR,
+                marginRight: 48,
+              }}
+            >
+              Trip Times
+            </Text>
+          </View>
+          <Text
+            style={{
+              fontSize: 18,
+              color: MAIN_PRIMARY_COLOUR,
+              marginTop: 8,
+              fontFamily: "WorkSans_400Regular",
+            }}
+          >
+            View the incoming times of your trip.
+          </Text>
+          <Text
+            style={{
+              fontSize: 18,
+              color: MAIN_PRIMARY_COLOUR,
+              marginTop: 32,
+              paddingHorizontal: 36,
+              textTransform: "uppercase",
+              textAlign: "center",
+              fontFamily: "WorkSans_800ExtraBold",
+            }}
+          >
+            There are currently no times available for your trip.
+          </Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
   const tripDetails = [];
   DefinedTrips.filter((trip) => {
     if (trip["id"] === route.params.tripId) {
@@ -51,18 +129,45 @@ export function TripTimes({ navigation, route }) {
         justifyContent: "center",
       }}
     >
-      <TouchableOpacity onPress={() => navigation.navigate("RoutesHome")}>
-        <Text>Back</Text>
-      </TouchableOpacity>
       <View
         style={{
           flex: 1,
           backgroundColor: "#EEEEEE",
           alignItems: "center",
           position: "relative",
+          width: "100%",
         }}
       >
-        <Text style={ScreenHeadingStyles}>Trip Times</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: 84,
+          }}
+        >
+          <TouchableOpacity onPress={() => navigation.navigate("RoutesHome")}>
+            <Text
+              style={{
+                fontFamily: "WorkSans_400Regular",
+                fontSize: 16,
+                marginRight: 36,
+              }}
+            >
+              BACK
+            </Text>
+          </TouchableOpacity>
+          <Text
+            style={{
+              fontSize: 54,
+              fontFamily: "WorkSans_500Medium",
+              color: MAIN_PRIMARY_COLOUR,
+              marginRight: 72,
+            }}
+          >
+            Trip Times
+          </Text>
+        </View>
         <Text
           style={{
             fontSize: 18,
@@ -74,24 +179,55 @@ export function TripTimes({ navigation, route }) {
           View the incoming times of your trip.
         </Text>
         <View style={{ marginBottom: 16 }} />
+        <View style={{ width: "100%", paddingHorizontal: 24 }}>
+          <TouchableOpacity
+            style={{
+              backgroundColor: MAIN_PRIMARY_COLOUR,
+              elevation: 1,
+              width: "100%",
+              borderRadius: 24,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              paddingHorizontal: 24,
+              paddingVertical: 10,
+            }}
+            onPress={() => {
+              console.log("saving");
+              currentUser.addTrip(route.params.tripId);
+              console.log(currentUser.getSavedTrips());
+              // setCurrentUserTrips(currentUser.getSavedTrips());
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: "WorkSans_400Regular",
+                fontSize: 18,
+                color: "white",
+                textAlign: "left",
+              }}
+            >
+              + Save Trip
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{ marginBottom: 16 }} />
         <View
           style={{
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <FlatList
-              data={AllTimes}
-              renderItem={RenderTripTimeCard}
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={{
-                paddingBottom: 36,
-                paddingTop: 16,
-                paddingHorizontal: 16,
-              }}
-            />
-          </ScrollView>
+          <FlatList
+            data={AllTimes}
+            renderItem={RenderTripTimeCard}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{
+              paddingBottom: 36,
+              paddingTop: 16,
+              paddingHorizontal: 16,
+            }}
+          />
         </View>
         <View style={{ marginBottom: 38 }} />
       </View>

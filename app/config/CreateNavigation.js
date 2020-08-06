@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Image, Text } from "react-native";
 import {
   MAIN_PRIMARY_COLOUR,
@@ -23,6 +23,16 @@ export const Tab = createBottomTabNavigator();
 
 export function CreateNavigation() {
   const [editMode, setEditMode] = useState(false);
+  const newUser = new User();
+  const [currentUserTrips, setCurrentUserTrips] = useState(
+    newUser.getSavedTrips()
+  );
+
+  const getCurrentUserTrips = useCallback(() => {
+    console.log("finding again");
+    setCurrentUserTrips(newUser.getSavedTrips());
+  }, [setCurrentUserTrips]);
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -154,12 +164,31 @@ export function CreateNavigation() {
         <Tab.Screen
           name="HOME"
           children={() => (
-            <HomeScreen editMode={editMode} setEditMode={setEditMode} />
+            <HomeScreen
+              editMode={editMode}
+              setEditMode={setEditMode}
+              getCurrentUserTrips={getCurrentUserTrips}
+              currentUserTrips={currentUserTrips}
+            />
           )}
         />
-        <Tab.Screen name="ROUTES" component={RoutesScreen} />
-        <Tab.Screen name="SCHEDULE" component={ScheduleScreen} />
-        <Tab.Screen name="BALANCE" component={BalanceScreen} />
+        <Tab.Screen
+          name="ROUTES"
+          children={() => (
+            <RoutesScreen
+              currentUser={newUser}
+              setCurrentUserTrips={setCurrentUserTrips}
+            />
+          )}
+        />
+        <Tab.Screen
+          name="SCHEDULE"
+          children={() => <ScheduleScreen currentUser={newUser} />}
+        />
+        <Tab.Screen
+          name="BALANCE"
+          children={() => <BalanceScreen currentUser={newUser} />}
+        />
       </Tab.Navigator>
       <Logo />
     </NavigationContainer>

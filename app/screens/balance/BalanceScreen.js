@@ -1,8 +1,11 @@
 import React from "react";
 import { View, SafeAreaView, Text } from "react-native";
 import { MAIN_PRIMARY_COLOUR, ScreenHeadingStyles } from "../../constants";
+import { useNavigation } from "@react-navigation/native";
 
-export function BalanceScreen({ navigation }) {
+export function BalanceScreen({ currentUser }) {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View

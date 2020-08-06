@@ -7,6 +7,7 @@ import { TripCreation } from "../../components/routes/TripCreation";
 import { TripTimes } from "./TripTimes";
 import { TripDetails } from "./TripDetails";
 import { TripDetailsExpanded } from "./TripDetailsExpanded";
+import { useNavigation } from "@react-navigation/native";
 // Within each screen, you can have a stack of screens
 // Creating a stack nav, react navigation docs
 // 4 screens in stack:
@@ -17,11 +18,20 @@ import { TripDetailsExpanded } from "./TripDetailsExpanded";
 
 const Stack = createStackNavigator();
 
-export function RoutesScreen({ navigation, route }) {
+export function RoutesScreen({ route, setCurrentUserTrips, currentUser }) {
+  const navigation = useNavigation();
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="RoutesHome" component={RoutesHomeScreen} />
-      <Stack.Screen name="TripTimes" component={TripTimes} />
+      <Stack.Screen
+        name="TripTimes"
+        children={() => (
+          <TripTimes
+            setCurrentUserTrips={setCurrentUserTrips}
+            currentUser={currentUser}
+          />
+        )}
+      />
       <Stack.Screen name="TripDetails" component={TripDetails} />
       <Stack.Screen
         name="TripDetailsExpanded"

@@ -52,7 +52,7 @@ export function AllPossibleRoutes({ navigation, locationRoutes }) {
             navigation={navigation}
             navigateTo={{
               route: "TripTimes",
-              params: {
+              arg: {
                 tripId: trip["id"],
               },
             }}

@@ -1,8 +1,10 @@
 import React from "react";
 import { View, SafeAreaView, Text } from "react-native";
 import { ScreenHeadingStyles, MAIN_PRIMARY_COLOUR } from "../../constants";
+import { useNavigation } from "@react-navigation/native";
 
-export function ScheduleScreen({ navigation }) {
+export function ScheduleScreen({ currentUser }) {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View
