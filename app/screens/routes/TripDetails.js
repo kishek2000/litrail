@@ -4,9 +4,15 @@ import {
   ScreenHeadingStyles,
   MAIN_PRIMARY_COLOUR,
   expandIcon,
+  busIconIcon,
+  walkIconIcon,
+  seatAvailabilityIcon,
 } from "../../constants";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Dimensions } from "react-native";
+
+import { AntDesign } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
 export const TestScreenHeadingStyles = {
   fontSize: Dimensions.get("screen").width * 0.09,
@@ -132,6 +138,110 @@ export function TripDetailsInfoCorner() {
   );
 }
 
+export function TripDetailsDotColumnNoEnd({ dots }) {
+  return (
+    <View
+      style={{
+        alignItems: "center",
+        marginRight: 8,
+        marginLeft: 22,
+        marginTop: 35,
+        alignSelf: "center",
+      }}
+    >
+      <AntDesign
+        name="upcircle"
+        size={16}
+        color="#52ABF7"
+        style={{ marginBottom: 2 }}
+      />
+      {[...Array(dots)].map((e, i) => (
+        <FontAwesome
+          name="circle"
+          size={5}
+          key={i}
+          color="#E5D5D5"
+          style={{
+            marginTop: 3,
+          }}
+        />
+      ))}
+    </View>
+  );
+}
+
+
+export function TripDetailsLegStart() {
+  const station_name = "Bella Vista Station";
+  const time_string = "12:05 PM";
+  const route = "607X";
+  const duration = "45 min";
+  const seats_free = 25;
+  return (
+    <View style={{
+      flex: 1,
+      flexDirection: "row",
+    }}>
+      <View>
+        <TripDetailsDotColumnNoEnd dots={12}></TripDetailsDotColumnNoEnd>
+      </View>
+      <View style={{
+        flex: 1,
+      }}>
+        <Text style={{
+          marginTop: 27,
+          fontFamily: "WorkSans_700Bold",
+          fontSize: 20,
+          color: MAIN_PRIMARY_COLOUR,
+        }}>{station_name}</Text>
+        <Text style={{
+          fontFamily: "WorkSans_700Bold",
+          marginTop: -4,
+        }}>{time_string}</Text>
+        <View style={{
+          flex: 1,
+          flexDirection: "row",
+        }}>
+          <Image source={busIconIcon} style={{
+            top: 17,
+            left: 10,
+            width: 35,
+            height: 35
+          }}/>
+          <View style={{
+            flex: 1,
+            left: 20,
+            top: 10,
+          }}>
+              <Text style={{
+                fontFamily: "WorkSans_500Medium",
+                fontSize: 16,
+                color: MAIN_PRIMARY_COLOUR,
+              }}>{route} for {duration}</Text>
+              <View style={{
+                flex: 1,
+                flexDirection: "row",
+              }}>
+                <Image source={seatAvailabilityIcon} style={{
+                  top: 5,
+                  width: 20,
+                  height: 15,
+                }}/>
+                <Text style={{
+                  left: 5,
+                  fontFamily: "WorkSans_700Bold",
+                  color: MAIN_PRIMARY_COLOUR,
+                }}>~ {seats_free} seats free</Text>
+              </View>
+          </View>
+        </View>
+          
+      </View>
+    </View>
+  );
+}
+
+
 export function TripDetailsBody() {
   const start_in = 5;
   const last_updated = 56;
@@ -150,9 +260,10 @@ export function TripDetailsBody() {
       <View
         style={{
           width: "70%",
+          flex: 1,
         }}
       >
-        <Text>Testing</Text>
+        <TripDetailsLegStart></TripDetailsLegStart>
       </View>
 
       <TripDetailsInfoCorner></TripDetailsInfoCorner>
@@ -197,3 +308,5 @@ export function TripDetails({ navigation, route }) {
     </SafeAreaView>
   );
 }
+
+
