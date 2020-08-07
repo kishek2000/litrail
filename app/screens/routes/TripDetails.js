@@ -15,7 +15,7 @@ export const TestScreenHeadingStyles = {
   marginTop: 84,
 };
 
-export function BackButton() {
+export function BackButton({ navigation }) {
   return (
     <TouchableOpacity
       style={{
@@ -28,15 +28,18 @@ export function BackButton() {
         justifyContent: "center",
         // backgroundColor: 'red'
       }}
+      onPress={() => {
+        navigation.navigate("TripTimes");
+      }}
     >
       <Text
         style={{
-          fontFamily: "WorkSans_700Bold",
-          color: MAIN_PRIMARY_COLOUR,
-          fontSize: Dimensions.get("screen").width * 0.04,
+          fontFamily: "WorkSans_400Regular",
+          fontSize: 16,
+          marginRight: 18,
         }}
       >
-        &lt; BACK
+        BACK
       </Text>
     </TouchableOpacity>
   );
@@ -172,7 +175,7 @@ export function TripDetails({ navigation, route }) {
           flexDirection: "row",
         }}
       >
-        <BackButton></BackButton>
+        <BackButton navigation={navigation} />
         <Text style={TestScreenHeadingStyles}>Trip Details</Text>
         <ExpandButton></ExpandButton>
       </View>

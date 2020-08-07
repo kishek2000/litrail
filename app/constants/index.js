@@ -168,3 +168,8 @@ export const AllTripTimes = [
     totalMinutes: 45,
   },
 ];
+
+// THIS IS A TEMPORARY CONSTANT, WILL BE DELETED ONCE REMINDERS ARE IMPLEMENTED.
+// export const UserReminders = [
+
+// ]

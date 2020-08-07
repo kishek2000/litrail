@@ -18,6 +18,10 @@ export function SavedTripCard({
   editMode,
   keyValue,
   navigateTo,
+  reminder,
+  history,
+  tripStart,
+  tripEnd,
 }) {
   const [selected, setSelected] = useState(false);
   return (
@@ -53,28 +57,11 @@ export function SavedTripCard({
           width: 110,
         }}
       >
-        <Text
-          style={{
-            fontFamily: "WorkSans_500Medium",
-            fontSize: 10,
-            textAlign: "right",
-            color: MAIN_PRIMARY_COLOUR,
-          }}
-        >
-          NEXT TRIP IN
-        </Text>
-        <Text
-          style={{
-            fontFamily: "WorkSans_800ExtraBold",
-            fontSize: 36,
-            textAlign: "right",
-            marginTop: -12,
-            marginRight: -1,
-            color: MAIN_PRIMARY_COLOUR,
-          }}
-        >
-          {nextTripTime}
-        </Text>
+        {history ? (
+          <HistoryElement tripStart={tripStart} tripEnd={tripEnd} />
+        ) : (
+          <IncomingTipElement nextTripTime={nextTripTime} />
+        )}
         <View
           style={{
             flexDirection: "row",
@@ -86,12 +73,95 @@ export function SavedTripCard({
           <View style={{ marginRight: 10 }} />
           <TripCardDurationOrCost subheading="COST" subtext={cost} />
         </View>
-        <ViewTimesButton
-          navigation={navigation}
-          editMode={editMode}
-          navigateTo={navigateTo}
-        />
+        {!history && (
+          <ViewTimesButton
+            navigation={navigation}
+            editMode={editMode}
+            navigateTo={navigateTo}
+            reminder={reminder}
+          />
+        )}
       </View>
     </TouchableOpacity>
+  );
+}
+
+function HistoryElement({ tripStart, tripEnd }) {
+  return (
+    <>
+      <Text
+        style={{
+          fontFamily: "WorkSans_500Medium",
+          fontSize: 10,
+          textAlign: "right",
+          color: MAIN_PRIMARY_COLOUR,
+        }}
+      >
+        FROM
+      </Text>
+      <Text
+        style={{
+          fontFamily: "WorkSans_800ExtraBold",
+          fontSize: 28,
+          textAlign: "right",
+          marginTop: -12,
+          marginRight: -1,
+          color: MAIN_PRIMARY_COLOUR,
+        }}
+      >
+        {tripStart}
+      </Text>
+      <Text
+        style={{
+          fontFamily: "WorkSans_500Medium",
+          fontSize: 10,
+          textAlign: "right",
+          color: MAIN_PRIMARY_COLOUR,
+        }}
+      >
+        TO
+      </Text>
+      <Text
+        style={{
+          fontFamily: "WorkSans_800ExtraBold",
+          fontSize: 28,
+          textAlign: "right",
+          marginTop: -12,
+          marginRight: -1,
+          color: MAIN_PRIMARY_COLOUR,
+        }}
+      >
+        {tripEnd}
+      </Text>
+    </>
+  );
+}
+
+function IncomingTipElement({ nextTripTime }) {
+  return (
+    <>
+      <Text
+        style={{
+          fontFamily: "WorkSans_500Medium",
+          fontSize: 10,
+          textAlign: "right",
+          color: MAIN_PRIMARY_COLOUR,
+        }}
+      >
+        NEXT TRIP IN
+      </Text>
+      <Text
+        style={{
+          fontFamily: "WorkSans_800ExtraBold",
+          fontSize: 36,
+          textAlign: "right",
+          marginTop: -12,
+          marginRight: -1,
+          color: MAIN_PRIMARY_COLOUR,
+        }}
+      >
+        {nextTripTime}
+      </Text>
+    </>
   );
 }

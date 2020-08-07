@@ -2,7 +2,12 @@ import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { MAIN_PRIMARY_COLOUR } from "../../constants";
 
-export function ViewTimesButton({ navigation, editMode, navigateTo }) {
+export function ViewTimesButton({
+  navigation,
+  editMode,
+  navigateTo,
+  reminder,
+}) {
   return (
     <TouchableOpacity
       style={{
@@ -19,11 +24,10 @@ export function ViewTimesButton({ navigation, editMode, navigateTo }) {
       }}
       disabled={editMode}
       onPress={() => {
-        console.log("PRESSED!!!!!!!!");
         if (navigateTo) {
           navigation.navigate(navigateTo["route"], navigateTo["arg"]);
         } else {
-          navigation.navigate("ROUTES");
+          !reminder && navigation.navigate("ROUTES");
         }
       }}
     >
@@ -34,7 +38,7 @@ export function ViewTimesButton({ navigation, editMode, navigateTo }) {
           color: "white",
         }}
       >
-        VIEW TIMES
+        {reminder ? "EDIT" : "VIEW TIMES"}
       </Text>
     </TouchableOpacity>
   );

@@ -112,7 +112,7 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
         <View style={{ width: "100%", paddingHorizontal: 24 }}>
           <TouchableOpacity
             style={{
-              backgroundColor: MAIN_PRIMARY_COLOUR,
+              backgroundColor: isSaved ? "white" : MAIN_PRIMARY_COLOUR,
               elevation: 1,
               width: "100%",
               borderRadius: 24,
@@ -129,12 +129,13 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
                 setIsSaved(true);
               }
             }}
+            disabled={isSaved}
           >
             <Text
               style={{
                 fontFamily: "WorkSans_400Regular",
                 fontSize: 18,
-                color: "white",
+                color: isSaved ? MAIN_PRIMARY_COLOUR : "white",
                 textAlign: "left",
               }}
             >

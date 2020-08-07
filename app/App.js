@@ -10,6 +10,8 @@ import {
 } from "@expo-google-fonts/work-sans";
 import { CreateNavigation } from "./config/CreateNavigation";
 
+console.disableYellowBox = true;
+
 export default function App() {
   let [fontsLoaded] = useFonts({
     WorkSans_300Light,

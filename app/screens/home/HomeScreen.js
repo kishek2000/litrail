@@ -29,7 +29,6 @@ export function HomeContainer({
   allUserTrips,
   navigation,
 }) {
-  console.log("trips", allUserTrips);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
