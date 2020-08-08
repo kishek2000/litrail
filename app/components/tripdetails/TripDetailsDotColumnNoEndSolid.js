@@ -9,8 +9,8 @@ export function TripDetailsDotColumnNoEndSolid({ dots }) {
         alignItems: "center",
         marginRight: 8,
         marginLeft: 23,
-        marginTop: 35,
         alignSelf: "center",
+        marginTop: 2,
       }}
     >
       <FontAwesome

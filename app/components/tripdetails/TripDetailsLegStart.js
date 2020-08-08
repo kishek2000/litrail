@@ -19,19 +19,18 @@ export function TripDetailsLegStart({ legInfo }) {
     return (
       <View style={{
         flexDirection: "row",
-        height: "18%"
+        height: 125
       }}>
         <View>
           <TripDetailsDotColumnNoEnd dots={12}></TripDetailsDotColumnNoEnd>
         </View>
-        <View style={{
-          flex: 1,
-        }}>
+        <View>
           <Text style={{
-            marginTop: 27,
+           
             fontFamily: "WorkSans_700Bold",
             fontSize: 20,
             color: MAIN_PRIMARY_COLOUR,
+            top: -6,
           }}>{station_name}</Text>
           <Text style={{
             fontFamily: "WorkSans_700Bold",
@@ -72,17 +71,19 @@ export function TripDetailsLegStart({ legInfo }) {
     return (
       <View style={{
         flexDirection: "row",
-        height: "18%",
-        marginTop: -10
+        height: 125,
+        // backgroundColor: "pink"
       }}>
         <View>
           <TripDetailsDotColumnNoEnd dots={12}></TripDetailsDotColumnNoEnd>
         </View>
-        <View style={{
-          flex: 1,
+        <View style= {{
+            // backgroundColor: "aqua",
+            flex: 1,
         }}>
           <Text style={{
-            marginTop: 27,
+            // backgroundColor: "green",
+            top: -6,
             fontFamily: "WorkSans_700Bold",
             fontSize: 20,
             color: MAIN_PRIMARY_COLOUR,

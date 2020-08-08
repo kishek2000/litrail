@@ -10,8 +10,8 @@ export function TripDetailsDotColumnNoEnd({ dots }) {
         alignItems: "center",
         marginRight: 8,
         marginLeft: 22,
-        marginTop: 35,
         alignSelf: "center",
+        marginTop: 3,
       }}
     >
       <AntDesign

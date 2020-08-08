@@ -2,14 +2,10 @@ import React from "react";
 
 import busIcon from "../assets/bus.png";
 
-export const busIconIcon = busIcon; // temporary
-
 import walkIcon from "../assets/walk.png";
-export const walkIconIcon = walkIcon; // temporary
 
 import seatAvailabilityImage from "../assets/seats.png";
 export const seatAvailabilityIcon = seatAvailabilityImage;
-
 
 import lightrailIcon from "../assets/lightrail.png";
 import trainIcon from "../assets/train.png";

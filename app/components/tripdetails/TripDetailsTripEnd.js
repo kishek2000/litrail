@@ -10,32 +10,34 @@ export function TripDetailsTripEnd({ tripInfo }) {
   const station_name = tripInfo["endStop"];
   return (
     <View style={{
-      flexDirection: "row",
-      height: "8%",
-      marginLeft: 22,
-      marginTop: 35,
-    }}>
-      <View style={{
-        marginRight: 8,
-      }}>
-        <AntDesign
-          name="downcircle"
-          size={16}
-          color="#E36C2F"
-          style={{ marginBottom: 2 }} />
-      </View>
-      <View style={{}}>
-        <Text style={{
-          fontFamily: "WorkSans_700Bold",
-          fontSize: 20,
-          color: MAIN_PRIMARY_COLOUR,
-          marginTop: -8,
-        }}>{station_name}</Text>
-        <Text style={{
-          fontFamily: "WorkSans_700Bold",
-          marginTop: -4,
-        }}>{time_string}</Text>
-      </View>
+        flexDirection: "row",
+        // backgroundColor: "yellow",
+        height: 40,
+        }}>
+        <View style={{
+            marginRight: 8,
+            marginLeft: 22,
+            top: 2,
+        }}>
+            <AntDesign
+            name="downcircle"
+            size={16}
+            color="#E36C2F"
+            style={{ marginBottom: 2 }} />
+        </View>
+        <View style={{}}>
+            <Text style={{
+            fontFamily: "WorkSans_700Bold",
+            fontSize: 20,
+            color: MAIN_PRIMARY_COLOUR,
+            marginTop: -5,
+            }}>{station_name}</Text>
+            <Text style={{
+            fontFamily: "WorkSans_700Bold",
+            marginTop: -4,
+            }}>{time_string}</Text>
+        </View>
     </View>
+    
   );
 }

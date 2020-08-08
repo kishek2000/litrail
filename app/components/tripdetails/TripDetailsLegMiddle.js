@@ -19,7 +19,8 @@ export function TripDetailsLegMiddle({ legInfo }) {
     return (
       <View style={{
         flexDirection: "row",
-        height: "18%",
+        height: 125,
+        // backgroundColor: "orange"
       }}>
         <View>
           <TripDetailsDotColumnNoEndSolid dots={12}></TripDetailsDotColumnNoEndSolid>
@@ -28,10 +29,10 @@ export function TripDetailsLegMiddle({ legInfo }) {
           flex: 1,
         }}>
           <Text style={{
-            marginTop: 27,
             fontFamily: "WorkSans_700Bold",
             fontSize: 20,
             color: MAIN_PRIMARY_COLOUR,
+            top: -6,
           }}>{station_name}</Text>
           <Text style={{
             fontFamily: "WorkSans_700Bold",
@@ -72,7 +73,8 @@ export function TripDetailsLegMiddle({ legInfo }) {
     return (
       <View style={{
         flexDirection: "row",
-        height: "18%",
+        height: 125,
+        // backgroundColor: "pink",
       }}>
         <View>
           <TripDetailsDotColumnNoEndSolid dots={12}></TripDetailsDotColumnNoEndSolid>
@@ -81,10 +83,10 @@ export function TripDetailsLegMiddle({ legInfo }) {
           flex: 1,
         }}>
           <Text style={{
-            marginTop: 27,
             fontFamily: "WorkSans_700Bold",
             fontSize: 20,
             color: MAIN_PRIMARY_COLOUR,
+            top: -6,
           }}>{station_name}</Text>
           <Text style={{
             fontFamily: "WorkSans_700Bold",

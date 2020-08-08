@@ -3,8 +3,6 @@ import { View, SafeAreaView, Text } from "react-native";
 import {
   ScreenHeadingStyles,
   MAIN_PRIMARY_COLOUR,
-  busIconIcon,
-  walkIconIcon,
 } from "../../constants";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Dimensions } from "react-native";
@@ -39,20 +37,29 @@ export function TripDetailsBody({ tripInfo }) {
         flexDirection: "row",
       }}
     >
-      <ScrollView
-        style={{
-          width: "70%",
-        }}
-        showsVerticalScrollIndicator = {false}
-      >
-        <TripDetailsLegStart legInfo={tripInfo["legs"][0]}></TripDetailsLegStart>
-        {
-          tripInfo["legs"].slice(1).map((data, i) => (
-            <TripDetailsLegMiddle legInfo={data}></TripDetailsLegMiddle>
-          ))
-        }
-        <TripDetailsTripEnd tripInfo={tripInfo}></TripDetailsTripEnd>
-      </ScrollView>
+      <View style={{
+        width: "70%",
+        marginTop: 20,
+        marginBottom: 20,
+      }}>
+        <ScrollView
+          showsVerticalScrollIndicator = {false}
+          style={{
+     
+          }}
+        >
+          <TripDetailsLegStart legInfo={tripInfo["legs"][0]}></TripDetailsLegStart>
+          {
+            tripInfo["legs"].slice(1).map((data, i) => (
+              <TripDetailsLegMiddle legInfo={data}></TripDetailsLegMiddle>
+            ))
+          }
+          <TripDetailsTripEnd tripInfo={tripInfo}></TripDetailsTripEnd>
+          {/* <TripDetailsLegMiddle legInfo={tripInfo["legs"][2]}></TripDetailsLegMiddle> */}
+          {/* <TripDetailsLegStart legInfo={tripInfo["legs"][0]}></TripDetailsLegStart> */}
+        </ScrollView>
+      </View>
+      
 
       <TripDetailsInfoCorner></TripDetailsInfoCorner>
     </View>
