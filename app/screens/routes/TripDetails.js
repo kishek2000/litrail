@@ -14,6 +14,10 @@ import { Dimensions } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 
+import { useNavigation, useRoute } from "@react-navigation/native";
+
+import { TripFacade } from "../../classes/User";
+
 export const TestScreenHeadingStyles = {
   fontSize: Dimensions.get("screen").width * 0.09,
   fontFamily: "WorkSans_500Medium",
@@ -170,81 +174,290 @@ export function TripDetailsDotColumnNoEnd({ dots }) {
   );
 }
 
-
-export function TripDetailsLegStart() {
-  const station_name = "Bella Vista Station";
-  const time_string = "12:05 PM";
-  const route = "607X";
-  const duration = "45 min";
-  const seats_free = 25;
+export function TripDetailsDotColumnNoEndSolid({ dots }) {
   return (
-    <View style={{
-      flex: 1,
-      flexDirection: "row",
-    }}>
-      <View>
-        <TripDetailsDotColumnNoEnd dots={12}></TripDetailsDotColumnNoEnd>
-      </View>
-      <View style={{
-        flex: 1,
-      }}>
-        <Text style={{
-          marginTop: 27,
-          fontFamily: "WorkSans_700Bold",
-          fontSize: 20,
-          color: MAIN_PRIMARY_COLOUR,
-        }}>{station_name}</Text>
-        <Text style={{
-          fontFamily: "WorkSans_700Bold",
-          marginTop: -4,
-        }}>{time_string}</Text>
-        <View style={{
-          flex: 1,
-          flexDirection: "row",
-        }}>
-          <Image source={busIconIcon} style={{
-            top: 17,
-            left: 10,
-            width: 35,
-            height: 35
-          }}/>
-          <View style={{
-            flex: 1,
-            left: 20,
-            top: 10,
-          }}>
-              <Text style={{
-                fontFamily: "WorkSans_500Medium",
-                fontSize: 16,
-                color: MAIN_PRIMARY_COLOUR,
-              }}>{route} for {duration}</Text>
-              <View style={{
-                flex: 1,
-                flexDirection: "row",
-              }}>
-                <Image source={seatAvailabilityIcon} style={{
-                  top: 5,
-                  width: 20,
-                  height: 15,
-                }}/>
-                <Text style={{
-                  left: 5,
-                  fontFamily: "WorkSans_700Bold",
-                  color: MAIN_PRIMARY_COLOUR,
-                }}>~ {seats_free} seats free</Text>
-              </View>
-          </View>
-        </View>
-          
-      </View>
+    <View
+      style={{
+        alignItems: "center",
+        marginRight: 8,
+        marginLeft: 23,
+        marginTop: 35,
+        alignSelf: "center",
+      }}
+    >
+      <FontAwesome
+        name="circle"
+        size={16}
+        color="#52ABF7"
+        style={{ marginBottom: 2 }}
+      />
+      {[...Array(dots)].map((e, i) => (
+        <FontAwesome
+          name="circle"
+          size={5}
+          key={i}
+          color="#E5D5D5"
+          style={{
+            marginTop: 3,
+          }}
+        />
+      ))}
     </View>
   );
 }
 
 
-export function TripDetailsBody() {
-  const start_in = 5;
-  const last_updated = 56;
+
+export function TripDetailsLegStart({ legInfo }) {
+  const mode = legInfo["mode"];
+  const time_string = legInfo["startTime"];
+  const station_name = legInfo["startStop"];
+  if (mode == "walk") {
+    const distance = legInfo["distance"];
+    return (
+      <View style={{
+        flexDirection: "row",
+        height: "23%"
+      }}>
+        <View>
+          <TripDetailsDotColumnNoEnd dots={12}></TripDetailsDotColumnNoEnd>
+        </View>
+        <View style={{
+          flex: 1,
+        }}>
+          <Text style={{
+            marginTop: 27,
+            fontFamily: "WorkSans_700Bold",
+            fontSize: 20,
+            color: MAIN_PRIMARY_COLOUR,
+          }}>{station_name}</Text>
+          <Text style={{
+            fontFamily: "WorkSans_700Bold",
+            marginTop: -4,
+          }}>{time_string}</Text>
+          <View style={{
+            flex: 1,
+            flexDirection: "row",
+          }}>
+            <Image source={legInfo["image"]} style={{
+              top: 17,
+              left: 10,
+              width: 35,
+              height: 35,
+              resizeMode: "contain"
+            }}/>
+            <View style={{
+              flex: 1,
+              left: 20,
+              top: 10,
+            }}>
+                <Text style={{
+                  top: 10,
+                  fontFamily: "WorkSans_500Medium",
+                  fontSize: 16,
+                  color: MAIN_PRIMARY_COLOUR,
+                }}>Walk for {distance}</Text>
+            </View>
+          </View>  
+        </View>
+      </View>
+    );
+  } 
+  else {
+    const route = legInfo["route"];
+    const duration = legInfo["duration"];
+    const seats_free = legInfo["seatAvailability"];
+    return (
+      <View style={{
+        flexDirection: "row",
+        height: "23%"
+      }}>
+        <View>
+          <TripDetailsDotColumnNoEnd dots={12}></TripDetailsDotColumnNoEnd>
+        </View>
+        <View style={{
+          flex: 1,
+        }}>
+          <Text style={{
+            marginTop: 27,
+            fontFamily: "WorkSans_700Bold",
+            fontSize: 20,
+            color: MAIN_PRIMARY_COLOUR,
+          }}>{station_name}</Text>
+          <Text style={{
+            fontFamily: "WorkSans_700Bold",
+            marginTop: -4,
+          }}>{time_string}</Text>
+          <View style={{
+            flex: 1,
+            flexDirection: "row",
+          }}>
+            <Image source={legInfo["image"]} style={{
+              top: 17,
+              left: 10,
+              width: 35,
+              height: 35,
+              resizeMode: "contain"
+            }}/>
+            <View style={{
+              flex: 1,
+              left: 20,
+              top: 10,
+            }}>
+                <Text style={{
+                  fontFamily: "WorkSans_500Medium",
+                  fontSize: 16,
+                  color: MAIN_PRIMARY_COLOUR,
+                }}>{route} for {duration}</Text>
+                <View style={{
+                  flex: 1,
+                  flexDirection: "row",
+                }}>
+                  <Image source={seatAvailabilityIcon} style={{
+                    top: 5,
+                    width: 20,
+                    height: 15,
+                  }}/>
+                  <Text style={{
+                    left: 5,
+                    fontFamily: "WorkSans_700Bold",
+                    color: MAIN_PRIMARY_COLOUR,
+                  }}>~ {seats_free} seats free</Text>
+                </View>
+            </View>
+          </View>  
+        </View>
+      </View>
+    );
+  }
+}
+
+export function TripDetailsLegMiddle({ legInfo }) {
+  const mode = legInfo["mode"];
+  const time_string = legInfo["startTime"];
+  const station_name = legInfo["startStop"];
+  if (mode == "walk") {
+    const distance = legInfo["distance"];
+    return (
+      <View style={{
+        flexDirection: "row",
+        height: "23%"
+      }}>
+        <View>
+          <TripDetailsDotColumnNoEndSolid dots={12}></TripDetailsDotColumnNoEndSolid>
+        </View>
+        <View style={{
+          flex: 1,
+        }}>
+          <Text style={{
+            marginTop: 27,
+            fontFamily: "WorkSans_700Bold",
+            fontSize: 20,
+            color: MAIN_PRIMARY_COLOUR,
+          }}>{station_name}</Text>
+          <Text style={{
+            fontFamily: "WorkSans_700Bold",
+            marginTop: -4,
+          }}>{time_string}</Text>
+          <View style={{
+            flex: 1,
+            flexDirection: "row",
+          }}>
+            <Image source={legInfo["image"]} style={{
+              top: 17,
+              left: 10,
+              width: 35,
+              height: 35,
+              resizeMode: "contain"
+            }}/>
+            <View style={{
+              flex: 1,
+              left: 20,
+              top: 10,
+            }}>
+                <Text style={{
+                  top: 10,
+                  fontFamily: "WorkSans_500Medium",
+                  fontSize: 16,
+                  color: MAIN_PRIMARY_COLOUR,
+                }}>Walk for {distance}</Text>
+            </View>
+          </View>  
+        </View>
+      </View>
+    );
+  } 
+  else {
+    const route = legInfo["route"];
+    const duration = legInfo["duration"];
+    const seats_free = legInfo["seatAvailability"];
+    return (
+      <View style={{
+        flexDirection: "row",
+        height: "23%"
+      }}>
+        <View>
+          <TripDetailsDotColumnNoEndSolid dots={12}></TripDetailsDotColumnNoEndSolid>
+        </View>
+        <View style={{
+          flex: 1,
+        }}>
+          <Text style={{
+            marginTop: 27,
+            fontFamily: "WorkSans_700Bold",
+            fontSize: 20,
+            color: MAIN_PRIMARY_COLOUR,
+          }}>{station_name}</Text>
+          <Text style={{
+            fontFamily: "WorkSans_700Bold",
+            marginTop: -4,
+          }}>{time_string}</Text>
+          <View style={{
+            flex: 1,
+            flexDirection: "row",
+          }}>
+            <Image source={legInfo["image"]} style={{
+              top: 17,
+              left: 10,
+              width: 35,
+              height: 35,
+              resizeMode: "contain"
+            }}/>
+            <View style={{
+              flex: 1,
+              left: 20,
+              top: 10,
+            }}>
+                <Text style={{
+                  fontFamily: "WorkSans_500Medium",
+                  fontSize: 16,
+                  color: MAIN_PRIMARY_COLOUR,
+                }}>{route} for {duration}</Text>
+                <View style={{
+                  flex: 1,
+                  flexDirection: "row",
+                }}>
+                  <Image source={seatAvailabilityIcon} style={{
+                    top: 5,
+                    width: 20,
+                    height: 15,
+                  }}/>
+                  <Text style={{
+                    left: 5,
+                    fontFamily: "WorkSans_700Bold",
+                    color: MAIN_PRIMARY_COLOUR,
+                  }}>~ {seats_free} seats free</Text>
+                </View>
+            </View>
+          </View>  
+        </View>
+      </View>
+    );
+  }
+}
+
+
+export function TripDetailsBody({ tripInfo }) {
   return (
     <View
       style={{
@@ -260,10 +473,14 @@ export function TripDetailsBody() {
       <View
         style={{
           width: "70%",
-          flex: 1,
         }}
       >
-        <TripDetailsLegStart></TripDetailsLegStart>
+        <TripDetailsLegStart legInfo={tripInfo["legs"][0]}></TripDetailsLegStart>
+        {
+          tripInfo["legs"].slice(1).map((data, i) => (
+            <TripDetailsLegMiddle legInfo={data}></TripDetailsLegMiddle>
+          ))
+        }
       </View>
 
       <TripDetailsInfoCorner></TripDetailsInfoCorner>
@@ -271,8 +488,21 @@ export function TripDetailsBody() {
   );
 }
 
-export function TripDetails({ navigation, route }) {
+export function TripDetails({ navigation }) {
+  const routes = useRoute();
+  const tripId = routes.params.trip_id;
+  console.log("u piece of shit has id:" + tripId);
   console.log("TRIP DETAILS REACHED");
+
+  let trip_info = TripFacade.get(tripId);
+  console.log(trip_info);
+
+  // // const tripMiddleList = trip_info.map((data, i) => {
+  // //   if (i == 0) {
+
+  // //   }
+  // });
+  
   return (
     <SafeAreaView
       style={{
@@ -304,7 +534,7 @@ export function TripDetails({ navigation, route }) {
           View the seat availability and stops of your trip.
         </Text>
       </View>
-      <TripDetailsBody></TripDetailsBody>
+      <TripDetailsBody tripInfo={trip_info}></TripDetailsBody>
     </SafeAreaView>
   );
 }

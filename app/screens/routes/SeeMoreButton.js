@@ -3,7 +3,7 @@ import { Text } from "react-native";
 import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export function SeeMoreButton({ navigation }) {
+export function SeeMoreButton({ navigation, tripId }) {
   return (
     <TouchableOpacity
       style={{
@@ -12,14 +12,15 @@ export function SeeMoreButton({ navigation }) {
         backgroundColor: MAIN_PRIMARY_COLOUR,
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 24,
+        borderRadius: 24, 
         marginTop: 12,
         alignSelf: "flex-end",
         elevation: 2,
       }}
       onPress={() => {
-        console.log("see more pressed");
-        navigation.navigate("TripDetails");
+        navigation.navigate("TripDetails", {
+          "trip_id" : tripId
+        });
       }}
     >
       <Text
