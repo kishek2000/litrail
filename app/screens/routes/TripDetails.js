@@ -342,7 +342,7 @@ export function TripDetailsLegMiddle({ legInfo }) {
     return (
       <View style={{
         flexDirection: "row",
-        height: "18%"
+        height: "18%",
       }}>
         <View>
           <TripDetailsDotColumnNoEndSolid dots={12}></TripDetailsDotColumnNoEndSolid>
@@ -529,18 +529,9 @@ export function TripDetailsBody({ tripInfo }) {
 export function TripDetails({ navigation }) {
   const routes = useRoute();
   const tripId = routes.params.trip_id;
-  console.log("u piece of shit has id:" + tripId);
-  console.log("TRIP DETAILS REACHED");
 
   let trip_info = TripFacade.get(tripId);
-  console.log(trip_info);
 
-  // // const tripMiddleList = trip_info.map((data, i) => {
-  // //   if (i == 0) {
-
-  // //   }
-  // });
-  
   return (
     <SafeAreaView
       style={{
