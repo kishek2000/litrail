@@ -31,8 +31,8 @@ export function TripDetailsBody({ tripInfo }) {
   return (
     <View
       style={{
-        marginTop: Dimensions.get("screen").height * 0.015,
-        height: Dimensions.get("screen").height * 0.55,
+        marginTop: 24,
+        height: Dimensions.get("screen").height * 0.58,
         width: Dimensions.get("screen").width * 0.9,
         borderRadius: Dimensions.get("screen").width * 0.06,
         backgroundColor: "white",
@@ -75,27 +75,27 @@ export function TripDetails({ navigation }) {
     >
       <View
         style={{
+          flex: 1,
           flexDirection: "row",
+          alignItems: "center",
+          marginTop: 25,
         }}
       >
         <BackButton navigation={navigation} />
         <Text style={TestScreenHeadingStyles}>Trip Details</Text>
         <ExpandButton></ExpandButton>
       </View>
-      <View
+     
+      <Text
         style={{
-          marginTop: Dimensions.get("screen").height * 0.005,
+          fontFamily: "WorkSans_500Medium",
+          fontSize: Dimensions.get("screen").width * 0.035,
+          marginTop: 24,
         }}
       >
-        <Text
-          style={{
-            fontFamily: "WorkSans_500Medium",
-            fontSize: Dimensions.get("screen").width * 0.035,
-          }}
-        >
-          View the seat availability and stops of your trip.
-        </Text>
-      </View>
+        View the seat availability and stops of your trip.
+      </Text>
+
       <TripDetailsBody tripInfo={trip_info}></TripDetailsBody>
       <View style={{
         flexDirection: "row",

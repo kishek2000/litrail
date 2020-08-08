@@ -9,9 +9,9 @@ export function BackButton({ navigation }) {
       style={{
         width: Dimensions.get("screen").width * 0.15,
         height: Dimensions.get("screen").height * 0.05,
-        marginTop: Dimensions.get("screen").height * 0.122,
-        marginRight: Dimensions.get("screen").width * 0.05,
-        marginLeft: Dimensions.get("screen").width * 0.01,
+        marginRight: Dimensions.get("screen").width * 0.03,
+        marginLeft: Dimensions.get("screen").width * 0.025,
+        marginTop: Dimensions.get("screen").height * 0.1,
         alignItems: "center",
         justifyContent: "center",
       }}

@@ -11,11 +11,11 @@ export function ExpandButton() {
   return (
     <TouchableOpacity
       style={{
-        width: Dimensions.get("screen").width * 0.18,
-        marginTop: Dimensions.get("screen").height * 0.135,
-        marginLeft: Dimensions.get("screen").width * 0.04,
+        width: 80,
+        height: 25,
+        marginLeft: Dimensions.get("screen").width * 0.03,
         marginBottom: Dimensions.get("screen").height * 0.015,
-        flex: 1,
+        marginTop: Dimensions.get("screen").height * 0.115,
         flexDirection: "row",
         backgroundColor: MAIN_PRIMARY_COLOUR,
         borderBottomLeftRadius: Dimensions.get("screen").width * 0.05,
