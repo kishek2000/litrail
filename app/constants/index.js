@@ -84,6 +84,7 @@ export const DefinedTrips = [
     endStop: "UNSW",
     nextTripTime: "5 MIN",
     duration: "~ 1h 20m",
+    endTime: "1:26 PM",
     cost: "$6.99",
     id: 0,
     legs: [
@@ -103,6 +104,7 @@ export const DefinedTrips = [
         mode: "walk",
         startStop: "QVB",
         startTime: "12:50 PM",
+        duration: "8 min",
         distance: "700m",
       },
       {

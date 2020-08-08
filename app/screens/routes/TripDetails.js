@@ -217,7 +217,7 @@ export function TripDetailsLegStart({ legInfo }) {
     return (
       <View style={{
         flexDirection: "row",
-        height: "23%"
+        height: "18%"
       }}>
         <View>
           <TripDetailsDotColumnNoEnd dots={12}></TripDetailsDotColumnNoEnd>
@@ -270,7 +270,8 @@ export function TripDetailsLegStart({ legInfo }) {
     return (
       <View style={{
         flexDirection: "row",
-        height: "23%"
+        height: "18%",
+        marginTop: -10
       }}>
         <View>
           <TripDetailsDotColumnNoEnd dots={12}></TripDetailsDotColumnNoEnd>
@@ -341,7 +342,7 @@ export function TripDetailsLegMiddle({ legInfo }) {
     return (
       <View style={{
         flexDirection: "row",
-        height: "23%"
+        height: "18%"
       }}>
         <View>
           <TripDetailsDotColumnNoEndSolid dots={12}></TripDetailsDotColumnNoEndSolid>
@@ -394,7 +395,7 @@ export function TripDetailsLegMiddle({ legInfo }) {
     return (
       <View style={{
         flexDirection: "row",
-        height: "23%"
+        height: "18%",
       }}>
         <View>
           <TripDetailsDotColumnNoEndSolid dots={12}></TripDetailsDotColumnNoEndSolid>
@@ -456,24 +457,60 @@ export function TripDetailsLegMiddle({ legInfo }) {
   }
 }
 
+export function TripDetailsTripEnd({ tripInfo }) {
+  const time_string = tripInfo["endTime"];
+  const station_name = tripInfo["endStop"];
+  return (
+    <View style={{
+      flexDirection: "row",
+      height: "8%",
+      marginLeft: 22,
+      marginTop: 35,
+    }}>
+      <View style={{
+        marginRight: 8,
+      }}>
+        <AntDesign
+          name="downcircle"
+          size={16}
+          color="#E36C2F"
+          style={{ marginBottom: 2 }}
+        />
+      </View>
+      <View style={{
+      }}>
+        <Text style={{
+          fontFamily: "WorkSans_700Bold",
+          fontSize: 20,
+          color: MAIN_PRIMARY_COLOUR,
+          marginTop: -8,
+        }}>{station_name}</Text>
+        <Text style={{
+          fontFamily: "WorkSans_700Bold",
+          marginTop: -4,
+        }}>{time_string}</Text>
+      </View>
+    </View>
+  );
+}
 
 export function TripDetailsBody({ tripInfo }) {
   return (
     <View
       style={{
         marginTop: Dimensions.get("screen").height * 0.015,
-        height: Dimensions.get("screen").height * 0.6,
+        height: Dimensions.get("screen").height * 0.55,
         width: Dimensions.get("screen").width * 0.9,
         borderRadius: Dimensions.get("screen").width * 0.06,
         backgroundColor: "white",
-        flex: 1,
         flexDirection: "row",
       }}
     >
-      <View
+      <ScrollView
         style={{
           width: "70%",
         }}
+        showsVerticalScrollIndicator = {false}
       >
         <TripDetailsLegStart legInfo={tripInfo["legs"][0]}></TripDetailsLegStart>
         {
@@ -481,7 +518,8 @@ export function TripDetailsBody({ tripInfo }) {
             <TripDetailsLegMiddle legInfo={data}></TripDetailsLegMiddle>
           ))
         }
-      </View>
+        <TripDetailsTripEnd tripInfo={tripInfo}></TripDetailsTripEnd>
+      </ScrollView>
 
       <TripDetailsInfoCorner></TripDetailsInfoCorner>
     </View>
@@ -535,6 +573,42 @@ export function TripDetails({ navigation }) {
         </Text>
       </View>
       <TripDetailsBody tripInfo={trip_info}></TripDetailsBody>
+      <View style={{
+        flexDirection: "row",
+        flex: 1,
+        top: 20
+      }}>
+        <TouchableOpacity style={{
+          backgroundColor: "#E36C2F",
+          right: 10,
+          height: 40,
+          width: 80,
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: 20
+        }}>
+          <Text style={{
+            fontFamily: "WorkSans_700Bold",
+            color: "white"
+          }}>MAP</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{
+          backgroundColor: MAIN_PRIMARY_COLOUR,
+          left: 10,
+          height: 40,
+          width: 160,
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: 20
+        }}>
+          <Text style={{
+            color: "white",
+            fontFamily: "WorkSans_700Bold"
+          }}>SET REMINDER</Text>
+        </TouchableOpacity>
+
+      </View>
     </SafeAreaView>
   );
 }
