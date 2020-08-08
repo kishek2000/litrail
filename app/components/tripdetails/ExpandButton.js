@@ -7,7 +7,7 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Dimensions } from "react-native";
 
-export function ExpandButton() {
+export function ExpandButton({ navigation, trip_id}) {
   return (
     <TouchableOpacity
       style={{
@@ -24,6 +24,13 @@ export function ExpandButton() {
         borderBottomRightRadius: Dimensions.get("screen").width * 0.05,
         justifyContent: "center",
         alignItems: "center",
+      }}
+      onPress={() => {
+        console.log("expand pressed");
+        console.log("trip_id is: " + trip_id)
+        navigation.navigate("TripDetailsExpanded", {
+            "trip_id" : trip_id
+        });
       }}
     >
       <Image

@@ -90,7 +90,7 @@ export function TripDetails({ navigation }) {
       >
         <BackButton navigation={navigation} />
         <Text style={TestScreenHeadingStyles}>Trip Details</Text>
-        <ExpandButton></ExpandButton>
+        <ExpandButton navigation={navigation} trip_id={tripId}></ExpandButton>
       </View>
      
       <Text
