@@ -8,8 +8,12 @@ import onTime from "../../assets/onTime.png";
 import { SeeMoreButton } from "./SeeMoreButton";
 import { useNavigation } from "@react-navigation/native";
 
-export function TripTimeCard({ tripTimeData }) {
+export function TripTimeCard({ tripTimeData, tripId }) {
   const navigation = useNavigation();
+
+  
+
+
   return (
     <View
       style={{
@@ -108,7 +112,7 @@ export function TripTimeCard({ tripTimeData }) {
             subtext={tripTimeData["cost"]}
           />
         </View>
-        <SeeMoreButton navigation={navigation} />
+        <SeeMoreButton navigation={navigation} tripId={tripId}/>
       </View>
     </View>
   );

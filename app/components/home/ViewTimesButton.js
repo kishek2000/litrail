@@ -25,7 +25,7 @@ export function ViewTimesButton({
       disabled={editMode}
       onPress={() => {
         if (navigateTo) {
-          navigation.navigate(navigateTo["route"], navigateTo["arg"]);
+          navigation.navigate(navigateTo["route"], navigateTo["arg"]); // navigateTo['arg'] = { tripId: X }
         } else {
           !reminder && navigation.navigate("ROUTES");
         }

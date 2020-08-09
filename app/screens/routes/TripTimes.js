@@ -48,7 +48,7 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
   const AllTimes = GetAllTimes(tripFinal, totalTrips);
 
   const RenderTripTimeCard = ({ item: tripTimeData }) => {
-    return <TripTimeCard tripTimeData={tripTimeData} />;
+    return <TripTimeCard tripTimeData={tripTimeData} tripId={route.params.tripId} />;
   };
 
   return (
