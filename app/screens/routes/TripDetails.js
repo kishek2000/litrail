@@ -17,6 +17,7 @@ import { ExpandButton } from "../../components/tripdetails/ExpandButton";
 import { TripDetailsLegStart } from "../../components/tripdetails/TripDetailsLegStart";
 import { TripDetailsLegMiddle } from "../../components/tripdetails/TripDetailsLegMiddle";
 import { TripDetailsTripEnd } from "../../components/tripdetails/TripDetailsTripEnd";
+import { SetReminderModal } from "../../components/tripdetails/SetReminderModal";
 
 export const TestScreenHeadingStyles = {
   fontSize: Dimensions.get("screen").width * 0.09,
@@ -69,6 +70,7 @@ export function TripDetailsBody({ tripInfo }) {
 export function TripDetails({ navigation }) {
   const routes = useRoute();
   const tripId = routes.params.trip_id;
+  const [setRemindModalVisible, changeSetRemindModalVisible] = useState(false);
 
   let trip_info = TripFacade.get(tripId);
 
@@ -80,6 +82,10 @@ export function TripDetails({ navigation }) {
         alignItems: "center",
       }}
     >
+      <SetReminderModal
+        setRemindModalVisible = {setRemindModalVisible}
+        changeSetRemindModalVisible = {changeSetRemindModalVisible}
+        num_legs={trip_info.legs.length}></SetReminderModal>
       <View
         style={{
           flex: 1,
@@ -132,6 +138,8 @@ export function TripDetails({ navigation }) {
           justifyContent: "center",
           alignItems: "center",
           borderRadius: 20
+        }} onPress={() => {
+          changeSetRemindModalVisible(true)
         }}>
           <Text style={{
             color: "white",
