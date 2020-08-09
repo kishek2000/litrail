@@ -44,9 +44,6 @@ export function TripDetailsBody({ tripInfo }) {
       }}>
         <ScrollView
           showsVerticalScrollIndicator = {false}
-          style={{
-     
-          }}
         >
           <TripDetailsLegStart legInfo={tripInfo["legs"][0]}></TripDetailsLegStart>
           {
@@ -55,12 +52,8 @@ export function TripDetailsBody({ tripInfo }) {
             ))
           }
           <TripDetailsTripEnd tripInfo={tripInfo}></TripDetailsTripEnd>
-          {/* <TripDetailsLegMiddle legInfo={tripInfo["legs"][2]}></TripDetailsLegMiddle> */}
-          {/* <TripDetailsLegStart legInfo={tripInfo["legs"][0]}></TripDetailsLegStart> */}
         </ScrollView>
       </View>
-      
-
       <TripDetailsInfoCorner></TripDetailsInfoCorner>
     </View>
   );
