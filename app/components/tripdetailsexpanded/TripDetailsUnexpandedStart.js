@@ -38,6 +38,45 @@ export function ExpandedTimeTile({ timeInfo }) {
   );
 }
 
+export function StopSequenceContainer({ expanded, stop_sequence }) {
+  if (expanded) {
+    return (
+      <View
+        style={{
+          marginLeft: 20,
+          // backgroundColor: "pink",
+        }}
+      >
+        <ScrollView
+          style={{
+            height: "72%",
+          }}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: "center",
+          }}
+        >
+          <View
+            style={{
+              height: 10,
+            }}
+          ></View>
+          {stop_sequence.map((data, i) => (
+            <ExpandedTimeTile timeInfo={data}></ExpandedTimeTile>
+          ))}
+          <View
+            style={{
+              height: 5,
+            }}
+          ></View>
+        </ScrollView>
+      </View>
+    );
+  }
+  return <View></View>;
+}
+
 export function TripDetailsUnexpandedStart({ legInfo }) {
   const time_string = legInfo["startTime"];
   const station_name = legInfo["startStop"];
@@ -51,7 +90,7 @@ export function TripDetailsUnexpandedStart({ legInfo }) {
         // flex: 1,
         flexDirection: "row",
         // backgroundColor: "orange",
-        height: legExpanded ? 227 : "22%",
+        height: legExpanded ? 227 : 65,
       }}
     >
       <View
@@ -86,37 +125,10 @@ export function TripDetailsUnexpandedStart({ legInfo }) {
             <Text style={expandedTimeStyles}>{time_string}</Text>
             <Text style={expandedRouteStyles}>{route_string}</Text>
           </View>
-          {legExpanded ? (
-            <View
-              style={{
-                marginLeft: 20,
-                // backgroundColor: "green",
-              }}
-            >
-              <ScrollView
-                style={{
-                  height: "72%",
-                }}
-                showsVerticalScrollIndicator={false}
-              >
-                <View
-                  style={{
-                    height: 10,
-                  }}
-                ></View>
-                {stop_sequence.map((data, i) => (
-                  <ExpandedTimeTile timeInfo={data}></ExpandedTimeTile>
-                ))}
-                <View
-                  style={{
-                    height: 5,
-                  }}
-                ></View>
-              </ScrollView>
-            </View>
-          ) : (
-            <View></View>
-          )}
+          <StopSequenceContainer
+            expanded={legExpanded}
+            stop_sequence={stop_sequence}
+          ></StopSequenceContainer>
         </View>
       </View>
       <View

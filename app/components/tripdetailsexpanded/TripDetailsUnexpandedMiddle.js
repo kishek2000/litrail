@@ -9,38 +9,51 @@ import {
   expandedTimeStyles,
   expandedRouteStyles,
 } from "../../screens/routes/TripDetailsExpanded";
+import { StopSequenceContainer } from "./TripDetailsUnexpandedStart";
 
 export function TripDetailsUnexpandedMiddle({ legInfo }) {
   const time_string = legInfo["startTime"];
   const station_name = legInfo["startStop"];
+  const stop_sequence = legInfo["stopSequence"];
   const route_string = getRouteString(legInfo);
   const [legExpanded, setLegExpanded] = useState(false);
   return (
     <View
       style={{
-        flex: 1,
+        // flex: 1,
         flexDirection: "row",
+        height: legExpanded ? 227 : 65,
+        // backgroundColor: "pink",
       }}
     >
-      <TripDetailsDotColumnNoEndSolid
-        dots={5}
-        style={{}}
-      ></TripDetailsDotColumnNoEndSolid>
+      <View>
+        {legExpanded == false ? (
+          <TripDetailsDotColumnNoEndSolid dots={5} />
+        ) : (
+          <TripDetailsDotColumnNoEndSolid dots={24} />
+        )}
+      </View>
+
       <View
         style={{
           flex: 1,
+          //   backgroundColor: "aqua",
         }}
       >
         <Text style={expandedStationStyles}>{station_name}</Text>
         <View
           style={{
             flexDirection: "row",
-            flex: 1,
+            // flex: 1,
           }}
         >
           <Text style={expandedTimeStyles}>{time_string}</Text>
           <Text style={expandedRouteStyles}>{route_string}</Text>
         </View>
+        <StopSequenceContainer
+          expanded={legExpanded}
+          stop_sequence={stop_sequence}
+        ></StopSequenceContainer>
       </View>
       <View
         style={{
