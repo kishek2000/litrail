@@ -41,7 +41,39 @@ const expandedRouteStyles = {
   flex: 1,
 }
 
+let getRouteString = (legInfo) => {
+  const mode = legInfo["mode"];
+  let route_string;
+  if (mode == "walk") {
+    route_string = "Walk";
+  }
+  else {
+    let route_name = legInfo["route"];
+    let route_string_prefix;
+    if (mode == "bus") {
+      route_string_prefix = "Bus Route "
+    }
+    else if (mode == "lightrail") {
+      route_string_prefix = "Light Rail "
+    }
+    else if (mode == "train") {
+      route_string_prefix = "Train "
+    }
+    else if (mode == "metro") {
+      route_string_prefix = "Metro"
+    } else {
+      route_string_prefix = "";
+    }
+    route_string = route_string_prefix + route_name;
+  }
+  return route_string;
+
+};
+
 export function TripDetailsUnexpandedStart ({ legInfo }) {
+  const time_string = legInfo["startTime"];
+  const station_name = legInfo["startStop"];
+  const route_string = getRouteString(legInfo);
   return <View style={{
     flex: 1,
     flexDirection: "row",
@@ -52,20 +84,23 @@ export function TripDetailsUnexpandedStart ({ legInfo }) {
     <View style={{
       flex: 1,
     }}>
-        <Text style={expandedStationStyles}>Bella Vista Station, Mawson Ave, Stand A</Text>
+        <Text style={expandedStationStyles}>{station_name}</Text>
       <View style={{
         flexDirection: "row",
         // backgroundColor: "pink",
         flex: 1,
       }}>
-        <Text style={expandedTimeStyles}>12:05 PM</Text>
-        <Text style={expandedRouteStyles}>Bus route 607X</Text>
+        <Text style={expandedTimeStyles}>{time_string}</Text>
+    <Text style={expandedRouteStyles}>{route_string}</Text>
       </View>
     </View>
   </View>
 }
 
 export function TripDetailsUnexpandedMiddle({ legInfo }) {
+  const time_string = legInfo["startTime"];
+  const station_name = legInfo["startStop"];
+  const route_string = getRouteString(legInfo);
   return <View style={{
     flex: 1,
     flexDirection: "row",
@@ -75,19 +110,21 @@ export function TripDetailsUnexpandedMiddle({ legInfo }) {
     <View style={{
       flex: 1,
     }}>
-      <Text style={expandedStationStyles}>QVB, York St, Stand E</Text>
+      <Text style={expandedStationStyles}>{station_name}</Text>
       <View style={{
         flexDirection: "row",
         flex: 1,
       }}>
-        <Text style={expandedTimeStyles}>12:50 PM</Text>
-        <Text style={expandedRouteStyles}>Walk</Text>
+        <Text style={expandedTimeStyles}>{time_string}</Text>
+        <Text style={expandedRouteStyles}>{route_string}</Text>
       </View>
     </View>
   </View>
 }
 
 export function TripDetailsUnexpandedEnd({ tripInfo }) {
+  const time_string = tripInfo["endTime"];
+  const station_name = tripInfo["endStop"];
   return (
     <View style={{
         flexDirection: "row",
@@ -106,8 +143,8 @@ export function TripDetailsUnexpandedEnd({ tripInfo }) {
             style={{ marginBottom: 2 }} />
         </View>
         <View style={{}}>
-            <Text style={expandedStationStyles}>UNSW</Text>
-            <Text style={expandedTimeStyles}>1:25 PM</Text>
+          <Text style={expandedStationStyles}>{station_name}</Text>
+          <Text style={expandedTimeStyles}>{time_string}</Text>
         </View>
     </View>
   );
@@ -137,11 +174,13 @@ export function TripDetailsExpandedBody({ trip_id }) {
           marginBottom: 20,
           // backgroundColor: "pink"
         }}>
-          <TripDetailsUnexpandedStart></TripDetailsUnexpandedStart>
-          <TripDetailsUnexpandedMiddle></TripDetailsUnexpandedMiddle>
-          <TripDetailsUnexpandedMiddle></TripDetailsUnexpandedMiddle>
-          <TripDetailsUnexpandedMiddle></TripDetailsUnexpandedMiddle>
-          <TripDetailsUnexpandedEnd></TripDetailsUnexpandedEnd>
+          <TripDetailsUnexpandedStart legInfo={tripInfo["legs"][0]}></TripDetailsUnexpandedStart>
+          {
+            tripInfo["legs"].slice(1).map((data, i) => (
+              <TripDetailsUnexpandedMiddle legInfo={data}></TripDetailsUnexpandedMiddle>
+            ))
+          }
+          <TripDetailsUnexpandedEnd tripInfo={tripInfo}></TripDetailsUnexpandedEnd>
         </ScrollView>
       </View>
 
