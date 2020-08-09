@@ -17,7 +17,8 @@ export function TripDetailsDotColumnNoEndSolid({ dots }) {
         name="circle"
         size={16}
         color="#52ABF7"
-        style={{ marginBottom: 2 }} />
+        style={{ marginBottom: 2 }}
+      />
       {[...Array(dots)].map((e, i) => (
         <FontAwesome
           name="circle"
@@ -26,7 +27,8 @@ export function TripDetailsDotColumnNoEndSolid({ dots }) {
           color="#E5D5D5"
           style={{
             marginTop: 3,
-          }} />
+          }}
+        />
       ))}
     </View>
   );

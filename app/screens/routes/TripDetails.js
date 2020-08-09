@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import { View, SafeAreaView, Text } from "react-native";
-import {
-  ScreenHeadingStyles,
-  MAIN_PRIMARY_COLOUR,
-} from "../../constants";
+import { ScreenHeadingStyles, MAIN_PRIMARY_COLOUR } from "../../constants";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Dimensions } from "react-native";
-
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 
@@ -38,20 +34,20 @@ export function TripDetailsBody({ tripInfo }) {
         flexDirection: "row",
       }}
     >
-      <View style={{
-        width: "70%",
-        marginTop: 20,
-        marginBottom: 20,
-      }}>
-        <ScrollView
-          showsVerticalScrollIndicator = {false}
-        >
-          <TripDetailsLegStart legInfo={tripInfo["legs"][0]}></TripDetailsLegStart>
-          {
-            tripInfo["legs"].slice(1).map((data, i) => (
-              <TripDetailsLegMiddle legInfo={data}></TripDetailsLegMiddle>
-            ))
-          }
+      <View
+        style={{
+          width: "70%",
+          marginTop: 20,
+          marginBottom: 20,
+        }}
+      >
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <TripDetailsLegStart
+            legInfo={tripInfo["legs"][0]}
+          ></TripDetailsLegStart>
+          {tripInfo["legs"].slice(1).map((data, i) => (
+            <TripDetailsLegMiddle legInfo={data}></TripDetailsLegMiddle>
+          ))}
           <TripDetailsTripEnd tripInfo={tripInfo}></TripDetailsTripEnd>
         </ScrollView>
       </View>
@@ -76,9 +72,10 @@ export function TripDetails({ navigation }) {
       }}
     >
       <SetReminderModal
-        setRemindModalVisible = {setRemindModalVisible}
-        changeSetRemindModalVisible = {changeSetRemindModalVisible}
-        num_legs={trip_info.legs.length}></SetReminderModal>
+        setRemindModalVisible={setRemindModalVisible}
+        changeSetRemindModalVisible={changeSetRemindModalVisible}
+        num_legs={trip_info.legs.length}
+      ></SetReminderModal>
       <View
         style={{
           flex: 1,
@@ -91,7 +88,7 @@ export function TripDetails({ navigation }) {
         <Text style={TestScreenHeadingStyles}>Trip Details</Text>
         <ExpandButton navigation={navigation} trip_id={tripId}></ExpandButton>
       </View>
-     
+
       <Text
         style={{
           fontFamily: "WorkSans_500Medium",
@@ -103,46 +100,58 @@ export function TripDetails({ navigation }) {
       </Text>
 
       <TripDetailsBody tripInfo={trip_info}></TripDetailsBody>
-      <View style={{
-        flexDirection: "row",
-        flex: 1,
-        top: 20
-      }}>
-        <TouchableOpacity style={{
-          backgroundColor: "#E36C2F",
-          right: 10,
-          height: 40,
-          width: 80,
-          justifyContent: "center",
-          alignItems: "center",
-          borderRadius: 20
-        }}>
-          <Text style={{
-            fontFamily: "WorkSans_700Bold",
-            color: "white"
-          }}>MAP</Text>
+      <View
+        style={{
+          flexDirection: "row",
+          flex: 1,
+          top: 20,
+        }}
+      >
+        <TouchableOpacity
+          style={{
+            backgroundColor: "#E36C2F",
+            right: 10,
+            height: 40,
+            width: 80,
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 20,
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: "WorkSans_700Bold",
+              color: "white",
+            }}
+          >
+            MAP
+          </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{
-          backgroundColor: MAIN_PRIMARY_COLOUR,
-          left: 10,
-          height: 40,
-          width: 160,
-          justifyContent: "center",
-          alignItems: "center",
-          borderRadius: 20
-        }} onPress={() => {
-          changeSetRemindModalVisible(true)
-        }}>
-          <Text style={{
-            color: "white",
-            fontFamily: "WorkSans_700Bold"
-          }}>SET REMINDER</Text>
+        <TouchableOpacity
+          style={{
+            backgroundColor: MAIN_PRIMARY_COLOUR,
+            left: 10,
+            height: 40,
+            width: 160,
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 20,
+          }}
+          onPress={() => {
+            changeSetRemindModalVisible(true);
+          }}
+        >
+          <Text
+            style={{
+              color: "white",
+              fontFamily: "WorkSans_700Bold",
+            }}
+          >
+            SET REMINDER
+          </Text>
         </TouchableOpacity>
-
       </View>
     </SafeAreaView>
   );
 }
-
-
