@@ -1,0 +1,51 @@
+import React from "react";
+import { View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import { TripFacade } from "../../classes/User";
+import { TripDetailsUnexpandedStart } from "./TripDetailsUnexpandedStart";
+import { TripDetailsUnexpandedMiddle } from "./TripDetailsUnexpandedMiddle";
+import { TripDetailsUnexpandedEnd } from "./TripDetailsUnexpandedEnd";
+
+export function TripDetailsExpandedBody({ trip_id }) {
+  const tripInfo = TripFacade.get(trip_id);
+  console.log(tripInfo);
+  return (
+    <View
+      style={{
+        marginTop: 24,
+        height: "70%",
+        borderRadius: 30,
+        backgroundColor: "white",
+        flexDirection: "row",
+        marginLeft: 20,
+        marginRight: 20,
+      }}
+    >
+      <View
+        style={{
+          flex: 1,
+        }}
+      >
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={{
+            marginTop: 20,
+            marginBottom: 20,
+          }}
+        >
+          <TripDetailsUnexpandedStart
+            legInfo={tripInfo["legs"][0]}
+          ></TripDetailsUnexpandedStart>
+          {tripInfo["legs"].slice(1).map((data, i) => (
+            <TripDetailsUnexpandedMiddle
+              legInfo={data}
+            ></TripDetailsUnexpandedMiddle>
+          ))}
+          <TripDetailsUnexpandedEnd
+            tripInfo={tripInfo}
+          ></TripDetailsUnexpandedEnd>
+        </ScrollView>
+      </View>
+    </View>
+  );
+}
