@@ -227,7 +227,7 @@ export const AllTripTimes = [
     endStopExtended: "UNSW",
     startHour: 9,
     startMinute: 38,
-    totalMinutes: 78
+    totalMinutes: 78,
   },
 ];
 
@@ -235,3 +235,20 @@ export const AllTripTimes = [
 // export const UserReminders = [
 
 // ]
+
+export const OpalDetails = [
+  {
+    name: "Bill",
+    type: "Student",
+    OpalCardNum: "1234123412341234",
+    OpalCardPass: "1234",
+    OpalCurrBalance: 5,
+  },
+  {
+    name: "Jane",
+    type: "Adult",
+    OpalCardNum: "4321432143214321",
+    OpalCardPass: "4321",
+    OpalCurrBalance: 5,
+  },
+];
