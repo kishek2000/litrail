@@ -57,6 +57,14 @@ export function AllPossibleRoutes({ navigation, locationRoutes }) {
               },
             }}
             keyValue={key}
+            data={{
+              startStop: trip["startStop"],
+              endStop: trip["endStop"],
+              nextTripTime: trip["nextTripTime"],
+              duration: trip["duration"],
+              cost: trip["cost"],
+              legs: trip["legs"],
+            }}
           />
         ))}
       </View>

@@ -6,13 +6,8 @@ import { CreateByLocation } from "./CreateByLocation";
 export function TripCreation({ newTripMode, navigation, setNewTripMode }) {
   // States so we keep track of where we are at all times
   // BY LOCATION STATES
-  const [locationStart, setLocationStart] = useState("");
-  const [locationDest, setLocationDest] = useState("");
-  const [startMatches, setStartMatches] = useState([]);
-  const [destMatches, setDestMatches] = useState([]);
-  const [selectedStart, setSelectedStart] = useState(false);
-  const [selectedDest, setSelectedDest] = useState(false);
-  const [locationRoutes, setLocationRoutes] = useState({});
+  const [startLocation, setStartLocation] = useState("");
+  const [destLocation, setDestLocation] = useState("");
 
   return (
     <View style={{ alignSelf: "flex-start", width: "100%" }}>
@@ -24,20 +19,10 @@ export function TripCreation({ newTripMode, navigation, setNewTripMode }) {
       {newTripMode === "location" ? (
         <CreateByLocation
           navigation={navigation}
-          locationStart={locationStart}
-          setLocationStart={setLocationStart}
-          locationDest={locationDest}
-          setLocationDest={setLocationDest}
-          startMatches={startMatches}
-          setStartMatches={setStartMatches}
-          destMatches={destMatches}
-          setDestMatches={setDestMatches}
-          selectedStart={selectedStart}
-          setSelectedStart={setSelectedStart}
-          selectedDest={selectedDest}
-          setSelectedDest={setSelectedDest}
-          locationRoutes={locationRoutes}
-          setLocationRoutes={setLocationRoutes}
+          startLocation={startLocation}
+          setStartLocation={setStartLocation}
+          destLocation={destLocation}
+          setDestLocation={setDestLocation}
         />
       ) : (
         <CreateByTransport />

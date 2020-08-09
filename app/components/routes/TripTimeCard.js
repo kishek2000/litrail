@@ -1,18 +1,15 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
 import { MAIN_PRIMARY_COLOUR } from "../../constants";
-import { TripCardDotsColumn } from "../../components/home/TripCardDotsColumn";
-import { TripCardStops } from "../../components/home/TripCardStops";
-import { TripCardDurationOrCost } from "../../components/home/TripCardDurationOrCost";
+import { TripCardDotsColumn } from "../home/TripCardDotsColumn";
+import { TripCardStops } from "../home/TripCardStops";
+import { TripCardDurationOrCost } from "../home/TripCardDurationOrCost";
 import onTime from "../../assets/onTime.png";
 import { SeeMoreButton } from "./SeeMoreButton";
 import { useNavigation } from "@react-navigation/native";
 
 export function TripTimeCard({ tripTimeData, tripId }) {
   const navigation = useNavigation();
-
-  
-
 
   return (
     <View
@@ -112,7 +109,7 @@ export function TripTimeCard({ tripTimeData, tripId }) {
             subtext={tripTimeData["cost"]}
           />
         </View>
-        <SeeMoreButton navigation={navigation} tripId={tripId}/>
+        <SeeMoreButton navigation={navigation} tripId={tripId} />
       </View>
     </View>
   );

@@ -55,7 +55,6 @@ export function RoutesHomeScreen({ navigation }) {
         <View
           style={{
             flex: 1,
-            backgroundColor: "#EEEEEE",
             alignItems: "center",
             position: "relative",
           }}

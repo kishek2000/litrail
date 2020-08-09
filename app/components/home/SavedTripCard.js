@@ -8,20 +8,14 @@ import { TripCardStops } from "./TripCardStops";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export function SavedTripCard({
-  startStop,
-  endStop,
-  nextTripTime,
-  duration,
-  cost,
-  legs,
   navigation,
   editMode,
-  keyValue,
   navigateTo,
   reminder,
   history,
-  tripStart,
-  tripEnd,
+  data,
+  deleteTrip,
+  setDeleteTrip,
 }) {
   const [selected, setSelected] = useState(false);
   return (
@@ -29,7 +23,6 @@ export function SavedTripCard({
       style={{
         backgroundColor: "white",
         padding: selected ? 20 : 24,
-        // width: "100%",
         alignSelf: "center",
         height: 175,
         borderRadius: 24,
@@ -42,12 +35,24 @@ export function SavedTripCard({
       }}
       disabled={!editMode}
       onPress={() => {
-        setSelected(!selected);
+        if (editMode) {
+          !selected
+            ? setDeleteTrip(deleteTrip.concat(data["id"]))
+            : setDeleteTrip(
+                deleteTrip.filter((trips) => {
+                  return trips !== data["id"];
+                })
+              );
+          setSelected(!selected);
+        }
       }}
-      key={keyValue}
     >
       <TripCardDotsColumn dots={10} />
-      <TripCardStops startStop={startStop} endStop={endStop} legs={legs} />
+      <TripCardStops
+        startStop={data["startStop"]}
+        endStop={data["endStop"]}
+        legs={data["legs"]}
+      />
       <View style={{ marginRight: 16 }} />
       <View
         style={{
@@ -58,9 +63,12 @@ export function SavedTripCard({
         }}
       >
         {history ? (
-          <HistoryElement tripStart={tripStart} tripEnd={tripEnd} />
+          <HistoryElement
+            tripStart={data["tripStart"]}
+            tripEnd={data["tripEnd"]}
+          />
         ) : (
-          <IncomingTipElement nextTripTime={nextTripTime} />
+          <IncomingTipElement nextTripTime={data["nextTripTime"]} />
         )}
         <View
           style={{
@@ -69,9 +77,12 @@ export function SavedTripCard({
             marginTop: 8,
           }}
         >
-          <TripCardDurationOrCost subheading="DURATION" subtext={duration} />
+          <TripCardDurationOrCost
+            subheading="DURATION"
+            subtext={data["duration"]}
+          />
           <View style={{ marginRight: 10 }} />
-          <TripCardDurationOrCost subheading="COST" subtext={cost} />
+          <TripCardDurationOrCost subheading="COST" subtext={data["cost"]} />
         </View>
         {!history && (
           <ViewTimesButton

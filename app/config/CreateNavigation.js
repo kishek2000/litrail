@@ -36,25 +36,16 @@ export function CreateNavigation() {
           },
         }}
         screenOptions={({ route }) => ({
-          tabBarLabel: ({ tintColor, focused, item }) => {
-            return focused ? (
+          tabBarLabel: ({ focused }) => {
+            return (
               <Text
                 style={{
                   fontSize: 12,
                   paddingBottom: 6,
-                  fontFamily: "WorkSans_700Bold",
-                  color: MAIN_PRIMARY_COLOUR,
-                }}
-              >
-                {route.name}
-              </Text>
-            ) : (
-              <Text
-                style={{
-                  fontSize: 12,
-                  paddingBottom: 6,
-                  fontFamily: "WorkSans_500Medium",
-                  color: "#7472AB",
+                  fontFamily: focused
+                    ? "WorkSans_700Bold"
+                    : "WorkSans_500Medium",
+                  color: focused ? MAIN_PRIMARY_COLOUR : "#7472AB",
                 }}
               >
                 {route.name}
@@ -63,19 +54,9 @@ export function CreateNavigation() {
           },
           tabBarIcon: ({ focused }) => {
             if (route.name === "HOME") {
-              return focused ? (
+              return (
                 <Image
-                  source={homeTabFocused}
-                  style={{
-                    width: 36,
-                    height: 28,
-                    resizeMode: "contain",
-                    marginBottom: -10,
-                  }}
-                />
-              ) : (
-                <Image
-                  source={homeTab}
+                  source={focused ? homeTabFocused : homeTab}
                   style={{
                     width: 36,
                     height: 28,
@@ -85,19 +66,9 @@ export function CreateNavigation() {
                 />
               );
             } else if (route.name === "ROUTES") {
-              return focused ? (
+              return (
                 <Image
-                  source={routesTabFocused}
-                  style={{
-                    width: 36,
-                    height: 28,
-                    resizeMode: "contain",
-                    marginBottom: -10,
-                  }}
-                />
-              ) : (
-                <Image
-                  source={routesTab}
+                  source={focused ? routesTabFocused : routesTab}
                   style={{
                     width: 36,
                     height: 28,
@@ -107,19 +78,9 @@ export function CreateNavigation() {
                 />
               );
             } else if (route.name === "SCHEDULE") {
-              return focused ? (
+              return (
                 <Image
-                  source={schedulesTabFocused}
-                  style={{
-                    width: 36,
-                    height: 28,
-                    resizeMode: "contain",
-                    marginBottom: -10,
-                  }}
-                />
-              ) : (
-                <Image
-                  source={schedulesTab}
+                  source={focused ? schedulesTabFocused : schedulesTab}
                   style={{
                     width: 36,
                     height: 28,
@@ -151,6 +112,7 @@ export function CreateNavigation() {
               editMode={editMode}
               setEditMode={setEditMode}
               currentUserTrips={currentUserTrips}
+              setCurrentUserTrips={setCurrentUserTrips}
             />
           )}
         />
@@ -177,5 +139,3 @@ export function CreateNavigation() {
     </NavigationContainer>
   );
 }
-
-// 4 tabs, one for each screen

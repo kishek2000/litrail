@@ -1,127 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
-import { MAIN_PRIMARY_COLOUR } from "../../constants";
-import { LocationButton } from "./LocationButton";
-import { LocationInputBox } from "./LocationInputBox";
+import { AllTripTimes } from "../../constants";
 import { AllPossibleRoutes } from "./AllPossibleRoutes";
-import { TextInput } from "react-native-gesture-handler";
+import { LocationInput } from "./LocationInput";
+import { FindRoutesButton } from "./FindRoutesButton";
 
 export function CreateByLocation({
+  setStartLocation,
+  setDestLocation,
   navigation,
-  locationStart,
-  setLocationStart,
-  locationDest,
-  setLocationDest,
-  startMatches,
-  setStartMatches,
-  destMatches,
-  setDestMatches,
-  selectedStart,
-  setSelectedStart,
-  selectedDest,
-  setSelectedDest,
-  locationRoutes,
-  setLocationRoutes,
+  options,
+  startLocation,
+  destLocation,
 }) {
+  const [clearText, setClearText] = useState(false);
+  const [search, setSearch] = useState({});
+
   return (
-    <View style={{ marginTop: 16 }}>
-      <LocationInputBox
-        text={locationStart}
-        setText={setLocationStart}
-        placeholder={"Enter Start e.g. Kellyville Station..."}
-        matches={startMatches}
-        setMatches={setStartMatches}
-        selected={selectedStart}
-        setSelected={setSelectedStart}
+    <View>
+      <View style={{ marginBottom: 16 }} />
+      <LocationInput
+        placeholder={"Enter start..."}
+        options={["Bella Vista Station"]}
+        onChange={(value) => {
+          setStartLocation(value);
+        }}
+        text={startLocation}
+        clear={clearText}
+        toggleClear={setClearText}
+        setSearch={setSearch}
       />
       <View style={{ marginBottom: 8 }} />
-      <LocationInputBox
-        text={locationDest}
-        setText={setLocationDest}
-        placeholder={"Enter Destination e.g. Central Station..."}
-        matches={destMatches}
-        setMatches={setDestMatches}
-        selected={selectedDest}
-        setSelected={setSelectedDest}
+      <LocationInput
+        placeholder={"Enter dest..."}
+        options={["UNSW"]}
+        onChange={(value) => {
+          setDestLocation(value);
+        }}
+        text={destLocation}
+        clear={clearText}
+        toggleClear={setClearText}
+        setSearch={setSearch}
       />
       <View style={{ marginBottom: 24 }} />
-      <View
-        style={{
-          flexDirection: "row",
-          width: "100%",
-          justifyContent: "space-between",
-        }}
-      >
-        <LocationButton
-          condition={locationStart !== "" || locationDest !== ""}
-          label={"CLEAR"}
-          bgColor="white"
-          setState={{
-            start: setLocationStart,
-            dest: setLocationDest,
-            startSelected: setSelectedStart,
-            destSelected: setSelectedDest,
-            locationRoutes: setLocationRoutes,
-          }}
+      {startLocation !== "" && destLocation !== "" && (
+        <FindRoutesButton
+          setRoute={setSearch}
+          startLocation={startLocation}
+          destLocation={destLocation}
         />
-        <LocationButton
-          condition={
-            selectedStart &&
-            selectedDest &&
-            typeof selectedStart === "string" &&
-            typeof selectedDest === "string"
-          }
-          label={"FIND ROUTES"}
-          bgColor={MAIN_PRIMARY_COLOUR}
-          setState={setLocationRoutes}
-          states={{ start: selectedStart, dest: selectedDest }}
-        />
-      </View>
-      <AllPossibleRoutes
-        navigation={navigation}
-        locationRoutes={locationRoutes}
-      />
+      )}
+      {Object.keys(search).length > 0 && (
+        <AllPossibleRoutes navigation={navigation} locationRoutes={search} />
+      )}
     </View>
   );
 }
-
-// DRAFT FOR REFACTORING THE ABOVE
-
-// export const DummyComponent = () => {
-//   return (
-//     <LocationInput
-//       placeholder="Enter start..."
-//       options={["Bella Vista Station", "Ryde"]}
-//       onChange={(value) => {
-//         setStartLocation(value);
-//       }}
-//     />
-//     <LocationInput
-//       placeholder="Enter dest..."
-//       options={["Bella Vista Station", "Ryde"]}
-//       onChange={(value) => {
-//         setDestLocation(value);
-//       }}
-//     />
-//   );
-// };
-
-// export const LocationInput = ({ placeholder, options, onChange }) => {
-//   const [value, setValue] = useState(undefined);
-//   const [isValid, setIsValid] = useState(false);
-//   return (
-//     <View>
-//       <TextInput
-//         style={{ borderRadius: 16, backgroundColor: "white", padding: 16 }}
-//         onChangeText={(text) => {
-//           setValue(text);
-//           if (options.includes(text)) {
-//             onChange(text);
-//             setIsValid(true);
-//           }
-//         }}
-//       />
-//       {!isValid && <View />} {/* Render options until valid one not found */}
-//     </View>
-//   );
-// };
