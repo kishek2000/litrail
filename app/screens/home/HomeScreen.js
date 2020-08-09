@@ -11,13 +11,19 @@ import { EditTripButton } from "../../components/home/EditTripButtons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
-export function HomeScreen({ editMode, setEditMode, currentUserTrips }) {
+export function HomeScreen({
+  editMode,
+  setEditMode,
+  currentUserTrips,
+  setCurrentUserTrips,
+}) {
   const navigation = useNavigation();
   return (
     <HomeContainer
       editMode={editMode}
       setEditMode={setEditMode}
       allUserTrips={currentUserTrips}
+      setCurrentUserTrips={setCurrentUserTrips}
       navigation={navigation}
     />
   );
@@ -27,15 +33,16 @@ export function HomeContainer({
   editMode,
   setEditMode,
   allUserTrips,
+  setCurrentUserTrips,
   navigation,
 }) {
+  const [deleteTrip, setDeleteTrip] = useState([]);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{
             flex: 1,
-            backgroundColor: "#EEEEEE",
             alignItems: "center",
             position: "relative",
             paddingHorizontal: 16,
@@ -106,27 +113,32 @@ export function HomeContainer({
             </Text>
           )}
           {allUserTrips.length > 0 ? (
-            allUserTrips.map((tripDetails, index) => (
+            allUserTrips.map((trip, index) => (
               <>
+                {console.log(trip)}
                 <SavedTripCard
-                  startStop={tripDetails["startStop"]}
-                  endStop={tripDetails["endStop"]}
-                  nextTripTime={tripDetails["nextTripTime"]}
-                  duration={tripDetails["duration"]}
-                  cost={tripDetails["cost"]}
-                  legs={tripDetails["legs"]}
+                  data={{
+                    startStop: trip["startStop"],
+                    endStop: trip["endStop"],
+                    nextTripTime: trip["nextTripTime"],
+                    duration: trip["duration"],
+                    cost: trip["cost"],
+                    legs: trip["legs"],
+                    id: trip["id"],
+                  }}
                   navigation={navigation}
                   navigateTo={{
                     route: "ROUTES",
                     arg: {
                       screen: "TripTimes",
                       params: {
-                        tripId: tripDetails["id"],
+                        tripId: trip["id"],
                       },
                     },
                   }}
-                  keyValue={index}
                   editMode={editMode}
+                  deleteTrip={deleteTrip}
+                  setDeleteTrip={setDeleteTrip}
                 />
               </>
             ))
@@ -151,12 +163,11 @@ export function HomeContainer({
       {editMode && (
         <View
           style={{
-            position: "absolute",
             bottom: 0,
-            alignSelf: "center",
             width: "100%",
             height: 60,
-            zIndex: 1,
+            position: "absolute",
+            alignSelf: "center",
             backgroundColor: "white",
             flexDirection: "row",
             alignItems: "center",
@@ -167,7 +178,6 @@ export function HomeContainer({
           <TouchableOpacity
             style={{
               width: 100,
-              // height: 40,
               backgroundColor: MAIN_PRIMARY_COLOUR,
               elevation: 2,
               paddingHorizontal: 16,
@@ -191,7 +201,6 @@ export function HomeContainer({
           <TouchableOpacity
             style={{
               width: 100,
-              // height: 40,
               backgroundColor: "#C90808",
               elevation: 2,
               paddingHorizontal: 16,
@@ -199,6 +208,17 @@ export function HomeContainer({
               borderRadius: 24,
               alignItems: "center",
               justifyContent: "center",
+            }}
+            onPress={() => {
+              deleteTrip.map((deletion) => {
+                const updatedTrips = allUserTrips.filter((trip) => {
+                  return trip.id !== deletion;
+                });
+                setCurrentUserTrips(updatedTrips);
+                if (Object.keys(updatedTrips).length === 0) {
+                  setEditMode(false);
+                }
+              });
             }}
           >
             <View style={{ marginRight: 8 }} />

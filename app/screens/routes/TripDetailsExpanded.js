@@ -358,6 +358,10 @@ export function TripDetailsExpanded({ navigation }) {
             </Text>
           </TouchableOpacity>
         </View>
+<<<<<<< HEAD
+=======
+
+>>>>>>> b2a5876909467bc70ad9d080f83428de27bd2d82
         <Text
           style={{
             fontSize: 40,

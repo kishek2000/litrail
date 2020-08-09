@@ -16,7 +16,7 @@ export function ScheduleScreen({ currentUser }) {
       <View
         style={{
           flex: 1,
-          backgroundColor: "#EEEEEE",
+
           alignItems: "center",
           position: "relative",
         }}
@@ -88,6 +88,14 @@ function ScheduleSection({ calendar, text, navigation }) {
             // navigateTo={} TODO AFTER REMINDERS IMPLEMENTED
             reminder={true}
             keyValue={key}
+            data={{
+              startStop: item["startStop"],
+              endStop: item["endStop"],
+              nextTripTime: item["nextTripTime"],
+              duration: item["duration"],
+              cost: item["cost"],
+              legs: item["legs"],
+            }}
           />
         ))}
       {calendar && (
@@ -147,6 +155,15 @@ function SchedulesHistory({ selectedDay, setSelectedDay, navigation }) {
                 // navigateTo={} TODO AFTER REMINDERS IMPLEMENTED
                 history={true}
                 keyValue={key}
+                data={{
+                  startStop: item["startStop"],
+                  endStop: item["endStop"],
+                  tripStart: "12:05pm",
+                  tripEnd: "1:25pm",
+                  duration: item["duration"],
+                  cost: item["cost"],
+                  legs: item["legs"],
+                }}
               />
             ))}
           </>

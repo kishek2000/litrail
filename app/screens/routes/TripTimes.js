@@ -11,21 +11,23 @@ import {
   FlatList,
   ScrollView,
 } from "react-native-gesture-handler";
-import { TripTimeCard } from "./TripTimeCard";
-import { GetAllTimes } from "./GetAllTimes";
+import { TripTimeCard } from "../../components/routes/TripTimeCard";
+import { GetAllTimes } from "../../components/routes/GetAllTimes";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { TripFacade } from "../../classes/User";
 
 export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
   const navigation = useNavigation();
   const route = useRoute();
-  const [isSaved, setIsSaved] = useState(false);
   const tripTime = AllTripTimes.filter((trip) => {
     return trip["tripId"] === route.params.tripId;
   });
   if (tripTime.length === 0) {
     return <TripTimesHeader />;
   }
+  const trip = TripFacade.get(route.params.tripId);
+  const [isSaved, setIsSaved] = useState(currentUserTrips.includes(trip));
+
   const tripDetails = [];
   DefinedTrips.filter((trip) => {
     if (trip["id"] === route.params.tripId) {
@@ -48,7 +50,9 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
   const AllTimes = GetAllTimes(tripFinal, totalTrips);
 
   const RenderTripTimeCard = ({ item: tripTimeData }) => {
-    return <TripTimeCard tripTimeData={tripTimeData} tripId={route.params.tripId} />;
+    return (
+      <TripTimeCard tripTimeData={tripTimeData} tripId={route.params.tripId} />
+    );
   };
 
   return (
@@ -62,7 +66,7 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
       <View
         style={{
           flex: 1,
-          backgroundColor: "#EEEEEE",
+
           alignItems: "center",
           position: "relative",
           width: "100%",
@@ -179,7 +183,7 @@ function TripTimesHeader() {
       <View
         style={{
           flex: 1,
-          backgroundColor: "#EEEEEE",
+
           alignItems: "center",
           position: "relative",
         }}

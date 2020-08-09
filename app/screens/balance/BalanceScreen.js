@@ -25,7 +25,7 @@ export function BalanceScreen({ currentUser }) {
       <View
         style={{
           flex: 1,
-          backgroundColor: "#EEEEEE",
+
           alignItems: "center",
           position: "relative",
           paddingHorizontal: 16,
@@ -65,12 +65,11 @@ export function BalanceScreen({ currentUser }) {
 function DisplayOpalBalance({ userMatched, setUserMatched }) {
   console.log(userMatched);
   return (
-    <View>
+    <View style={{ width: "100%" }}>
       <Text
         style={{
           fontFamily: "WorkSans_700Bold",
           marginTop: 24,
-          alignSelf: "flex-start",
           color: MAIN_PRIMARY_COLOUR,
         }}
       >
