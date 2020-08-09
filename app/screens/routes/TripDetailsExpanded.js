@@ -64,17 +64,6 @@ export let getRouteString = (legInfo) => {
   return route_string;
 };
 
-export function ExpandedTimeTile({ timeInfo }) {
-  return (
-    <View
-      style={{
-        flexDirection: "row",
-        flex: 1,
-      }}
-    ></View>
-  );
-}
-
 export function TripDetailsExpanded({ navigation }) {
   const route = useRoute();
   const trip_id = route.params.trip_id;

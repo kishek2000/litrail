@@ -79,8 +79,8 @@ export const DefinedTrips = [
     startStop: "Bella Vista Station",
     endStop: "UNSW",
     nextTripTime: "5 MIN",
-    duration: "~ 1h 21m",
-    endTime: "1:26 PM",
+    duration: "~ 1h 17m",
+    endTime: "1:22 PM",
     cost: "$6.99",
     id: 0,
     legs: [
@@ -93,6 +93,60 @@ export const DefinedTrips = [
         duration: "45 min",
         startTime: "12:05 PM",
         seatAvailability: 25,
+        stopSequence: [
+          {
+            stop: "Bella Vista Station, Mawson Ave, Stand A",
+            time: "12:05 PM",
+          },
+          {
+            stop: "Bella Vista Station, North West Twy, Stand C",
+            time: "12:07 PM",
+          },
+          {
+            stop: "Meurants T-Way",
+            time: "12:08 PM",
+          },
+          {
+            stop: "Norbrik T-Way",
+            time: "12:10 PM",
+          },
+          {
+            stop: "Troubadour T-Way",
+            time: "12:11 PM",
+          },
+          {
+            stop: "Joseph Banks T-Way",
+            time: "12:11 PM",
+          },
+          {
+            stop: "Abbott T-Way",
+            time: "12:12 PM",
+          },
+          {
+            stop: "M2 Mwy at Gooden Reserve Footbridge",
+            time: "12:15 PM",
+          },
+          {
+            stop: "M2 Mwy after Cropley Dr overpass",
+            time: "12:17 PM",
+          },
+          {
+            stop: "M2 - Barclay Rd Interchange",
+            time: "12:20 PM",
+          },
+          {
+            stop: "M2 - Oakes Rd Interchange",
+            time: "12:23 PM",
+          },
+          {
+            stop: "Wynyard Station, York St, Stand J",
+            time: "12:45 PM",
+          },
+          {
+            stop: "QVB, York St, Stand E",
+            time: "12:49 PM",
+          },
+        ],
       },
       {
         image: walkIcon,
@@ -102,6 +156,16 @@ export const DefinedTrips = [
         startTime: "12:50 PM",
         duration: "8 min",
         distance: "700m",
+        stopSequence: [
+          {
+            stop: "QVB, York St, Stand E",
+            time: "12:49 PM",
+          },
+          {
+            stop: "QVB Light Rail",
+            time: "12:51 PM",
+          },
+        ],
       },
       {
         image: lightrailIcon,
@@ -110,8 +174,50 @@ export const DefinedTrips = [
         startStop: "QVB Light Rail",
         route: "L3",
         duration: "26 min",
-        startTime: "12:58 PM",
+        startTime: "12:54 PM",
         seatAvailability: 23,
+        stopSequence: [
+          {
+            stop: "QVB Light Rail",
+            time: "12:54 PM",
+          },
+          {
+            stop: "Town Hall Light Rail",
+            time: "12:55 PM",
+          },
+          {
+            stop: "Chinatown Light Rail",
+            time: "12:58 PM",
+          },
+          {
+            stop: "Haymarket Light Rail",
+            time: "1:01 PM",
+          },
+          {
+            stop: "Central Chalmers Street Light Rail",
+            time: "1:03 PM",
+          },
+          {
+            stop: "Surry Hills Light Rail",
+            time: "1:06 PM",
+          },
+          {
+            stop: "Moore Park Light Rail",
+            time: "1:10 PM",
+          },
+          {
+            stop: "ES Marks Light Rail",
+            time: "1:15 PM",
+          },
+          {
+            stop: "Kensington Light Rail",
+            time: "1:17 PM",
+          },
+          {
+            stop: "UNSW Anzac Parade Light Rail",
+            time: "1:20 PM",
+          },
+        ],
       },
       {
         image: walkIcon,
@@ -119,8 +225,18 @@ export const DefinedTrips = [
         mode: "walk",
         startStop: "UNSW Anzac Parade Light Rail",
         duration: "2 min",
-        startTime: "1:24 PM",
+        startTime: "1:20 PM",
         distance: "100m",
+        stopSequence: [
+          {
+            stop: "UNSW Anzac Parade Light Rail",
+            time: "1:20 PM",
+          },
+          {
+            stop: "UNSW Sydney",
+            time: "1:22 PM",
+          },
+        ],
       },
     ],
   },

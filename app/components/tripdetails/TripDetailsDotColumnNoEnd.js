@@ -12,6 +12,7 @@ export function TripDetailsDotColumnNoEnd({ dots }) {
         marginLeft: 22,
         alignSelf: "center",
         marginTop: 3,
+        // backgroundColor: "purple",
       }}
     >
       <AntDesign

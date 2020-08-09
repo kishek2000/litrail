@@ -10,73 +10,126 @@ import {
   expandedTimeStyles,
   expandedRouteStyles,
 } from "../../screens/routes/TripDetailsExpanded";
+import { MAIN_PRIMARY_COLOUR } from "../../constants";
+
+export function ExpandedTimeTile({ timeInfo }) {
+  const timeStyling = {
+    color: MAIN_PRIMARY_COLOUR,
+    fontFamily: "WorkSans_500Medium",
+  };
+  const stopStyling = {
+    color: MAIN_PRIMARY_COLOUR,
+    fontFamily: "WorkSans_400Regular",
+    marginLeft: 5,
+    flex: 1,
+  };
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        flex: 1,
+        marginBottom: 5,
+        // backgroundColor: "gray",
+      }}
+    >
+      <Text style={timeStyling}>{timeInfo["time"]}</Text>
+      <Text style={stopStyling}>{timeInfo["stop"]}</Text>
+    </View>
+  );
+}
 
 export function TripDetailsUnexpandedStart({ legInfo }) {
   const time_string = legInfo["startTime"];
   const station_name = legInfo["startStop"];
+  const stop_sequence = legInfo["stopSequence"];
+  console.log(stop_sequence);
   const route_string = getRouteString(legInfo);
   const [legExpanded, setLegExpanded] = useState(false);
   return (
-    <View>
+    <View
+      style={{
+        // flex: 1,
+        flexDirection: "row",
+        // backgroundColor: "orange",
+        height: legExpanded ? 227 : "22%",
+      }}
+    >
       <View
         style={{
           flex: 1,
+          // height: "60%",
           flexDirection: "row",
+          // backgroundColor: "pink",
+          // height: legExpanded ? "40%" : "10%",
         }}
       >
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-          }}
-        >
+        <View>
           {legExpanded == false ? (
             <TripDetailsDotColumnNoEnd dots={5} />
           ) : (
             <TripDetailsDotColumnNoEnd dots={24} />
           )}
-          <View
-            style={{
-              flex: 1,
-            }}
-          >
-            <Text style={expandedStationStyles}>{station_name}</Text>
-            <View
-              style={{
-                flexDirection: "row",
-              }}
-            >
-              <Text style={expandedTimeStyles}>{time_string}</Text>
-              <Text style={expandedRouteStyles}>{route_string}</Text>
-            </View>
-            {legExpanded ? (
-              <View
-                style={{
-                  flex: 1,
-                  marginLeft: 20,
-                }}
-              >
-                <ScrollView>
-                  <Text>Some stuff here</Text>
-                  <Text>Some more stuff here</Text>
-                </ScrollView>
-              </View>
-            ) : (
-              <View></View>
-            )}
-          </View>
         </View>
         <View
           style={{
-            marginRight: 20,
+            flex: 1,
+            // height: "50%",
+            // backgroundColor: "yellow",
           }}
         >
-          {legExpanded == false ? (
-            <ExpandMoreIcon setExpanded={setLegExpanded} />
+          <Text style={expandedStationStyles}>{station_name}</Text>
+          <View
+            style={{
+              flexDirection: "row",
+            }}
+          >
+            <Text style={expandedTimeStyles}>{time_string}</Text>
+            <Text style={expandedRouteStyles}>{route_string}</Text>
+          </View>
+          {legExpanded ? (
+            <View
+              style={{
+                marginLeft: 20,
+                // backgroundColor: "green",
+              }}
+            >
+              <ScrollView
+                style={{
+                  height: "72%",
+                }}
+                showsVerticalScrollIndicator={false}
+              >
+                <View
+                  style={{
+                    height: 10,
+                  }}
+                ></View>
+                {stop_sequence.map((data, i) => (
+                  <ExpandedTimeTile timeInfo={data}></ExpandedTimeTile>
+                ))}
+                <View
+                  style={{
+                    height: 5,
+                  }}
+                ></View>
+              </ScrollView>
+            </View>
           ) : (
-            <ExpandLessIcon setExpanded={setLegExpanded} />
+            <View></View>
           )}
         </View>
+      </View>
+      <View
+        style={{
+          marginRight: 10,
+          // backgroundColor: "aqua",
+        }}
+      >
+        {legExpanded == false ? (
+          <ExpandMoreIcon setExpanded={setLegExpanded} />
+        ) : (
+          <ExpandLessIcon setExpanded={setLegExpanded} />
+        )}
       </View>
     </View>
   );

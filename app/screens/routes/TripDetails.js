@@ -138,12 +138,9 @@ export function TripDetails({ navigation }) {
             alignItems: "center",
             borderRadius: 20,
           }}
-<<<<<<< HEAD
-=======
           onPress={() => {
             changeSetRemindModalVisible(true);
           }}
->>>>>>> b2a5876909467bc70ad9d080f83428de27bd2d82
         >
           <Text
             style={{

@@ -44,7 +44,7 @@ export function TripDetailsUnexpandedMiddle({ legInfo }) {
       </View>
       <View
         style={{
-          marginRight: 20,
+          marginRight: 10,
         }}
       >
         {legExpanded == false ? (
