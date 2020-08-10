@@ -54,8 +54,6 @@ export let getRouteString = (legInfo) => {
       route_string_prefix = "Light Rail ";
     } else if (mode == "train") {
       route_string_prefix = "Train ";
-    } else if (mode == "metro") {
-      route_string_prefix = "Metro";
     } else {
       route_string_prefix = "";
     }

@@ -258,6 +258,32 @@ export const DefinedTrips = [
         duration: "16 min",
         startTime: "9:38 AM",
         seatAvailability: 27,
+        stopSequence: [
+          {
+            stop: "Bella Vista Station, Platform 1",
+            time: "9:38 AM",
+          },
+          {
+            stop: "Norwest Station, Platform 1",
+            time: "9:41 AM",
+          },
+          {
+            stop: "Hills Showground Station, Platform 1",
+            time: "9:43 AM",
+          },
+          {
+            stop: "Castle Hill Station, Platform 1",
+            time: "9:46 AM",
+          },
+          {
+            stop: "Cherrybrook, Platform 1",
+            time: "9:48 AM",
+          },
+          {
+            stop: "Epping Station, Platform 5",
+            time: "9:54 AM",
+          },
+        ],
       },
       {
         image: trainIcon,
@@ -268,6 +294,20 @@ export const DefinedTrips = [
         duration: "24 min",
         startTime: "10:05 AM",
         seatAvailability: 5,
+        stopSequence: [
+          {
+            stop: "Epping Station, Platform 1",
+            time: "10:05 AM",
+          },
+          {
+            stop: "Strathfield Station, Platform 1",
+            time: "10:16 AM",
+          },
+          {
+            stop: "Central Station, Platform 9",
+            time: "10:29 AM",
+          },
+        ],
       },
       {
         image: walkIcon,
@@ -277,6 +317,16 @@ export const DefinedTrips = [
         duration: "6 min",
         startTime: "10:29 AM",
         distance: "183m",
+        stopSequence: [
+          {
+            stop: "Central Station, Platform 9",
+            time: "10:29 AM",
+          },
+          {
+            stop: "Central Station, Eddy Ave, Stand D",
+            time: "10:35 AM",
+          },
+        ],
       },
       {
         image: busIcon,
@@ -287,6 +337,20 @@ export const DefinedTrips = [
         duration: "16 min",
         startTime: "10:39 AM",
         seatAvailability: 1,
+        stopSequence: [
+          {
+            stop: "Central Station, Eddy Ave, Stand D",
+            time: "10:39 AM",
+          },
+          {
+            stop: "UNSW Gate 8, High St",
+            time: "10:53 AM",
+          },
+          {
+            stop: "UNSW Gate 3, High St",
+            time: "10:55 AM",
+          },
+        ],
       },
     ],
   },
