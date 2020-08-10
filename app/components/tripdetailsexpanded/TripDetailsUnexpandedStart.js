@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { TripDetailsDotColumnNoEnd } from "../tripdetails/TripDetailsDotColumnNoEnd";
-import { ExpandMoreIcon } from "./ExpandMoreIcon";
-import { ExpandLessIcon } from "./ExpandLessIcon";
+import { ExpandIcon } from "./ExpandIcon";
 import {
   getRouteString,
   expandedStationStyles,
@@ -29,7 +28,6 @@ export function ExpandedTimeTile({ timeInfo }) {
         flexDirection: "row",
         flex: 1,
         marginBottom: 5,
-        // backgroundColor: "gray",
       }}
     >
       <Text style={timeStyling}>{timeInfo["time"]}</Text>
@@ -77,33 +75,32 @@ export function StopSequenceContainer({ expanded, stop_sequence }) {
   return <View></View>;
 }
 
-export function TripDetailsUnexpandedStart({ legInfo }) {
+export function TripDetailsUnexpandedStart({
+  legInfo,
+  legExpanded,
+  setLegExpanded,
+}) {
   const time_string = legInfo["startTime"];
   const station_name = legInfo["startStop"];
   const stop_sequence = legInfo["stopSequence"];
   console.log(stop_sequence);
   const route_string = getRouteString(legInfo);
-  const [legExpanded, setLegExpanded] = useState(false);
+
   return (
     <View
       style={{
-        // flex: 1,
         flexDirection: "row",
-        // backgroundColor: "orange",
-        height: legExpanded ? 227 : 65,
+        height: legExpanded === "start" ? 227 : 65,
       }}
     >
       <View
         style={{
           flex: 1,
-          // height: "60%",
           flexDirection: "row",
-          // backgroundColor: "pink",
-          // height: legExpanded ? "40%" : "10%",
         }}
       >
         <View>
-          {legExpanded == false ? (
+          {legExpanded !== "start" ? (
             <TripDetailsDotColumnNoEnd dots={5} />
           ) : (
             <TripDetailsDotColumnNoEnd dots={24} />
@@ -112,8 +109,6 @@ export function TripDetailsUnexpandedStart({ legInfo }) {
         <View
           style={{
             flex: 1,
-            // height: "50%",
-            // backgroundColor: "yellow",
           }}
         >
           <Text style={expandedStationStyles}>{station_name}</Text>
@@ -126,22 +121,21 @@ export function TripDetailsUnexpandedStart({ legInfo }) {
             <Text style={expandedRouteStyles}>{route_string}</Text>
           </View>
           <StopSequenceContainer
-            expanded={legExpanded}
+            expanded={legExpanded === "start"}
             stop_sequence={stop_sequence}
-          ></StopSequenceContainer>
+          />
         </View>
       </View>
       <View
         style={{
           marginRight: 10,
-          // backgroundColor: "aqua",
         }}
       >
-        {legExpanded == false ? (
-          <ExpandMoreIcon setExpanded={setLegExpanded} />
-        ) : (
-          <ExpandLessIcon setExpanded={setLegExpanded} />
-        )}
+        <ExpandIcon
+          setExpanded={setLegExpanded}
+          legExpanded={legExpanded === "start"}
+          section={"start"}
+        />
       </View>
     </View>
   );

@@ -13,7 +13,6 @@ export function TripDetailsUnexpandedEnd({ tripInfo }) {
     <View
       style={{
         flexDirection: "row",
-        // backgroundColor: "yellow",
         height: 40,
       }}
     >

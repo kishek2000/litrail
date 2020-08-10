@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { TripDetailsDotColumnNoEndSolid } from "../tripdetails/TripDetailsDotColumnNoEndSolid";
-import { ExpandMoreIcon } from "./ExpandMoreIcon";
-import { ExpandLessIcon } from "./ExpandLessIcon";
+import { ExpandIcon } from "./ExpandIcon";
 import {
   getRouteString,
   expandedStationStyles,
@@ -11,23 +10,26 @@ import {
 } from "../../screens/routes/TripDetailsExpanded";
 import { StopSequenceContainer } from "./TripDetailsUnexpandedStart";
 
-export function TripDetailsUnexpandedMiddle({ legInfo }) {
+export function TripDetailsUnexpandedMiddle({
+  legInfo,
+  legExpanded,
+  setLegExpanded,
+  keyValue,
+}) {
   const time_string = legInfo["startTime"];
   const station_name = legInfo["startStop"];
   const stop_sequence = legInfo["stopSequence"];
   const route_string = getRouteString(legInfo);
-  const [legExpanded, setLegExpanded] = useState(false);
+
   return (
     <View
       style={{
-        // flex: 1,
         flexDirection: "row",
-        height: legExpanded ? 227 : 65,
-        // backgroundColor: "pink",
+        height: legExpanded == `middle ${keyValue}` ? 227 : 65,
       }}
     >
       <View>
-        {legExpanded == false ? (
+        {legExpanded !== `middle ${keyValue}` ? (
           <TripDetailsDotColumnNoEndSolid dots={5} />
         ) : (
           <TripDetailsDotColumnNoEndSolid dots={24} />
@@ -51,20 +53,20 @@ export function TripDetailsUnexpandedMiddle({ legInfo }) {
           <Text style={expandedRouteStyles}>{route_string}</Text>
         </View>
         <StopSequenceContainer
-          expanded={legExpanded}
+          expanded={legExpanded === `middle ${keyValue}`}
           stop_sequence={stop_sequence}
-        ></StopSequenceContainer>
+        />
       </View>
       <View
         style={{
           marginRight: 10,
         }}
       >
-        {legExpanded == false ? (
-          <ExpandMoreIcon setExpanded={setLegExpanded} />
-        ) : (
-          <ExpandLessIcon setExpanded={setLegExpanded} />
-        )}
+        <ExpandIcon
+          setExpanded={setLegExpanded}
+          legExpanded={legExpanded === `middle ${keyValue}`}
+          section={`middle ${keyValue}`}
+        />
       </View>
     </View>
   );

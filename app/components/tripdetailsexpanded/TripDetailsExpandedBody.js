@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { TripFacade } from "../../classes/User";
@@ -8,6 +8,7 @@ import { TripDetailsUnexpandedEnd } from "./TripDetailsUnexpandedEnd";
 
 export function TripDetailsExpandedBody({ trip_id }) {
   const tripInfo = TripFacade.get(trip_id);
+  const [legExpanded, setLegExpanded] = useState("start");
   console.log(tripInfo);
   return (
     <View
@@ -35,15 +36,18 @@ export function TripDetailsExpandedBody({ trip_id }) {
         >
           <TripDetailsUnexpandedStart
             legInfo={tripInfo["legs"][0]}
-          ></TripDetailsUnexpandedStart>
+            legExpanded={legExpanded}
+            setLegExpanded={setLegExpanded}
+          />
           {tripInfo["legs"].slice(1).map((data, i) => (
             <TripDetailsUnexpandedMiddle
               legInfo={data}
-            ></TripDetailsUnexpandedMiddle>
+              keyValue={i}
+              legExpanded={legExpanded}
+              setLegExpanded={setLegExpanded}
+            />
           ))}
-          <TripDetailsUnexpandedEnd
-            tripInfo={tripInfo}
-          ></TripDetailsUnexpandedEnd>
+          <TripDetailsUnexpandedEnd tripInfo={tripInfo} />
         </ScrollView>
       </View>
     </View>
