@@ -17,7 +17,6 @@ export function TripTimeCard({ tripTimeData, tripId }) {
         backgroundColor: "white",
         padding: 24,
         height: 200,
-        //   width: "100%",
         borderRadius: 24,
         marginBottom: 12,
         flexDirection: "row",

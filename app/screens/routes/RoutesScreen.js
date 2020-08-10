@@ -75,7 +75,7 @@ export function RoutesHomeScreen({ navigation }) {
             navigation={navigation}
             setNewTripMode={setNewTripMode}
           />
-          <View style={{ marginBottom: 32 }} />
+          <View style={{ marginBottom: 250 }} />
         </View>
       </ScrollView>
     </SafeAreaView>

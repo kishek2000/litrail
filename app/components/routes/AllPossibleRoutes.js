@@ -43,12 +43,6 @@ export function AllPossibleRoutes({ navigation, locationRoutes }) {
         </Text>
         {matchingRoutes.map((trip, key) => (
           <SavedTripCard
-            startStop={trip["startStop"]}
-            endStop={trip["endStop"]}
-            nextTripTime={trip["nextTripTime"]}
-            duration={trip["duration"]}
-            cost={trip["cost"]}
-            legs={trip["legs"]}
             navigation={navigation}
             navigateTo={{
               route: "TripTimes",

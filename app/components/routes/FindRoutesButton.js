@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
+
 export function FindRoutesButton({ setRoute, startLocation, destLocation }) {
   return (
     <View>
@@ -11,8 +12,10 @@ export function FindRoutesButton({ setRoute, startLocation, destLocation }) {
           elevation: 1,
           borderRadius: 24,
           height: 28,
+          width: 106,
           paddingHorizontal: 24,
           justifyContent: "center",
+          alignSelf: "flex-end",
         }}
         onPress={() =>
           setRoute({ startStop: startLocation, endStop: destLocation })

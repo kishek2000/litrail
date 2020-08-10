@@ -114,33 +114,30 @@ export function HomeContainer({
           )}
           {allUserTrips.length > 0 ? (
             allUserTrips.map((trip, index) => (
-              <>
-                {console.log(trip)}
-                <SavedTripCard
-                  data={{
-                    startStop: trip["startStop"],
-                    endStop: trip["endStop"],
-                    nextTripTime: trip["nextTripTime"],
-                    duration: trip["duration"],
-                    cost: trip["cost"],
-                    legs: trip["legs"],
-                    id: trip["id"],
-                  }}
-                  navigation={navigation}
-                  navigateTo={{
-                    route: "ROUTES",
-                    arg: {
-                      screen: "TripTimes",
-                      params: {
-                        tripId: trip["id"],
-                      },
+              <SavedTripCard
+                data={{
+                  startStop: trip["startStop"],
+                  endStop: trip["endStop"],
+                  nextTripTime: trip["nextTripTime"],
+                  duration: trip["duration"],
+                  cost: trip["cost"],
+                  legs: trip["legs"],
+                  id: trip["id"],
+                }}
+                navigation={navigation}
+                navigateTo={{
+                  route: "ROUTES",
+                  arg: {
+                    screen: "TripTimes",
+                    params: {
+                      tripId: trip["id"],
                     },
-                  }}
-                  editMode={editMode}
-                  deleteTrip={deleteTrip}
-                  setDeleteTrip={setDeleteTrip}
-                />
-              </>
+                  },
+                }}
+                editMode={editMode}
+                deleteTrip={deleteTrip}
+                setDeleteTrip={setDeleteTrip}
+              />
             ))
           ) : (
             <Text

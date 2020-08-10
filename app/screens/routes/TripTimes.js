@@ -19,11 +19,12 @@ import { TripFacade } from "../../classes/User";
 export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
   const navigation = useNavigation();
   const route = useRoute();
+
   const tripTime = AllTripTimes.filter((trip) => {
     return trip["tripId"] === route.params.tripId;
   });
   if (tripTime.length === 0) {
-    return <TripTimesHeader />;
+    return <TripTimesHeader navigation={navigation} />;
   }
   const trip = TripFacade.get(route.params.tripId);
   const [isSaved, setIsSaved] = useState(currentUserTrips.includes(trip));
@@ -163,6 +164,7 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
               paddingTop: 16,
               paddingHorizontal: 16,
             }}
+            initialNumToRender={3}
           />
         </View>
         <View style={{ marginBottom: 38 }} />
@@ -171,7 +173,7 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
   );
 }
 
-function TripTimesHeader() {
+function TripTimesHeader({ navigation }) {
   return (
     <SafeAreaView
       style={{

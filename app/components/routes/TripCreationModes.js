@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export function TripCreationModes({ newTripMode, setNewTripMode, navigation }) {
+export function TripCreationModes({ newTripMode, setNewTripMode }) {
   return (
     <View
       style={{

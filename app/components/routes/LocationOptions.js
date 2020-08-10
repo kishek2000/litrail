@@ -4,11 +4,9 @@ import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export function LocationOptions({ options, text, onChange, onSelection }) {
-  console.log("options: ", options, "text: ", text);
   const matches = options.filter((location) => {
     return location.toLowerCase().includes(text.toLowerCase());
   });
-  console.log("matches: ", matches);
   return (
     <>
       {matches.map((searchResult, key) => (
