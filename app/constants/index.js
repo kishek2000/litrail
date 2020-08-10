@@ -365,10 +365,65 @@ export const DefinedTrips = [
       {
         image: trainIcon,
         desc: "22 Min",
+        mode: "metro",
+        startStop: "Kellyville Station, Platform 1",
+        route: "Metro",
+        duration: "22 min",
+        startTime: "11:06 AM",
+        seatAvailability: 31,
+        stopSequence: [
+          {
+            stop: "Kellyville Station, Platform 1",
+            time: "11:06 AM",
+          },
+          {
+            stop: "Bella Vista Station, Platform 1",
+            time: "11:08 AM",
+          },
+          {
+            stop: "Norwest Station, Platform 1",
+            time: "11:11 AM",
+          },
+          {
+            stop: "Hills Showground Station, Platform 1",
+            time: "11:13 AM",
+          },
+          {
+            stop: "Castle Hill Station, Platform 1",
+            time: "11:16 AM",
+          },
+          {
+            stop: "Cherrybrook, Platform 1",
+            time: "11:18 AM",
+          },
+          {
+            stop: "Epping Station, Platform 5",
+            time: "11:24 AM",
+          },
+          {
+            stop: "Macquarie University Station, Platform 1",
+            time: "11:28 AM",
+          },
+        ],
       },
       {
         image: walkIcon,
         desc: "700m",
+        mode: "walk",
+        startStop: "Macquarie University Station, Platform 1",
+        duration: "10 min",
+        startTime: "11:28 AM",
+        distance: "630m",
+        stopSequence: [
+          {
+            stop: "Macquarie University Station, Platform 1",
+            time: "11:28 AM",
+          },
+          {
+            stop: "University Library, Macquarie Park",
+            time: "11:39 AM",
+          },
+        ],
       },
     ],
   },
@@ -383,6 +438,66 @@ export const DefinedTrips = [
       {
         image: busIcon,
         desc: "45 Min",
+        mode: "bus",
+        startStop: "Bella Vista Station, Mawson Ave, Stand A",
+        route: "607X",
+        duration: "45 min",
+        startTime: "12:05 PM",
+        seatAvailability: 25,
+        stopSequence: [
+          {
+            stop: "Bella Vista Station, Mawson Ave, Stand A",
+            time: "12:05 PM",
+          },
+          {
+            stop: "Bella Vista Station, North West Twy, Stand C",
+            time: "12:07 PM",
+          },
+          {
+            stop: "Meurants T-Way",
+            time: "12:08 PM",
+          },
+          {
+            stop: "Norbrik T-Way",
+            time: "12:10 PM",
+          },
+          {
+            stop: "Troubadour T-Way",
+            time: "12:11 PM",
+          },
+          {
+            stop: "Joseph Banks T-Way",
+            time: "12:11 PM",
+          },
+          {
+            stop: "Abbott T-Way",
+            time: "12:12 PM",
+          },
+          {
+            stop: "M2 Mwy at Gooden Reserve Footbridge",
+            time: "12:15 PM",
+          },
+          {
+            stop: "M2 Mwy after Cropley Dr overpass",
+            time: "12:17 PM",
+          },
+          {
+            stop: "M2 - Barclay Rd Interchange",
+            time: "12:20 PM",
+          },
+          {
+            stop: "M2 - Oakes Rd Interchange",
+            time: "12:23 PM",
+          },
+          {
+            stop: "Wynyard Station, York St, Stand J",
+            time: "12:45 PM",
+          },
+          {
+            stop: "QVB, York St, Stand E",
+            time: "12:49 PM",
+          },
+        ],
       },
     ],
   },
