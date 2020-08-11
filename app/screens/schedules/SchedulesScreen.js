@@ -8,9 +8,17 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { Calendar } from "react-native-calendars";
 import { SavedTripCard } from "../../components/home/SavedTripCard";
+import { TripFacade } from "../../classes/User";
+import { EditReminderModal } from "../../components/tripdetails/EditReminderModal";
 
-export function ScheduleScreen({ currentUser }) {
+export function ScheduleScreen({
+  currentUser,
+  currentUserReminders,
+  setCurrentUserReminders,
+}) {
   const navigation = useNavigation();
+  const [editRemindModalVisible, setEditRemindModalVisible] = useState(false);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View
@@ -34,7 +42,12 @@ export function ScheduleScreen({ currentUser }) {
           Manage your reminders, or view your history.
         </Text>
         <ScrollView showsVerticalScrollIndicato={false}>
-          <ScheduleSection text="Live Reminders" navigation={navigation} />
+          <ScheduleSection
+            text="Live Reminders"
+            navigation={navigation}
+            currentUserReminders={currentUserReminders}
+            setCurrentUserReminders={setCurrentUserReminders}
+          />
           <View style={{ marginBottom: 16 }} />
           <ScheduleSection
             calendar
@@ -47,7 +60,13 @@ export function ScheduleScreen({ currentUser }) {
   );
 }
 
-function ScheduleSection({ calendar, text, navigation }) {
+function ScheduleSection({
+  calendar,
+  text,
+  navigation,
+  currentUserReminders,
+  setCurrentUserReminders,
+}) {
   const today = new Date();
   const [currentDate, setCurrentDate] = useState({
     day: today.getDate(),
@@ -76,28 +95,32 @@ function ScheduleSection({ calendar, text, navigation }) {
         {text}
       </Text>
       {!calendar &&
-        DefinedTrips.slice(0, 1).map((item, key) => (
-          <SavedTripCard
-            startStop={item["startStop"]}
-            endStop={item["endStop"]}
-            nextTripTime={item["nextTripTime"]}
-            duration={item["duration"]}
-            cost={item["cost"]}
-            legs={item["legs"]}
-            navigation={navigation}
-            // navigateTo={} TODO AFTER REMINDERS IMPLEMENTED
-            reminder={true}
-            keyValue={key}
-            data={{
-              startStop: item["startStop"],
-              endStop: item["endStop"],
-              nextTripTime: item["nextTripTime"],
-              duration: item["duration"],
-              cost: item["cost"],
-              legs: item["legs"],
-            }}
-          />
-        ))}
+        currentUserReminders.map((item, key) => {
+          const trip_info = TripFacade.get(item["trip_id"]);
+
+          return (
+            <SavedTripCard
+              startStop={trip_info["startStop"]}
+              endStop={trip_info["endStop"]}
+              nextTripTime={trip_info["nextTripTime"]}
+              duration={trip_info["duration"]}
+              cost={trip_info["cost"]}
+              legs={trip_info["legs"]}
+              navigation={navigation}
+              // navigateTo={} TODO AFTER REMINDERS IMPLEMENTED
+              reminder={true}
+              keyValue={key}
+              data={{
+                startStop: trip_info["startStop"],
+                endStop: trip_info["endStop"],
+                nextTripTime: trip_info["nextTripTime"],
+                duration: trip_info["duration"],
+                cost: trip_info["cost"],
+                legs: trip_info["legs"],
+              }}
+            />
+          );
+        })}
       {calendar && (
         <SchedulesHistory
           selectedDay={selectedDay}
