@@ -25,6 +25,9 @@ export function CreateNavigation() {
   const [editMode, setEditMode] = useState(false);
   const newUser = new User();
   const [currentUserTrips, setCurrentUserTrips] = useState([]);
+  const [currentUserReminders, setCurrentUserReminders] = useState([]);
+
+  console.log(currentUserReminders);
 
   return (
     <NavigationContainer>
@@ -123,12 +126,20 @@ export function CreateNavigation() {
               currentUser={newUser}
               setCurrentUserTrips={setCurrentUserTrips}
               currentUserTrips={currentUserTrips}
+              currentUserReminders={currentUserReminders}
+              setCurrentUserReminders={setCurrentUserReminders}
             />
           )}
         />
         <Tab.Screen
           name="SCHEDULE"
-          children={() => <ScheduleScreen currentUser={newUser} />}
+          children={() => (
+            <ScheduleScreen
+              currentUser={newUser}
+              currentUserReminders={currentUserReminders}
+              setCurrentUserReminders={setCurrentUserReminders}
+            />
+          )}
         />
         <Tab.Screen
           name="BALANCE"

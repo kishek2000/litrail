@@ -12,14 +12,14 @@ export function SeeMoreButton({ navigation, tripId }) {
         backgroundColor: MAIN_PRIMARY_COLOUR,
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 24, 
+        borderRadius: 24,
         marginTop: 12,
         alignSelf: "flex-end",
         elevation: 2,
       }}
       onPress={() => {
         navigation.navigate("TripDetails", {
-          "trip_id" : tripId
+          trip_id: tripId,
         });
       }}
     >

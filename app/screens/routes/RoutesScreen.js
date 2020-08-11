@@ -23,6 +23,8 @@ export function RoutesScreen({
   setCurrentUserTrips,
   currentUserTrips,
   currentUser,
+  currentUserReminders,
+  setCurrentUserReminders,
 }) {
   const navigation = useNavigation();
   return (
@@ -38,7 +40,15 @@ export function RoutesScreen({
           />
         )}
       />
-      <Stack.Screen name="TripDetails" component={TripDetails} />
+      <Stack.Screen
+        name="TripDetails"
+        children={() => (
+          <TripDetails
+            currentUserReminders={currentUserReminders}
+            setCurrentUserReminders={setCurrentUserReminders}
+          />
+        )}
+      />
       <Stack.Screen
         name="TripDetailsExpanded"
         component={TripDetailsExpanded}
