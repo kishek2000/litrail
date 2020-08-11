@@ -284,67 +284,38 @@ export function ReminderModal({
                   : "each leg of your trip ends."}
               </Text>
             </Text>
-            <View
+
+            <TouchableOpacity
               style={{
-                flexDirection: "row",
-                flex: 1,
-                top: 20,
+                backgroundColor: MAIN_PRIMARY_COLOUR,
+                height: 40,
+                width: 140,
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: 20,
                 marginTop: 20,
               }}
+              onPress={() => {
+                const new_reminder = {
+                  trip_id: tripId,
+                  remind_when: remindWhen,
+                  remind_when_duration: remindWhenDuration,
+                };
+                setCurrReminders(currReminders.concat([new_reminder]));
+                setRemindExists(true);
+                setRemindFeedbackModalVisible(true);
+                setRemindModalVisible(false);
+              }}
             >
-              <TouchableOpacity
+              <Text
                 style={{
-                  backgroundColor: "#DE0000",
-                  right: 10,
-                  height: 40,
-                  width: 140,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 20,
+                  color: "white",
+                  fontFamily: "WorkSans_700Bold",
                 }}
               >
-                <Text
-                  style={{
-                    fontFamily: "WorkSans_700Bold",
-                    color: "white",
-                  }}
-                >
-                  CANCEL
-                </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={{
-                  backgroundColor: MAIN_PRIMARY_COLOUR,
-                  left: 10,
-                  height: 40,
-                  width: 140,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 20,
-                }}
-                onPress={() => {
-                  const new_reminder = {
-                    trip_id: tripId,
-                    remind_when: remindWhen,
-                    remind_when_duration: remindWhenDuration,
-                  };
-                  setCurrReminders(currReminders.concat([new_reminder]));
-                  setRemindExists(true);
-                  setRemindFeedbackModalVisible(true);
-                  setRemindModalVisible(false);
-                }}
-              >
-                <Text
-                  style={{
-                    color: "white",
-                    fontFamily: "WorkSans_700Bold",
-                  }}
-                >
-                  SET
-                </Text>
-              </TouchableOpacity>
-            </View>
+                SET
+              </Text>
+            </TouchableOpacity>
           </View>
           <View
             style={{

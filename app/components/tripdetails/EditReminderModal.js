@@ -22,6 +22,7 @@ export function EditReminderModal({
   setCurrReminders,
   tripId,
   setRemindFeedbackModalVisible,
+  setRemindExists,
 }) {
   const init_remind_when = remindWhenDuration;
 
@@ -263,20 +264,28 @@ export function EditReminderModal({
                   backgroundColor: "#DE0000",
                   right: 10,
                   height: 40,
-                  width: 140,
+                  width: 130,
                   justifyContent: "center",
                   alignItems: "center",
                   borderRadius: 20,
                 }}
-                onPress={() => setEditRemindModalVisible(false)}
+                onPress={() => {
+                  const new_array = currReminders.filter((rem) => {
+                    return rem.trip_id !== tripId;
+                  });
+                  setCurrReminders(new_array);
+                  setRemindExists(false);
+                  setEditRemindModalVisible(false);
+                }}
               >
                 <Text
                   style={{
                     fontFamily: "WorkSans_700Bold",
                     color: "white",
+                    textAlign: "center",
                   }}
                 >
-                  CANCEL
+                  DELETE REMINDER
                 </Text>
               </TouchableOpacity>
 

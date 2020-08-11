@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Modal, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TextInput } from "react-native-gesture-handler";
 import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Dimensions } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
 const Settings = [
   {
@@ -168,13 +170,176 @@ function SettingsSelect() {
 function SettingsModal() {
   const [modalVisible, setModalVisible] = useState(false);
   return (
-    <TouchableOpacity>
-      <MaterialIcons
-        name="navigate-next"
-        size={24}
-        color={MAIN_PRIMARY_COLOUR}
-      />
-    </TouchableOpacity>
+    <View>
+      <Modal animationType="fade" transparent={true} visible={modalVisible}>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#00000080",
+          }}
+        >
+          <View
+            style={{
+              margin: 20,
+              backgroundColor: "white",
+              borderRadius: 20,
+              padding: 20,
+              elevation: 5,
+              width: Dimensions.get("window").width * 0.9,
+              height: Dimensions.get("window").height * 0.6,
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <View
+              style={{
+                alignItems: "center",
+              }}
+            >
+              <Text
+                style={{
+                  fontFamily: "WorkSans_500Medium",
+                  fontSize: 20,
+                  color: MAIN_PRIMARY_COLOUR,
+                }}
+              >
+                Update Card Details
+              </Text>
+              <Text
+                style={{
+                  fontFamily: "WorkSans_500Medium",
+                  fontSize: 13,
+                  color: MAIN_PRIMARY_COLOUR,
+                }}
+              >
+                Update your credit/debit card details.
+              </Text>
+              <Text
+                style={{
+                  fontFamily: "WorkSans_500Medium",
+                  fontSize: 13,
+                  color: MAIN_PRIMARY_COLOUR,
+                  marginTop: 30,
+                }}
+              >
+                Name on Card
+              </Text>
+              <TextInput
+                style={{
+                  height: 35,
+                  backgroundColor: "white",
+                  width: "90%",
+                  borderRadius: 24,
+                  paddingLeft: 24,
+                  fontFamily: "WorkSans_500Medium",
+                  fontSize: 16,
+                  color: MAIN_PRIMARY_COLOUR,
+                  elevation: 7,
+                }}
+                placeholder="Enter name on card"
+                onChangeText={(input) => {}}
+              />
+              <Text
+                style={{
+                  fontFamily: "WorkSans_500Medium",
+                  fontSize: 13,
+                  color: MAIN_PRIMARY_COLOUR,
+                  marginTop: 30,
+                }}
+              >
+                Card Number
+              </Text>
+              <TextInput
+                style={{
+                  height: 35,
+                  backgroundColor: "white",
+                  width: "90%",
+                  borderRadius: 24,
+                  paddingLeft: 24,
+                  fontFamily: "WorkSans_500Medium",
+                  fontSize: 16,
+                  color: MAIN_PRIMARY_COLOUR,
+                  elevation: 7,
+                }}
+                placeholder="Enter card number"
+                onChangeText={(input) => {}}
+              />
+              <Text
+                style={{
+                  fontFamily: "WorkSans_500Medium",
+                  fontSize: 13,
+                  color: MAIN_PRIMARY_COLOUR,
+                  marginTop: 30,
+                }}
+              >
+                Expiry Date
+              </Text>
+              <TextInput
+                style={{
+                  height: 35,
+                  backgroundColor: "white",
+                  width: "90%",
+                  borderRadius: 24,
+                  paddingLeft: 24,
+                  fontFamily: "WorkSans_500Medium",
+                  fontSize: 16,
+                  color: MAIN_PRIMARY_COLOUR,
+                  elevation: 7,
+                }}
+                placeholder="Enter expiry date"
+                onChangeText={(input) => {}}
+              />
+              <TouchableOpacity
+                style={{
+                  backgroundColor: MAIN_PRIMARY_COLOUR,
+                  height: 40,
+                  width: 140,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 20,
+                  marginTop: 50,
+                }}
+                onPress={() => {}}
+              >
+                <Text
+                  style={{
+                    color: "white",
+                    fontFamily: "WorkSans_700Bold",
+                  }}
+                >
+                  UPDATE
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                left: 30,
+              }}
+            >
+              <AntDesign
+                name="close"
+                size={24}
+                color={MAIN_PRIMARY_COLOUR}
+                onPress={() => setModalVisible(false)}
+              />
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <TouchableOpacity>
+        <MaterialIcons
+          name="navigate-next"
+          size={24}
+          color={MAIN_PRIMARY_COLOUR}
+          onPress={() => {
+            setModalVisible(true);
+          }}
+        />
+      </TouchableOpacity>
+    </View>
   );
 }
 

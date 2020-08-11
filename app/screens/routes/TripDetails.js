@@ -144,6 +144,7 @@ export function TripDetails({ currentUserReminders, setCurrentUserReminders }) {
           setCurrReminders={setCurrentUserReminders}
           tripId={tripId}
           setRemindFeedbackModalVisible={setRemindFeedbackModalVisible}
+          setRemindExists={setRemindExists}
         />
       )}
       <View
