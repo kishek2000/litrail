@@ -12,20 +12,39 @@ import {
   ScreenHeadingStyles,
   OpalDetails,
 } from "../../constants";
-import { useNavigation } from "@react-navigation/native";
+import {
+  useNavigation,
+  NavigationContainer,
+  StackActions,
+} from "@react-navigation/native";
 import opalIcon from "../../assets/opal.png";
+import { createStackNavigator } from "@react-navigation/stack";
+import { SettingsButton } from "./SettingsButton";
+import { SettingsScreen } from "./SettingsScreen";
 
-export function BalanceScreen({ currentUser }) {
-  const navigation = useNavigation();
+const Stack = createStackNavigator();
+
+export function BalanceScreen() {
+  // const navigation = useNavigation();
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="OpalScreen" component={OpalScreen} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
+    </Stack.Navigator>
+  );
+}
+
+export function OpalScreen({ navigation }) {
   const [opalCardNum, setOpalCardNum] = useState("");
   const [opalCardPass, setOpalCardPass] = useState("");
   const [userMatched, setUserMatched] = useState(false);
+
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, position: "relative" }}>
+      <SettingsButton navigation={navigation} />
       <View
         style={{
           flex: 1,
-
           alignItems: "center",
           position: "relative",
           paddingHorizontal: 16,
