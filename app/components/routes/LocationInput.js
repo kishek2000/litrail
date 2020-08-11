@@ -35,7 +35,7 @@ export function LocationInput({
             setIsValid(options.includes(input));
           }}
           placeholder={placeholder}
-          value={value}
+          value={value === "" && text !== "" ? text : value}
         />
         <ClearInputButton
           clearState={[setValue, onChange, setSearch]}
@@ -45,7 +45,7 @@ export function LocationInput({
       {!isValid && value !== "" && (
         <LocationOptions
           options={options}
-          text={text}
+          text={value}
           onChange={onChange}
           onSelection={{ valid: setIsValid, value: setValue }}
         />
