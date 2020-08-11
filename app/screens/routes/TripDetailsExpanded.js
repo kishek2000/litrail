@@ -6,61 +6,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { TripDetailsExpandedBody } from "../../components/tripdetailsexpanded/TripDetailsExpandedBody";
-
-const hintTextStyles = {
-  fontFamily: "WorkSans_700Bold",
-  marginLeft: 20,
-  marginTop: 16,
-};
-
-export const expandedStationStyles = {
-  fontFamily: "WorkSans_700Bold",
-  fontSize: 16,
-  color: MAIN_PRIMARY_COLOUR,
-  marginTop: -2,
-  flexWrap: "wrap",
-  // flex: 1,
-  // backgroundColor: "green",
-};
-
-export const expandedTimeStyles = {
-  fontFamily: "WorkSans_700Bold",
-  color: MAIN_PRIMARY_COLOUR,
-  fontSize: 14,
-  // backgroundColor: "aqua",
-};
-
-export const expandedRouteStyles = {
-  fontFamily: "WorkSans_400Regular",
-  color: MAIN_PRIMARY_COLOUR,
-  fontSize: 14,
-  marginLeft: 10,
-  // backgroundColor: "yellow",
-  flex: 1,
-};
-
-// Returns the appropiate description of the route e.g. Walk, Bus Route 607X
-export let getRouteString = (legInfo) => {
-  const mode = legInfo["mode"];
-  let route_string;
-  if (mode == "walk") {
-    route_string = "Walk";
-  } else {
-    let route_name = legInfo["route"];
-    let route_string_prefix;
-    if (mode == "bus") {
-      route_string_prefix = "Bus Route ";
-    } else if (mode == "lightrail") {
-      route_string_prefix = "Light Rail ";
-    } else if (mode == "train") {
-      route_string_prefix = "Train ";
-    } else {
-      route_string_prefix = "";
-    }
-    route_string = route_string_prefix + route_name;
-  }
-  return route_string;
-};
+import { hintTextStyles } from "./hintTextStyles";
 
 export function TripDetailsExpanded({ navigation }) {
   const route = useRoute();

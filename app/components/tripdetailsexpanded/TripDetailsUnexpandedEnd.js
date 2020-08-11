@@ -4,7 +4,7 @@ import { AntDesign } from "@expo/vector-icons";
 import {
   expandedStationStyles,
   expandedTimeStyles,
-} from "../../screens/routes/TripDetailsExpanded";
+} from "../../screens/routes/hintTextStyles";
 
 export function TripDetailsUnexpandedEnd({ tripInfo }) {
   const time_string = tripInfo["endTime"];
