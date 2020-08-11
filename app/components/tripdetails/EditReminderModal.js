@@ -12,7 +12,6 @@ import { Dimensions } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 export function EditReminderModal({
-  editRemindModalVisible,
   setEditRemindModalVisible,
   remindWhen,
   setRemindWhen,
@@ -27,11 +26,7 @@ export function EditReminderModal({
   const init_remind_when = remindWhenDuration;
 
   return (
-    <Modal
-      animationType="fade"
-      transparent={true}
-      visible={editRemindModalVisible}
-    >
+    <Modal animationType="fade" transparent={true} visible={true}>
       <View
         style={{
           flex: 1,
@@ -94,41 +89,45 @@ export function EditReminderModal({
                 marginBottom: 70,
               }}
             >
-              {numLegs == 1 ? (
-                <View>
-                  <TouchableOpacity
+              <View>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor:
+                      remindWhen === "eachleg" ? MAIN_PRIMARY_COLOUR : "white",
+                    right: 10,
+                    height: 40,
+                    width: 120,
+                    marginBottom: 5,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 20,
+                    // shadowColor: "#000",
+                    // shadowOffset: {
+                    //   width: 0,
+                    //   height: 2,
+                    // },
+                    // shadowOpacity: 0.25,
+                    // shadowRadius: 3.84,
+                    elevation: 3,
+                  }}
+                  disabled={numLegs === 1}
+                  onPress={() => setRemindWhen("eachleg")}
+                >
+                  <Text
                     style={{
-                      backgroundColor:
-                        remindWhen === "eachleg"
-                          ? MAIN_PRIMARY_COLOUR
-                          : "white",
-                      right: 10,
-                      height: 40,
-                      width: 120,
-                      marginBottom: 5,
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderRadius: 20,
-                      shadowColor: "#000",
-                      shadowOffset: {
-                        width: 0,
-                        height: 2,
-                      },
-                      shadowOpacity: 0.25,
-                      shadowRadius: 3.84,
-                      elevation: 7,
+                      fontFamily: "WorkSans_500Medium",
+                      color:
+                        numLegs === 1
+                          ? "lightgrey"
+                          : remindWhen === "eachleg"
+                          ? "white"
+                          : MAIN_PRIMARY_COLOUR,
                     }}
-                    disabled={true}
                   >
-                    <Text
-                      style={{
-                        fontFamily: "WorkSans_500Medium",
-                        color: "lightgrey",
-                      }}
-                    >
-                      Each Leg
-                    </Text>
-                  </TouchableOpacity>
+                    Each Leg
+                  </Text>
+                </TouchableOpacity>
+                {numLegs === 1 && (
                   <Text
                     style={{
                       fontFamily: "WorkSans_500Medium",
@@ -138,42 +137,8 @@ export function EditReminderModal({
                   >
                     This trip only has one leg.
                   </Text>
-                </View>
-              ) : (
-                <TouchableOpacity
-                  style={{
-                    backgroundColor:
-                      remindWhen === "eachleg" ? MAIN_PRIMARY_COLOUR : "white",
-                    right: 10,
-                    height: 40,
-                    width: 120,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderRadius: 20,
-                    shadowColor: "#000",
-                    shadowOffset: {
-                      width: 0,
-                      height: 2,
-                    },
-                    shadowOpacity: 0.25,
-                    shadowRadius: 3.84,
-                    elevation: 7,
-                  }}
-                  onPress={() => setRemindWhen("eachleg")}
-                >
-                  <Text
-                    style={{
-                      fontFamily: "WorkSans_500Medium",
-                      color:
-                        remindWhen === "eachleg"
-                          ? "white"
-                          : MAIN_PRIMARY_COLOUR,
-                    }}
-                  >
-                    Each Leg
-                  </Text>
-                </TouchableOpacity>
-              )}
+                )}
+              </View>
               <TouchableOpacity
                 style={{
                   backgroundColor:
@@ -184,14 +149,14 @@ export function EditReminderModal({
                   justifyContent: "center",
                   alignItems: "center",
                   borderRadius: 20,
-                  shadowColor: "#000",
-                  shadowOffset: {
-                    width: 0,
-                    height: 2,
-                  },
-                  shadowOpacity: 0.25,
-                  shadowRadius: 3.84,
-                  elevation: 7,
+                  // shadowColor: "#000",
+                  // shadowOffset: {
+                  //   width: 0,
+                  //   height: 2,
+                  // },
+                  // shadowOpacity: 0.25,
+                  // shadowRadius: 3.84,
+                  elevation: 3,
                 }}
                 onPress={() => setRemindWhen("wholetrip")}
               >
@@ -234,7 +199,7 @@ export function EditReminderModal({
                   fontFamily: "WorkSans_500Medium",
                   fontSize: 16,
                   color: MAIN_PRIMARY_COLOUR,
-                  elevation: 7,
+                  elevation: 3,
                 }}
                 defaultValue={init_remind_when}
                 placeholder="Enter value"
@@ -303,6 +268,7 @@ export function EditReminderModal({
                   alignItems: "center",
                   borderRadius: 20,
                 }}
+                onPress={() => setEditRemindModalVisible(false)}
               >
                 <Text
                   style={{

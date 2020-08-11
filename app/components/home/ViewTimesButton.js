@@ -26,6 +26,9 @@ export function ViewTimesButton({
       onPress={() => {
         if (navigateTo) {
           navigation.navigate(navigateTo["route"], navigateTo["arg"]); // navigateTo['arg'] = { tripId: X }
+        } else if (reminder) {
+          console.log(reminder);
+          reminder(true);
         } else {
           !reminder && navigation.navigate("ROUTES");
         }

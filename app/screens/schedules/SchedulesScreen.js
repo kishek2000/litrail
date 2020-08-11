@@ -10,13 +10,15 @@ import { Calendar } from "react-native-calendars";
 import { SavedTripCard } from "../../components/home/SavedTripCard";
 import { TripFacade } from "../../classes/User";
 import { EditReminderModal } from "../../components/tripdetails/EditReminderModal";
+import { ReminderFeedbackModal } from "../../components/tripdetails/ReminderFeedbackModal";
 
 export function ScheduleScreen({
-  currentUser,
   currentUserReminders,
   setCurrentUserReminders,
 }) {
   const navigation = useNavigation();
+  console.log("current reminders:");
+  console.log(currentUserReminders);
   const [editRemindModalVisible, setEditRemindModalVisible] = useState(false);
 
   return (
@@ -24,12 +26,21 @@ export function ScheduleScreen({
       <View
         style={{
           flex: 1,
-
-          alignItems: "center",
+          paddingHorizontal: 16,
           position: "relative",
         }}
       >
-        <Text style={ScreenHeadingStyles}>Schedule</Text>
+        <Text
+          style={{
+            fontSize: 54,
+            fontFamily: "WorkSans_500Medium",
+            color: MAIN_PRIMARY_COLOUR,
+            marginTop: 84,
+            alignSelf: "center",
+          }}
+        >
+          Schedule
+        </Text>
         <Text
           style={{
             fontSize: 18,
@@ -37,6 +48,7 @@ export function ScheduleScreen({
             marginTop: 8,
             marginBottom: 12,
             fontFamily: "WorkSans_400Regular",
+            alignSelf: "center",
           }}
         >
           Manage your reminders, or view your history.
@@ -47,6 +59,8 @@ export function ScheduleScreen({
             navigation={navigation}
             currentUserReminders={currentUserReminders}
             setCurrentUserReminders={setCurrentUserReminders}
+            editRemindModalVisible={editRemindModalVisible}
+            setEditRemindModalVisible={setEditRemindModalVisible}
           />
           <View style={{ marginBottom: 16 }} />
           <ScheduleSection
@@ -66,6 +80,8 @@ function ScheduleSection({
   navigation,
   currentUserReminders,
   setCurrentUserReminders,
+  editRemindModalVisible,
+  setEditRemindModalVisible,
 }) {
   const today = new Date();
   const [currentDate, setCurrentDate] = useState({
@@ -88,39 +104,21 @@ function ScheduleSection({
           fontSize: 24,
           fontFamily: "WorkSans_500Medium",
           color: MAIN_PRIMARY_COLOUR,
-          alignSelf: "center",
           marginBottom: 12,
         }}
       >
         {text}
       </Text>
-      {!calendar &&
-        currentUserReminders.map((item, key) => {
-          const trip_info = TripFacade.get(item["trip_id"]);
-
-          return (
-            <SavedTripCard
-              startStop={trip_info["startStop"]}
-              endStop={trip_info["endStop"]}
-              nextTripTime={trip_info["nextTripTime"]}
-              duration={trip_info["duration"]}
-              cost={trip_info["cost"]}
-              legs={trip_info["legs"]}
-              navigation={navigation}
-              // navigateTo={} TODO AFTER REMINDERS IMPLEMENTED
-              reminder={true}
-              keyValue={key}
-              data={{
-                startStop: trip_info["startStop"],
-                endStop: trip_info["endStop"],
-                nextTripTime: trip_info["nextTripTime"],
-                duration: trip_info["duration"],
-                cost: trip_info["cost"],
-                legs: trip_info["legs"],
-              }}
-            />
-          );
-        })}
+      {!calendar && currentUserReminders.length > 0 ? (
+        <SchedulesReminders
+          currentUserReminders={currentUserReminders}
+          setCurrentUserReminders={setCurrentUserReminders}
+          editRemindModalVisible={editRemindModalVisible}
+          setEditRemindModalVisible={setEditRemindModalVisible}
+        />
+      ) : (
+        !calendar && <Text>You currently have no reminders set.</Text>
+      )}
       {calendar && (
         <SchedulesHistory
           selectedDay={selectedDay}
@@ -195,4 +193,68 @@ function SchedulesHistory({ selectedDay, setSelectedDay, navigation }) {
       <View paddingBottom={36} />
     </>
   );
+}
+
+function SchedulesReminders({
+  navigation,
+  currentUserReminders,
+  setCurrentUserReminders,
+  editRemindModalVisible,
+  setEditRemindModalVisible,
+}) {
+  const [remindFeedbackModalVisible, setRemindFeedbackModalVisible] = useState(
+    false
+  );
+
+  return currentUserReminders.map((item, key) => {
+    const trip_info = TripFacade.get(item["trip_id"]);
+    const [remindWhen, setRemindWhen] = useState(item["remind_when"]);
+    const [remindWhenDuration, setRemindWhenDuration] = useState(
+      item["remind_when_duration"]
+    );
+    return (
+      <>
+        {console.log("item:", item)}
+        {editRemindModalVisible && (
+          <EditReminderModal
+            setEditRemindModalVisible={setEditRemindModalVisible}
+            remindWhen={remindWhen}
+            setRemindWhen={setRemindWhen}
+            remindWhenDuration={remindWhenDuration}
+            setRemindWhenDuration={setRemindWhenDuration}
+            currReminders={currentUserReminders}
+            setCurrReminders={setCurrentUserReminders}
+            numLegs={trip_info["legs"].length}
+            setRemindFeedbackModalVisible={setRemindFeedbackModalVisible}
+            tripId={item["trip_id"]}
+          />
+        )}
+        <ReminderFeedbackModal
+          remindFeedbackModalVisible={remindFeedbackModalVisible}
+          setRemindFeedbackModalVisible={setRemindFeedbackModalVisible}
+          remindWhenDuration={remindWhenDuration}
+          remindWhen={remindWhen}
+        />
+        <SavedTripCard
+          startStop={trip_info["startStop"]}
+          endStop={trip_info["endStop"]}
+          nextTripTime={trip_info["nextTripTime"]}
+          duration={trip_info["duration"]}
+          cost={trip_info["cost"]}
+          legs={trip_info["legs"]}
+          navigation={navigation}
+          reminder={setEditRemindModalVisible}
+          keyValue={key}
+          data={{
+            startStop: trip_info["startStop"],
+            endStop: trip_info["endStop"],
+            nextTripTime: trip_info["nextTripTime"],
+            duration: trip_info["duration"],
+            cost: trip_info["cost"],
+            legs: trip_info["legs"],
+          }}
+        />
+      </>
+    );
+  });
 }

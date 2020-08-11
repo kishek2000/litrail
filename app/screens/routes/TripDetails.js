@@ -124,26 +124,28 @@ export function TripDetails({ currentUserReminders, setCurrentUserReminders }) {
         setRemindFeedbackModalVisible={setRemindFeedbackModalVisible}
         remindExists={remindExists}
         setRemindExists={setRemindExists}
-      ></ReminderModal>
+      />
       <ReminderFeedbackModal
         remindFeedbackModalVisible={remindFeedbackModalVisible}
         setRemindFeedbackModalVisible={setRemindFeedbackModalVisible}
         remindWhenDuration={remindWhenDuration}
         remindWhen={remindWhen}
-      ></ReminderFeedbackModal>
-      <EditReminderModal
-        editRemindModalVisible={editRemindModalVisible}
-        setEditRemindModalVisible={setEditRemindModalVisible}
-        remindWhen={remindWhen}
-        setRemindWhen={setRemindWhen}
-        setRemindWhenDuration={setRemindWhenDuration}
-        remindWhenDuration={remindWhenDuration}
-        numLegs={trip_info.legs.length}
-        currReminders={currentUserReminders}
-        setCurrReminders={setCurrentUserReminders}
-        tripId={tripId}
-        setRemindFeedbackModalVisible={setRemindFeedbackModalVisible}
-      ></EditReminderModal>
+      />
+      {editRemindModalVisible && (
+        <EditReminderModal
+          editRemindModalVisible={editRemindModalVisible}
+          setEditRemindModalVisible={setEditRemindModalVisible}
+          remindWhen={remindWhen}
+          setRemindWhen={setRemindWhen}
+          setRemindWhenDuration={setRemindWhenDuration}
+          remindWhenDuration={remindWhenDuration}
+          numLegs={trip_info.legs.length}
+          currReminders={currentUserReminders}
+          setCurrReminders={setCurrentUserReminders}
+          tripId={tripId}
+          setRemindFeedbackModalVisible={setRemindFeedbackModalVisible}
+        />
+      )}
       <View
         style={{
           flex: 1,
