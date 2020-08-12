@@ -7,7 +7,7 @@ import {
   expandedStationStyles,
   expandedTimeStyles,
   expandedRouteStyles,
-} from "../../screens/routes/hintTextStyles";
+} from "../../components/tripdetails/TripDetailTextStyles";
 import { StopSequenceContainer } from "./TripDetailsUnexpandedStart";
 
 export function TripDetailsUnexpandedMiddle({
