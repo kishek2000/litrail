@@ -14,7 +14,7 @@ import {
 import { TripTimeCard } from "../../components/routes/TripTimeCard";
 import { GetAllTimes } from "../../components/routes/GetAllTimes";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { TripFacade } from "../../classes/User";
+import { TripStore } from "../../classes/User";
 
 export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
   const navigation = useNavigation();
@@ -26,7 +26,7 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
   if (tripTime.length === 0) {
     return <TripTimesHeader navigation={navigation} />;
   }
-  const trip = TripFacade.get(route.params.tripId);
+  const trip = TripStore.get(route.params.tripId);
   const [isSaved, setIsSaved] = useState(currentUserTrips.includes(trip));
 
   const tripDetails = [];
@@ -128,7 +128,7 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
               paddingVertical: 10,
             }}
             onPress={() => {
-              const trip = TripFacade.get(route.params.tripId);
+              const trip = TripStore.get(route.params.tripId);
               if (!currentUserTrips.includes(trip)) {
                 setCurrentUserTrips(currentUserTrips.concat([trip]));
                 setIsSaved(true);
@@ -158,6 +158,7 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
           <FlatList
             data={AllTimes}
             renderItem={RenderTripTimeCard}
+            keyExtractor={(item) => item.uniqueId}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{
               paddingBottom: 36,
@@ -165,6 +166,8 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
               paddingHorizontal: 16,
             }}
             initialNumToRender={3}
+            maxToRenderPerBatch={4}
+            updateCellsBatchingPeriod={50}
           />
         </View>
         <View style={{ marginBottom: 38 }} />

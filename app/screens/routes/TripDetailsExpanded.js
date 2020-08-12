@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { View, SafeAreaView, Text } from "react-native";
-import { ScreenHeadingStyles, MAIN_PRIMARY_COLOUR } from "../../constants";
+import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 
 import { TripDetailsExpandedBody } from "../../components/tripdetailsexpanded/TripDetailsExpandedBody";
-import { hintTextStyles } from "./hintTextStyles";
+import { hintTextStyles } from "../../components/tripdetails/TripDetailTextStyles";
 
 export function TripDetailsExpanded({ navigation }) {
   const route = useRoute();

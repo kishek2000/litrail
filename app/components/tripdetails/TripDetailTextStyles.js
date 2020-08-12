@@ -1,4 +1,5 @@
 import { MAIN_PRIMARY_COLOUR } from "../../constants";
+
 export const hintTextStyles = {
   fontFamily: "WorkSans_700Bold",
   marginLeft: 20,
@@ -24,11 +25,10 @@ export const expandedRouteStyles = {
   color: MAIN_PRIMARY_COLOUR,
   fontSize: 14,
   marginLeft: 10,
-  // backgroundColor: "yellow",
   flex: 1,
 };
-// Returns the appropiate description of the route e.g. Walk, Bus Route 607X
 
+// Returns the appropiate description of the route e.g. Walk, Bus Route 607X
 export let getRouteString = (legInfo) => {
   const mode = legInfo["mode"];
   let route_string;

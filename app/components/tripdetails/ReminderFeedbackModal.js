@@ -10,18 +10,15 @@ import {
 import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { Dimensions } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { Strong } from "./Strong";
+import { CloseModal } from "./CloseModal";
 
-export function ReminderFeedbackModal({
-  remindFeedbackModalVisible,
-  setRemindFeedbackModalVisible,
-  remindWhenDuration,
-  remindWhen,
-}) {
+export function ReminderFeedbackModal({ modalVisible, setModalVisible, data }) {
   return (
     <Modal
       animationType="none"
       transparent={true}
-      visible={remindFeedbackModalVisible}
+      visible={modalVisible === "feedback"}
     >
       <View
         style={{
@@ -52,52 +49,22 @@ export function ReminderFeedbackModal({
           >
             <Text
               style={{
+                fontFamily: "WorkSans_500Medium",
+                fontSize: 20,
+                color: MAIN_PRIMARY_COLOUR,
                 textAlign: "center",
               }}
             >
-              <Text
-                style={{
-                  fontFamily: "WorkSans_500Medium",
-                  fontSize: 20,
-                  color: MAIN_PRIMARY_COLOUR,
-                }}
-              >
-                You will be reminded{" "}
-              </Text>
-              <Text
-                style={{
-                  fontFamily: "WorkSans_700Bold",
-                  fontSize: 20,
-                  color: MAIN_PRIMARY_COLOUR,
-                }}
-              >
-                {remindWhenDuration} minute(s) before{" "}
-              </Text>
-              <Text
-                style={{
-                  fontFamily: "WorkSans_500Medium",
-                  fontSize: 20,
-                  color: MAIN_PRIMARY_COLOUR,
-                }}
-              >
-                {remindWhen === "wholetrip"
-                  ? "your trip begins and ends."
-                  : "each leg of your trip begins."}
-              </Text>
+              You will be reminded{" "}
+              <Strong
+                text={`${data["remindWhenDuration"]} minute(s) before `}
+              />
+              {data["remindWhen"] === "wholetrip"
+                ? "your trip begins and ends."
+                : "each leg of your trip begins."}
             </Text>
           </View>
-          <View
-            style={{
-              marginLeft: -20,
-            }}
-          >
-            <AntDesign
-              name="close"
-              size={24}
-              color={MAIN_PRIMARY_COLOUR}
-              onPress={() => setRemindFeedbackModalVisible(false)}
-            />
-          </View>
+          <CloseModal setState={setModalVisible} />
         </View>
       </View>
     </Modal>

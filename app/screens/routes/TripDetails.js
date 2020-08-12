@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { View, SafeAreaView, Text } from "react-native";
-import { ScreenHeadingStyles, MAIN_PRIMARY_COLOUR } from "../../constants";
+import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Dimensions } from "react-native";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 
-import { TripFacade } from "../../classes/User";
+import { TripStore } from "../../classes/User";
 import { TripDetailsInfoCorner } from "../../components/tripdetails/TripDetailsInfoCorner";
 import { BackButton } from "../../components/tripdetails/BackButton";
 import { ExpandButton } from "../../components/tripdetails/ExpandButton";
@@ -15,7 +15,6 @@ import { TripDetailsLegMiddle } from "../../components/tripdetails/TripDetailsLe
 import { TripDetailsTripEnd } from "../../components/tripdetails/TripDetailsTripEnd";
 import { ReminderModal } from "../../components/tripdetails/ReminderModal";
 import { ReminderFeedbackModal } from "../../components/tripdetails/ReminderFeedbackModal";
-import { EditReminderModal } from "../../components/tripdetails/EditReminderModal";
 
 export const TestScreenHeadingStyles = {
   fontSize: Dimensions.get("screen").width * 0.09,
@@ -62,11 +61,7 @@ export function TripDetails({ currentUserReminders, setCurrentUserReminders }) {
   const navigation = useNavigation();
   const routes = useRoute();
   const tripId = routes.params.trip_id;
-  const [remindModalVisible, setRemindModalVisible] = useState(false);
-  const [remindFeedbackModalVisible, setRemindFeedbackModalVisible] = useState(
-    false
-  );
-  const [editRemindModalVisible, setEditRemindModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState("");
 
   const [remindWhen, setRemindWhen] = useState(() => {
     let result = currentUserReminders.filter((rem) => {
@@ -96,11 +91,7 @@ export function TripDetails({ currentUserReminders, setCurrentUserReminders }) {
     }).length !== 0
   );
 
-  const trip_info = TripFacade.get(tripId);
-
-  console.log(remindExists);
-  console.log(remindWhen);
-  console.log(remindWhenDuration);
+  const trip_info = TripStore.get(tripId);
 
   return (
     <SafeAreaView
@@ -111,42 +102,28 @@ export function TripDetails({ currentUserReminders, setCurrentUserReminders }) {
       }}
     >
       <ReminderModal
-        remindModalVisible={remindModalVisible}
-        setRemindModalVisible={setRemindModalVisible}
-        remindWhen={remindWhen}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
         setRemindWhen={setRemindWhen}
         setRemindWhenDuration={setRemindWhenDuration}
-        remindWhenDuration={remindWhenDuration}
-        numLegs={trip_info.legs.length}
         currReminders={currentUserReminders}
         setCurrReminders={setCurrentUserReminders}
-        tripId={tripId}
-        setRemindFeedbackModalVisible={setRemindFeedbackModalVisible}
-        remindExists={remindExists}
         setRemindExists={setRemindExists}
+        data={{
+          tripId: tripId,
+          numLegs: trip_info["legs"].length,
+          remindWhen: remindWhen,
+          remindWhenDuration: remindWhenDuration,
+        }}
       />
       <ReminderFeedbackModal
-        remindFeedbackModalVisible={remindFeedbackModalVisible}
-        setRemindFeedbackModalVisible={setRemindFeedbackModalVisible}
-        remindWhenDuration={remindWhenDuration}
-        remindWhen={remindWhen}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        data={{
+          remindWhen: remindWhen,
+          remindWhenDuration: remindWhenDuration,
+        }}
       />
-      {editRemindModalVisible && (
-        <EditReminderModal
-          editRemindModalVisible={editRemindModalVisible}
-          setEditRemindModalVisible={setEditRemindModalVisible}
-          remindWhen={remindWhen}
-          setRemindWhen={setRemindWhen}
-          setRemindWhenDuration={setRemindWhenDuration}
-          remindWhenDuration={remindWhenDuration}
-          numLegs={trip_info.legs.length}
-          currReminders={currentUserReminders}
-          setCurrReminders={setCurrentUserReminders}
-          tripId={tripId}
-          setRemindFeedbackModalVisible={setRemindFeedbackModalVisible}
-          setRemindExists={setRemindExists}
-        />
-      )}
       <View
         style={{
           flex: 1,
@@ -211,9 +188,9 @@ export function TripDetails({ currentUserReminders, setCurrentUserReminders }) {
           }}
           onPress={() => {
             if (remindExists) {
-              setEditRemindModalVisible(true);
+              setModalVisible("edit");
             } else {
-              setRemindModalVisible(true);
+              setModalVisible("set");
             }
           }}
         >

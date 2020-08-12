@@ -37,6 +37,7 @@ export function GetAllTimes(tripFinal, totalTrips) {
       nextTripTime: `${tripFinal.times["timesInterval"] * x} MIN`,
       duration: tripFinal.details["duration"],
       cost: tripFinal.details["cost"],
+      uniqueId: x,
     });
   }
   return arr;

@@ -8,7 +8,7 @@ export class User {
   }
 
   addTrip(id) {
-    this.savedTrips.push(TripFacade.get(id));
+    this.savedTrips.push(TripStore.get(id));
   }
 
   getSavedTrips() {
@@ -23,11 +23,11 @@ export class User {
 
   addToTripHistory(id) {
     const today = new Date();
-    this.tripHistory.push({ trip: TripFacade.get(id), date: today });
+    this.tripHistory.push({ trip: TripStore.get(id), date: today });
   }
 }
 
-export class TripFacade {
+export class TripStore {
   static get(id) {
     return DefinedTrips.find((trip) => trip.id === id);
   }

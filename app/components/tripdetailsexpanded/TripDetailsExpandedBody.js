@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { TripFacade } from "../../classes/User";
+import { TripStore } from "../../classes/User";
 import { TripDetailsUnexpandedStart } from "./TripDetailsUnexpandedStart";
 import { TripDetailsUnexpandedMiddle } from "./TripDetailsUnexpandedMiddle";
 import { TripDetailsUnexpandedEnd } from "./TripDetailsUnexpandedEnd";
 
 export function TripDetailsExpandedBody({ trip_id }) {
-  const tripInfo = TripFacade.get(trip_id);
+  const tripInfo = TripStore.get(trip_id);
   const [legExpanded, setLegExpanded] = useState("start");
   console.log(tripInfo);
   return (
