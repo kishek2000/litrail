@@ -62,7 +62,7 @@ export function ReminderModal({
               reminderOrTrip === "wholetrip"
                 ? Dimensions.get("window").height * 0.8
                 : modalVisible === "edit"
-                ? Dimensions.get("window").height * 0.7
+                ? Dimensions.get("window").height * 0.75
                 : Dimensions.get("window").height * 0.6,
             flexDirection: "row",
             position: "relative",
@@ -99,7 +99,7 @@ export function ReminderModal({
               <ReminderOrTripSelection
                 reminderOrTrip={reminderOrTrip}
                 setReminderOrTrip={setReminderOrTrip}
-              ></ReminderOrTripSelection>
+              />
             )}
             {reminderOrTrip === "wholetrip" && (
               <Text
@@ -131,7 +131,7 @@ export function ReminderModal({
                   marginBottom: 20,
                 }}
               >
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false}>
                   {availableTimes.map((time) => (
                     <TouchableOpacity
                       style={{
