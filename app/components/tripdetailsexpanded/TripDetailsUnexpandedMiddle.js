@@ -8,7 +8,7 @@ import {
   expandedTimeStyles,
   expandedRouteStyles,
 } from "../tripdetails/TripDetailStyles";
-import { StopSequenceContainer } from "./TripDetailsUnexpandedStart";
+import { StopSequenceContainer } from "./StopSequenceContainer";
 
 export function TripDetailsUnexpandedMiddle({
   legInfo,
@@ -25,48 +25,49 @@ export function TripDetailsUnexpandedMiddle({
     <View
       style={{
         flexDirection: "row",
-        height: legExpanded == `middle ${keyValue}` ? 227 : 65,
+        maxHeight: 227,
       }}
     >
-      <View>
-        {legExpanded !== `middle ${keyValue}` ? (
-          <TripDetailsDotColumnNoEndSolid dots={5} />
-        ) : (
-          <TripDetailsDotColumnNoEndSolid dots={24} />
-        )}
-      </View>
-
       <View
         style={{
           flex: 1,
-          //   backgroundColor: "aqua",
+          flexDirection: "row",
         }}
       >
-        <Text style={expandedStationStyles}>{station_name}</Text>
+        <View>
+          <TripDetailsDotColumnNoEndSolid dots={5} />
+        </View>
+
         <View
           style={{
-            flexDirection: "row",
-            // flex: 1,
+            flex: 1,
           }}
         >
-          <Text style={expandedTimeStyles}>{time_string}</Text>
-          <Text style={expandedRouteStyles}>{route_string}</Text>
+          <Text style={expandedStationStyles}>{station_name}</Text>
+          <View
+            style={{
+              flexDirection: "row",
+            }}
+          >
+            <Text style={expandedTimeStyles}>{time_string}</Text>
+            <Text style={expandedRouteStyles}>{route_string}</Text>
+          </View>
+          <StopSequenceContainer
+            expanded={legExpanded === `middle ${keyValue}`}
+            stop_sequence={stop_sequence}
+          />
         </View>
-        <StopSequenceContainer
-          expanded={legExpanded === `middle ${keyValue}`}
-          stop_sequence={stop_sequence}
-        />
-      </View>
-      <View
-        style={{
-          marginRight: 10,
-        }}
-      >
-        <ExpandIcon
-          setExpanded={setLegExpanded}
-          legExpanded={legExpanded === `middle ${keyValue}`}
-          section={`middle ${keyValue}`}
-        />
+        <View
+          style={{
+            marginRight: 10,
+          }}
+        >
+          <ExpandIcon
+            setExpanded={setLegExpanded}
+            legExpanded={legExpanded === `middle ${keyValue}`}
+            section={`middle ${keyValue}`}
+          />
+        </View>
       </View>
     </View>
   );

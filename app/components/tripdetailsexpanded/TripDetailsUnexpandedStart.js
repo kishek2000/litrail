@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
 import { TripDetailsDotColumnNoEnd } from "../tripdetails/TripDetailsDotColumnNoEnd";
 import { ExpandIcon } from "./ExpandIcon";
 import {
@@ -10,6 +9,7 @@ import {
   expandedRouteStyles,
 } from "../tripdetails/TripDetailStyles";
 import { MAIN_PRIMARY_COLOUR } from "../../constants";
+import { StopSequenceContainer } from "./StopSequenceContainer";
 
 export function ExpandedTimeTile({ timeInfo }) {
   const timeStyling = {
@@ -36,45 +36,6 @@ export function ExpandedTimeTile({ timeInfo }) {
   );
 }
 
-export function StopSequenceContainer({ expanded, stop_sequence }) {
-  if (expanded) {
-    return (
-      <View
-        style={{
-          marginLeft: 20,
-          // backgroundColor: "pink",
-        }}
-      >
-        <ScrollView
-          style={{
-            height: "72%",
-          }}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            flexGrow: 1,
-            justifyContent: "center",
-          }}
-        >
-          <View
-            style={{
-              height: 10,
-            }}
-          ></View>
-          {stop_sequence.map((data, i) => (
-            <ExpandedTimeTile timeInfo={data}></ExpandedTimeTile>
-          ))}
-          <View
-            style={{
-              height: 5,
-            }}
-          ></View>
-        </ScrollView>
-      </View>
-    );
-  }
-  return <View></View>;
-}
-
 export function TripDetailsUnexpandedStart({
   legInfo,
   legExpanded,
@@ -90,7 +51,7 @@ export function TripDetailsUnexpandedStart({
     <View
       style={{
         flexDirection: "row",
-        height: legExpanded === "start" ? 227 : 65,
+        maxHeight: 227,
       }}
     >
       <View
@@ -100,11 +61,7 @@ export function TripDetailsUnexpandedStart({
         }}
       >
         <View>
-          {legExpanded !== "start" ? (
-            <TripDetailsDotColumnNoEnd dots={5} />
-          ) : (
-            <TripDetailsDotColumnNoEnd dots={24} />
-          )}
+          <TripDetailsDotColumnNoEnd dots={5} />
         </View>
         <View
           style={{

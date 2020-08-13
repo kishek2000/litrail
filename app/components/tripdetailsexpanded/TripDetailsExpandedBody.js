@@ -14,7 +14,7 @@ export function TripDetailsExpandedBody({ trip_id }) {
     <View
       style={{
         marginTop: 24,
-        height: "70%",
+        height: "68%",
         borderRadius: 30,
         backgroundColor: "white",
         flexDirection: "row",
