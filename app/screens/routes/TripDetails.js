@@ -30,7 +30,7 @@ export function TripDetailsBody({ tripInfo }) {
       style={{
         marginTop: 24,
         width: Dimensions.get("screen").width * 0.9,
-        height: Dimensions.get("screen").height * 0.55,
+        height: Dimensions.get("screen").height * 0.525,
         borderRadius: Dimensions.get("screen").width * 0.06,
         backgroundColor: "white",
         flexDirection: "row",
