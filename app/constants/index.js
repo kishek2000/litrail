@@ -361,6 +361,7 @@ export const DefinedTrips = [
     duration: "~ 33m",
     cost: "$3.99",
     id: 2,
+    endTime: "11:39 AM",
     legs: [
       {
         image: trainIcon,
@@ -433,6 +434,7 @@ export const DefinedTrips = [
     nextTripTime: "6 MIN",
     duration: "~ 45m",
     cost: "$4.99",
+    endTime: "12:49 PM",
     id: 3,
     legs: [
       {
@@ -523,6 +525,26 @@ export const AllTripTimes = [
     startHour: 9,
     startMinute: 38,
     totalMinutes: 78,
+  },
+  {
+    tripId: 2,
+    timesInterval: 8,
+    status: "ON TIME",
+    startStopExtended: "Kellyville Station, Platform 1",
+    endStopExtended: "Macquarie Library",
+    startHour: 11,
+    startMinute: 6,
+    totalMinutes: 33,
+  },
+  {
+    tripId: 3,
+    timesInterval: 8,
+    status: "ON TIME",
+    startStopExtended: "Bella Vista Station - Platform 1",
+    endStopExtended: "QVB",
+    startHour: 12,
+    startMinute: 5,
+    totalMinutes: 45,
   },
 ];
 
