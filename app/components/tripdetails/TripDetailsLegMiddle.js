@@ -13,14 +13,10 @@ export function TripDetailsLegMiddle({ legInfo }) {
       <View
         style={{
           flexDirection: "row",
-          height: 125,
-          // backgroundColor: "orange"
         }}
       >
         <View>
-          <TripDetailsDotColumnNoEndSolid
-            dots={12}
-          ></TripDetailsDotColumnNoEndSolid>
+          <TripDetailsDotColumnNoEndSolid dots={12} />
         </View>
         <View
           style={{

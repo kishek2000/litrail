@@ -8,7 +8,7 @@ export function TripCardDurationOrCost({ subheading, subtext }) {
       <Text
         style={{
           fontFamily: "WorkSans_500Medium",
-          fontSize: 10,
+          fontSize: 8,
           textAlign: "right",
           color: MAIN_PRIMARY_COLOUR,
         }}
@@ -18,7 +18,7 @@ export function TripCardDurationOrCost({ subheading, subtext }) {
       <Text
         style={{
           fontFamily: "WorkSans_800ExtraBold",
-          fontSize: 16,
+          fontSize: 14,
           textAlign: "right",
           marginTop: -5,
           color: MAIN_PRIMARY_COLOUR,

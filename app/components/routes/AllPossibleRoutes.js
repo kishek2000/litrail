@@ -20,10 +20,10 @@ export function AllPossibleRoutes({ navigation, locationRoutes }) {
 
   if (Object.keys(matchingRoutes).length > 0) {
     return (
-      <View style={{ alignItems: "center" }}>
+      <View style={{ alignItems: "center", paddingHorizontal: 8 }}>
         <Text
           style={{
-            fontSize: 54,
+            fontSize: 42,
             fontFamily: "WorkSans_500Medium",
             color: MAIN_PRIMARY_COLOUR,
             marginTop: 48,
@@ -33,9 +33,10 @@ export function AllPossibleRoutes({ navigation, locationRoutes }) {
         </Text>
         <Text
           style={{
-            fontSize: 18,
+            fontSize: 16,
             color: MAIN_PRIMARY_COLOUR,
             marginTop: 8,
+            marginBottom: 16,
             fontFamily: "WorkSans_400Regular",
           }}
         >

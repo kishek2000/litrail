@@ -9,7 +9,6 @@ export function TripCardTransport({ legs }) {
     <View
       style={{
         flexDirection: "row",
-        // justifyContent: "space-between",
         paddingVertical: 14,
       }}
     >
@@ -23,7 +22,7 @@ export function TripCardTransport({ legs }) {
           {key + 1 !== legs.length && (
             <Ionicons
               name="ios-arrow-round-forward"
-              size={24}
+              size={18}
               color={MAIN_PRIMARY_COLOUR}
               style={{ marginTop: 8, marginLeft: 4, marginRight: 4 }}
             />

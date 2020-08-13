@@ -8,17 +8,17 @@ export function TripCardTransportIndividual({ image, desc, keyNum }) {
         source={image}
         style={{
           alignSelf: "center",
-          width: 32,
-          height: 32,
+          width: 28,
+          height: 28,
           resizeMode: "contain",
         }}
       />
       <Text
         style={{
           color: "#65657C",
-          fontSize: 12,
+          fontSize: 10,
           fontFamily: "WorkSans_700Bold",
-          marginTop: 2,
+          marginTop: 4,
         }}
       >
         {desc}

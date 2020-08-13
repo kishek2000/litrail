@@ -15,6 +15,7 @@ import { TripTimeCard } from "../../components/routes/TripTimeCard";
 import { GetAllTimes } from "../../components/routes/GetAllTimes";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { TripStore } from "../../classes/User";
+import { GoBackButton } from "./GoBackButton";
 
 export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
   const navigation = useNavigation();
@@ -61,51 +62,20 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
       style={{
         flex: 1,
         alignItems: "center",
-        justifyContent: "center",
+        position: "relative",
       }}
     >
       <View
         style={{
-          flex: 1,
-
           alignItems: "center",
-          position: "relative",
           width: "100%",
         }}
       >
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: 84,
-          }}
-        >
-          <TouchableOpacity onPress={() => navigation.navigate("RoutesHome")}>
-            <Text
-              style={{
-                fontFamily: "WorkSans_400Regular",
-                fontSize: 16,
-                marginRight: 36,
-              }}
-            >
-              BACK
-            </Text>
-          </TouchableOpacity>
-          <Text
-            style={{
-              fontSize: 54,
-              fontFamily: "WorkSans_500Medium",
-              color: MAIN_PRIMARY_COLOUR,
-              marginRight: 72,
-            }}
-          >
-            Trip Times
-          </Text>
-        </View>
+        <GoBackButton navigation={navigation} positionSet={"absolute"} />
+        <Text style={ScreenHeadingStyles}>Trip Times</Text>
         <Text
           style={{
-            fontSize: 18,
+            fontSize: 16,
             color: MAIN_PRIMARY_COLOUR,
             marginTop: 8,
             fontFamily: "WorkSans_400Regular",
@@ -125,7 +95,7 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
               alignItems: "center",
               justifyContent: "flex-start",
               paddingHorizontal: 24,
-              paddingVertical: 10,
+              paddingVertical: 8,
             }}
             onPress={() => {
               const trip = TripStore.get(route.params.tripId);
@@ -139,7 +109,7 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
             <Text
               style={{
                 fontFamily: "WorkSans_400Regular",
-                fontSize: 18,
+                fontSize: 16,
                 color: isSaved ? MAIN_PRIMARY_COLOUR : "white",
                 textAlign: "left",
               }}
@@ -148,7 +118,7 @@ export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={{ marginBottom: 16 }} />
+        <View style={{ marginBottom: 24 }} />
         <View
           style={{
             alignItems: "center",
@@ -182,50 +152,18 @@ function TripTimesHeader({ navigation }) {
       style={{
         flex: 1,
         alignItems: "center",
-        justifyContent: "center",
       }}
     >
       <View
         style={{
-          flex: 1,
-
           alignItems: "center",
           position: "relative",
         }}
       >
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: 84,
-          }}
-        >
-          <TouchableOpacity onPress={() => navigation.navigate("RoutesHome")}>
-            <Text
-              style={{
-                fontFamily: "WorkSans_400Regular",
-                fontSize: 16,
-                marginRight: 18,
-              }}
-            >
-              BACK
-            </Text>
-          </TouchableOpacity>
-          <Text
-            style={{
-              fontSize: 54,
-              fontFamily: "WorkSans_500Medium",
-              color: MAIN_PRIMARY_COLOUR,
-              marginRight: 48,
-            }}
-          >
-            Trip Times
-          </Text>
-        </View>
+        <Text style={ScreenHeadingStyles}>Trip Times</Text>
         <Text
           style={{
-            fontSize: 18,
+            fontSize: 16,
             color: MAIN_PRIMARY_COLOUR,
             marginTop: 8,
             fontFamily: "WorkSans_400Regular",
@@ -247,6 +185,7 @@ function TripTimesHeader({ navigation }) {
           There are currently no times available for your trip.
         </Text>
       </View>
+      <GoBackButton navigation={navigation} positionSet={"absolute"} />
     </SafeAreaView>
   );
 }

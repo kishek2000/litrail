@@ -13,7 +13,6 @@ export function TripDetailsLegStart({ legInfo }) {
       <View
         style={{
           flexDirection: "row",
-          height: 125,
         }}
       >
         <View>
@@ -23,7 +22,7 @@ export function TripDetailsLegStart({ legInfo }) {
           <Text
             style={{
               fontFamily: "WorkSans_700Bold",
-              fontSize: 20,
+              fontSize: 16,
               color: MAIN_PRIMARY_COLOUR,
               top: -6,
             }}
@@ -32,38 +31,33 @@ export function TripDetailsLegStart({ legInfo }) {
           </Text>
           <Text
             style={{
-              fontFamily: "WorkSans_700Bold",
+              fontFamily: "WorkSans_500Medium",
               marginTop: -4,
+              fontSize: 10,
             }}
           >
             {time_string}
           </Text>
           <View
             style={{
-              flex: 1,
               flexDirection: "row",
             }}
           >
             <Image
               source={legInfo["image"]}
               style={{
-                top: 17,
-                left: 10,
-                width: 35,
-                height: 35,
+                width: 32,
+                height: 32,
                 resizeMode: "contain",
               }}
             />
             <View
               style={{
                 flex: 1,
-                left: 20,
-                top: 10,
               }}
             >
               <Text
                 style={{
-                  top: 10,
                   fontFamily: "WorkSans_500Medium",
                   fontSize: 16,
                   color: MAIN_PRIMARY_COLOUR,
@@ -84,8 +78,6 @@ export function TripDetailsLegStart({ legInfo }) {
       <View
         style={{
           flexDirection: "row",
-          height: 125,
-          // backgroundColor: "pink"
         }}
       >
         <View>
@@ -93,16 +85,14 @@ export function TripDetailsLegStart({ legInfo }) {
         </View>
         <View
           style={{
-            // backgroundColor: "aqua",
             flex: 1,
           }}
         >
           <Text
             style={{
-              // backgroundColor: "green",
               top: -6,
-              fontFamily: "WorkSans_700Bold",
-              fontSize: 20,
+              fontFamily: "WorkSans_800ExtraBold",
+              fontSize: 16,
               color: MAIN_PRIMARY_COLOUR,
             }}
           >
@@ -110,39 +100,34 @@ export function TripDetailsLegStart({ legInfo }) {
           </Text>
           <Text
             style={{
-              fontFamily: "WorkSans_700Bold",
+              fontFamily: "WorkSans_500Medium",
               marginTop: -4,
+              fontSize: 12,
             }}
           >
             {time_string}
           </Text>
           <View
             style={{
-              flex: 1,
               flexDirection: "row",
+              alignItems: "center",
+              marginTop: 12,
             }}
           >
             <Image
               source={legInfo["image"]}
               style={{
-                top: 17,
-                left: 10,
-                width: 35,
-                height: 35,
+                width: 32,
+                height: 32,
+                marginRight: 8,
                 resizeMode: "contain",
               }}
             />
-            <View
-              style={{
-                flex: 1,
-                left: 20,
-                top: 10,
-              }}
-            >
+            <View style={{ justifyContent: "center", marginTop: -4 }}>
               <Text
                 style={{
                   fontFamily: "WorkSans_500Medium",
-                  fontSize: 16,
+                  fontSize: 12,
                   color: MAIN_PRIMARY_COLOUR,
                 }}
               >
@@ -150,14 +135,12 @@ export function TripDetailsLegStart({ legInfo }) {
               </Text>
               <View
                 style={{
-                  flex: 1,
                   flexDirection: "row",
                 }}
               >
                 <Image
                   source={seatAvailabilityIcon}
                   style={{
-                    top: 5,
                     width: 20,
                     height: 15,
                   }}
@@ -167,6 +150,7 @@ export function TripDetailsLegStart({ legInfo }) {
                     left: 5,
                     fontFamily: "WorkSans_700Bold",
                     color: MAIN_PRIMARY_COLOUR,
+                    marginTop: -3,
                   }}
                 >
                   ~ {seats_free} seats free

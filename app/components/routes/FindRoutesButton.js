@@ -12,9 +12,11 @@ export function FindRoutesButton({ setRoute, startLocation, destLocation }) {
           elevation: 1,
           borderRadius: 24,
           height: 28,
-          width: 106,
+          width: 120,
+          flexDirection: "row",
           paddingHorizontal: 24,
           justifyContent: "center",
+          alignItems: "center",
           alignSelf: "flex-end",
         }}
         onPress={() =>

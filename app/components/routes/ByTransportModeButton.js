@@ -19,7 +19,7 @@ export function ByTransportModeButton({ mode, setMode, option }) {
         style={{
           fontFamily: "WorkSans_700Bold",
           color: mode === option ? "white" : MAIN_PRIMARY_COLOUR,
-          fontSize: 16,
+          fontSize: 12,
         }}
       >
         {option === "stop" ? "BY STOP" : "BY ROUTE"}

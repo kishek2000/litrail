@@ -62,7 +62,7 @@ export function EditTripButton({
       <Text
         style={{
           fontFamily: "WorkSans_400Regular",
-          fontSize: 18,
+          fontSize: 16,
           color:
             subtext === "Edit Trip" && currentState
               ? "white"

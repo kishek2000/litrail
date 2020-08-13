@@ -26,7 +26,7 @@ export function LocationInput({
             borderBottomLeftRadius: 24,
             paddingLeft: 24,
             fontFamily: "WorkSans_300Light",
-            fontSize: 16,
+            fontSize: 12,
             width: "87%",
             color: MAIN_PRIMARY_COLOUR,
           }}

@@ -50,7 +50,7 @@ export function TripTimeCard({ tripTimeData, tripId }) {
           <Text
             style={{
               fontFamily: "WorkSans_500Medium",
-              fontSize: 10,
+              fontSize: 8,
               textAlign: "right",
               color: MAIN_PRIMARY_COLOUR,
             }}
@@ -60,9 +60,9 @@ export function TripTimeCard({ tripTimeData, tripId }) {
           <Text
             style={{
               fontFamily: "WorkSans_800ExtraBold",
-              fontSize: 36,
+              fontSize: 32,
               textAlign: "right",
-              marginTop: -12,
+              marginTop: -10,
               marginRight: -1,
               color: MAIN_PRIMARY_COLOUR,
             }}

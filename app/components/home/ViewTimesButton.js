@@ -36,7 +36,7 @@ export function ViewTimesButton({
       <Text
         style={{
           fontFamily: "WorkSans_700Bold",
-          fontSize: 12,
+          fontSize: 10,
           color: "white",
         }}
       >

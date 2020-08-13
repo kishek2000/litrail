@@ -50,7 +50,7 @@ export function HomeContainer({
         >
           <Text
             style={{
-              fontSize: 54,
+              fontSize: 42,
               fontFamily: "WorkSans_500Medium",
               color: MAIN_PRIMARY_COLOUR,
               marginTop: 84,
@@ -61,7 +61,7 @@ export function HomeContainer({
           </Text>
           <Text
             style={{
-              fontSize: 18,
+              fontSize: 16,
               color: MAIN_PRIMARY_COLOUR,
               marginTop: 8,
               fontFamily: "WorkSans_400Regular",
@@ -76,8 +76,8 @@ export function HomeContainer({
               alignItems: "center",
               alignSelf: "center",
               justifyContent: "center",
-              marginTop: 8,
-              marginBottom: 16,
+              marginTop: 16,
+              marginBottom: 24,
             }}
           >
             <EditTripButton
@@ -142,7 +142,7 @@ function RenderTripCards({
   allUserTrips,
 }) {
   return (
-    <>
+    <View style={{ paddingHorizontal: 16 }}>
       {allUserTrips.length > 0 ? (
         allUserTrips.map((trip, index) => (
           <SavedTripCard
@@ -173,7 +173,7 @@ function RenderTripCards({
       ) : (
         <Text
           style={{
-            fontSize: 20,
+            fontSize: 18,
             color: MAIN_PRIMARY_COLOUR,
             marginTop: 8,
             textAlign: "center",
@@ -185,7 +185,7 @@ function RenderTripCards({
           You currently have no saved trips. Add a trip to begin!
         </Text>
       )}
-    </>
+    </View>
   );
 }
 

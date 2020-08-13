@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, SafeAreaView, Text } from "react-native";
-import { MAIN_PRIMARY_COLOUR } from "../../constants";
+import { MAIN_PRIMARY_COLOUR, ScreenHeadingStyles } from "../../constants";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Dimensions } from "react-native";
 
@@ -15,6 +15,7 @@ import { TripDetailsLegMiddle } from "../../components/tripdetails/TripDetailsLe
 import { TripDetailsTripEnd } from "../../components/tripdetails/TripDetailsTripEnd";
 import { ReminderModal } from "../../components/tripdetails/ReminderModal";
 import { ReminderFeedbackModal } from "../../components/tripdetails/ReminderFeedbackModal";
+import { GoBackButton } from "./GoBackButton";
 
 export const TestScreenHeadingStyles = {
   fontSize: Dimensions.get("screen").width * 0.09,
@@ -28,8 +29,8 @@ export function TripDetailsBody({ tripInfo }) {
     <View
       style={{
         marginTop: 24,
-        height: Dimensions.get("screen").height * 0.58,
         width: Dimensions.get("screen").width * 0.9,
+        height: Dimensions.get("screen").height * 0.55,
         borderRadius: Dimensions.get("screen").width * 0.06,
         backgroundColor: "white",
         flexDirection: "row",
@@ -99,6 +100,7 @@ export function TripDetails({ currentUserReminders, setCurrentUserReminders }) {
         flex: 1,
         flexDirection: "column",
         alignItems: "center",
+        position: "relative",
       }}
     >
       <ReminderModal
@@ -126,25 +128,37 @@ export function TripDetails({ currentUserReminders, setCurrentUserReminders }) {
       />
       <View
         style={{
-          flex: 1,
           flexDirection: "row",
+          width: "100%",
+          justifyContent: "space-between",
+          position: "absolute",
           alignItems: "center",
-          marginTop: 25,
+          marginTop: 106,
+          paddingLeft: 36,
+          paddingRight: 16,
         }}
       >
-        <BackButton navigation={navigation} />
-        <Text style={TestScreenHeadingStyles}>Trip Details</Text>
-        <ExpandButton navigation={navigation} trip_id={tripId}></ExpandButton>
+        <GoBackButton navigation={navigation} positionSet={"relative"} />
+        <ExpandButton navigation={navigation} trip_id={tripId} />
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <Text style={ScreenHeadingStyles}>Trip Details</Text>
       </View>
 
       <Text
         style={{
-          fontFamily: "WorkSans_500Medium",
-          fontSize: Dimensions.get("screen").width * 0.035,
-          marginTop: 24,
+          fontFamily: "WorkSans_400Regular",
+          fontSize: 16,
+          color: MAIN_PRIMARY_COLOUR,
+          marginTop: 8,
         }}
       >
-        View the seat availability and stops of your trip.
+        View further details of your trip.
       </Text>
 
       <TripDetailsBody tripInfo={trip_info}></TripDetailsBody>

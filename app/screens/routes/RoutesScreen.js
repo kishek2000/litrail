@@ -8,13 +8,6 @@ import { TripTimes } from "./TripTimes";
 import { TripDetails } from "./TripDetails";
 import { TripDetailsExpanded } from "./TripDetailsExpanded";
 import { useNavigation } from "@react-navigation/native";
-// Within each screen, you can have a stack of screens
-// Creating a stack nav, react navigation docs
-// 4 screens in stack:
-//  -> initial screen => saved trip card component (same as homescreen)
-//  -> times => trip time component (similar to above component)
-//  -> details for a trip => trip detail component
-//  -> expand details for a trip => expand view component (similar to above component)
 
 const Stack = createStackNavigator();
 
@@ -72,7 +65,7 @@ export function RoutesHomeScreen({ navigation }) {
           <Text style={ScreenHeadingStyles}>New Trip</Text>
           <Text
             style={{
-              fontSize: 18,
+              fontSize: 16,
               color: MAIN_PRIMARY_COLOUR,
               marginTop: 8,
               fontFamily: "WorkSans_400Regular",

@@ -29,6 +29,7 @@ export function TripCreationModes({ newTripMode, setNewTripMode }) {
           style={{
             fontFamily: "WorkSans_700Bold",
             color: newTripMode === "location" ? "white" : MAIN_PRIMARY_COLOUR,
+            fontSize: 12,
           }}
         >
           BY LOCATION
@@ -50,6 +51,7 @@ export function TripCreationModes({ newTripMode, setNewTripMode }) {
           style={{
             fontFamily: "WorkSans_700Bold",
             color: newTripMode === "location" ? MAIN_PRIMARY_COLOUR : "white",
+            fontSize: 12,
           }}
         >
           BY TRANSPORT

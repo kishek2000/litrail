@@ -15,10 +15,10 @@ export function ByTransportStops({
     <View>
       <Text
         style={{
-          fontSize: 18,
+          fontSize: 16,
           fontFamily: "WorkSans_700Bold",
           color: MAIN_PRIMARY_COLOUR,
-          marginBottom: 16,
+          marginBottom: 8,
         }}
       >
         Select your start and end stops.

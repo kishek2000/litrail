@@ -21,17 +21,19 @@ export function SavedTripCard({
   return (
     <TouchableOpacity
       style={{
+        elevation: 2,
         backgroundColor: "white",
-        padding: selected ? 20 : 24,
         alignSelf: "center",
-        height: 175,
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexDirection: "row",
+        height: 180,
+        width: "100%",
+        marginTop: 16,
+        padding: selected ? 20 : 24,
         borderRadius: 24,
         borderColor: selected ? MAIN_PRIMARY_COLOUR : "none",
         borderWidth: selected ? 4 : 0,
-        marginTop: 16,
-        flexDirection: "row",
-        elevation: 2,
-        alignItems: "center",
       }}
       disabled={!editMode}
       onPress={() => {
@@ -47,19 +49,19 @@ export function SavedTripCard({
         }
       }}
     >
-      <TripCardDotsColumn dots={10} />
-      <TripCardStops
-        startStop={data["startStop"]}
-        endStop={data["endStop"]}
-        legs={data["legs"]}
-      />
-      <View style={{ marginRight: 16 }} />
+      <View style={{ flexDirection: "row" }}>
+        <TripCardDotsColumn dots={10} />
+        <TripCardStops
+          startStop={data["startStop"]}
+          endStop={data["endStop"]}
+          legs={data["legs"]}
+        />
+      </View>
       <View
         style={{
           flexDirection: "column",
           justifyContent: "space-between",
           textAlign: "right",
-          width: 110,
         }}
       >
         {history ? (
@@ -68,7 +70,7 @@ export function SavedTripCard({
             tripEnd={data["tripEnd"]}
           />
         ) : (
-          <IncomingTipElement nextTripTime={data["nextTripTime"]} />
+          <IncomingTripElement nextTripTime={data["nextTripTime"]} />
         )}
         <View
           style={{
@@ -81,7 +83,7 @@ export function SavedTripCard({
             subheading="DURATION"
             subtext={data["duration"]}
           />
-          <View style={{ marginRight: 10 }} />
+          <View style={{ marginRight: 12 }} />
           <TripCardDurationOrCost subheading="COST" subtext={data["cost"]} />
         </View>
         {!history && (
@@ -113,9 +115,9 @@ function HistoryElement({ tripStart, tripEnd }) {
       <Text
         style={{
           fontFamily: "WorkSans_800ExtraBold",
-          fontSize: 28,
+          fontSize: 24,
           textAlign: "right",
-          marginTop: -12,
+          marginTop: -8,
           marginRight: -1,
           color: MAIN_PRIMARY_COLOUR,
         }}
@@ -135,9 +137,9 @@ function HistoryElement({ tripStart, tripEnd }) {
       <Text
         style={{
           fontFamily: "WorkSans_800ExtraBold",
-          fontSize: 28,
+          fontSize: 24,
           textAlign: "right",
-          marginTop: -12,
+          marginTop: -8,
           marginRight: -1,
           color: MAIN_PRIMARY_COLOUR,
         }}
@@ -148,13 +150,13 @@ function HistoryElement({ tripStart, tripEnd }) {
   );
 }
 
-function IncomingTipElement({ nextTripTime }) {
+function IncomingTripElement({ nextTripTime }) {
   return (
     <>
       <Text
         style={{
           fontFamily: "WorkSans_500Medium",
-          fontSize: 10,
+          fontSize: 8,
           textAlign: "right",
           color: MAIN_PRIMARY_COLOUR,
         }}
@@ -164,9 +166,9 @@ function IncomingTipElement({ nextTripTime }) {
       <Text
         style={{
           fontFamily: "WorkSans_800ExtraBold",
-          fontSize: 36,
+          fontSize: 32,
           textAlign: "right",
-          marginTop: -12,
+          marginTop: -10,
           marginRight: -1,
           color: MAIN_PRIMARY_COLOUR,
         }}

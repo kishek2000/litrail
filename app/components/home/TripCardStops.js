@@ -15,8 +15,7 @@ export function TripCardStops({
       style={{
         flexDirection: "column",
         justifyContent: "space-between",
-        height: "100%",
-        width: "57.5%",
+        height: "105%",
       }}
     >
       <View style={{ flexDirection: "column" }}>
@@ -34,7 +33,7 @@ export function TripCardStops({
         <Text
           style={{
             fontFamily: "WorkSans_800ExtraBold",
-            fontSize: startTime ? 16 : 20,
+            fontSize: startTime ? 12 : 19,
             color: MAIN_PRIMARY_COLOUR,
             width: 180,
           }}
@@ -58,8 +57,7 @@ export function TripCardStops({
         <Text
           style={{
             fontFamily: "WorkSans_800ExtraBold",
-            fontSize: endTime ? 16 : 20,
-            bottom: 0,
+            fontSize: endTime ? 12 : 19,
             color: MAIN_PRIMARY_COLOUR,
             width: 180,
           }}

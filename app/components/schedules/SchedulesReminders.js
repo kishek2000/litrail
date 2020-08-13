@@ -17,7 +17,7 @@ export function SchedulesReminders({
       item["remind_when_duration"]
     );
     return (
-      <>
+      <View style={{ paddingHorizontal: 8 }}>
         <ReminderModal
           setRemindWhen={setRemindWhen}
           setRemindWhenDuration={setRemindWhenDuration}
@@ -53,7 +53,7 @@ export function SchedulesReminders({
             legs: trip_info["legs"],
           }}
         />
-      </>
+      </View>
     );
   });
 }

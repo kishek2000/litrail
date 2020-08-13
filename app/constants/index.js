@@ -45,7 +45,7 @@ export const balanceTabFocused = balanceIconFocused;
 
 export const MAIN_PRIMARY_COLOUR = "#3A3957";
 export const ScreenHeadingStyles = {
-  fontSize: 54,
+  fontSize: 42,
   fontFamily: "WorkSans_500Medium",
   color: MAIN_PRIMARY_COLOUR,
   marginTop: 84,

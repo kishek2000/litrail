@@ -16,13 +16,13 @@ export function ScheduleScreen({
       <View
         style={{
           flex: 1,
-          paddingHorizontal: 16,
+          paddingHorizontal: 8,
           position: "relative",
         }}
       >
         <Text
           style={{
-            fontSize: 54,
+            fontSize: 42,
             fontFamily: "WorkSans_500Medium",
             color: MAIN_PRIMARY_COLOUR,
             marginTop: 84,
@@ -33,12 +33,12 @@ export function ScheduleScreen({
         </Text>
         <Text
           style={{
-            fontSize: 18,
+            fontSize: 16,
             color: MAIN_PRIMARY_COLOUR,
-            marginTop: 8,
-            marginBottom: 12,
+            marginBottom: 24,
             fontFamily: "WorkSans_400Regular",
             alignSelf: "center",
+            textAlign: "center",
           }}
         >
           Manage your reminders, or view your history.

@@ -30,7 +30,7 @@ export function LocationOptions({ options, text, onChange, onSelection }) {
           <Text
             style={{
               color: MAIN_PRIMARY_COLOUR,
-              fontSize: 16,
+              fontSize: 12,
               fontFamily: "WorkSans_300Light",
             }}
           >

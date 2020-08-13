@@ -9,7 +9,7 @@ export function TripCardDotsColumn({ dots }) {
       style={{
         alignItems: "center",
         marginRight: 8,
-        marginLeft: -6,
+        marginLeft: -3,
         alignSelf: "center",
       }}
     >

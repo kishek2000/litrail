@@ -25,16 +25,17 @@ export function ScheduleSection({
     <View
       style={{
         width: "100%",
-        paddingHorizontal: 16,
         marginTop: calendar ? 24 : 12,
       }}
     >
       <Text
         style={{
-          fontSize: 24,
-          fontFamily: "WorkSans_500Medium",
+          fontSize: 16,
+          fontFamily: "WorkSans_800ExtraBold",
           color: MAIN_PRIMARY_COLOUR,
-          marginBottom: 12,
+          marginBottom: 8,
+          paddingHorizontal: 8,
+          textTransform: "uppercase",
         }}
       >
         {text}
@@ -47,7 +48,18 @@ export function ScheduleSection({
           setModalVisible={setModalVisible}
         />
       ) : (
-        !calendar && <Text>You currently have no reminders set.</Text>
+        !calendar && (
+          <Text
+            style={{
+              fontSize: 16,
+              fontFamily: "WorkSans_400Regular",
+              color: MAIN_PRIMARY_COLOUR,
+              paddingHorizontal: 8,
+            }}
+          >
+            You currently have no reminders set.
+          </Text>
+        )
       )}
       {calendar && (
         <SchedulesHistory

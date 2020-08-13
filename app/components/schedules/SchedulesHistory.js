@@ -3,11 +3,12 @@ import { View, Text } from "react-native";
 import { MAIN_PRIMARY_COLOUR, DefinedTrips } from "../../constants";
 import { Calendar } from "react-native-calendars";
 import { SavedTripCard } from "../../components/home/SavedTripCard";
+
 export function SchedulesHistory({ selectedDay, setSelectedDay, navigation }) {
   return (
     <>
-      <View style={{ paddingHorizontal: 12 }}>
-        <View style={{ marginBottom: 12 }} />
+      <View style={{ paddingHorizontal: 24 }}>
+        <View style={{ marginBottom: 8 }} />
         <Calendar
           onDayPress={(day) => {
             const dateString = day.dateString;
@@ -23,7 +24,7 @@ export function SchedulesHistory({ selectedDay, setSelectedDay, navigation }) {
           markedDates={selectedDay}
         />
       </View>
-      <View>
+      <View style={{ paddingHorizontal: 8 }}>
         {selectedDay && (
           <>
             <Text
@@ -32,6 +33,8 @@ export function SchedulesHistory({ selectedDay, setSelectedDay, navigation }) {
                 fontSize: 16,
                 color: MAIN_PRIMARY_COLOUR,
                 marginTop: 24,
+                alignSelf: "center",
+                textAlign: "center",
               }}
             >
               Trips from {Object.keys(selectedDay)[0]}
