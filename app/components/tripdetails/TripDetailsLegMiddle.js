@@ -73,7 +73,7 @@ export function TripDetailsLegMiddle({ legInfo }) {
             style={{
               flexDirection: "row",
               alignItems: "center",
-              marginTop: 12,
+              flex: 1,
             }}
           >
             <DetailsTransportIcon img={legInfo["image"]} />

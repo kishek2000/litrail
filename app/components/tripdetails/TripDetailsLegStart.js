@@ -44,15 +44,7 @@ export function TripDetailsLegStart({ legInfo }) {
                 flex: 1,
               }}
             >
-              <Text
-                style={{
-                  fontFamily: "WorkSans_500Medium",
-                  fontSize: 10,
-                  color: MAIN_PRIMARY_COLOUR,
-                }}
-              >
-                Walk for {distance}
-              </Text>
+              <Text style={detailsRouteStyles}>Walk for {distance}</Text>
             </View>
           </View>
         </View>
@@ -83,7 +75,7 @@ export function TripDetailsLegStart({ legInfo }) {
             style={{
               flexDirection: "row",
               alignItems: "center",
-              marginTop: 12,
+              flex: 1,
             }}
           >
             <DetailsTransportIcon img={legInfo["image"]} />
