@@ -2,7 +2,6 @@ import React from "react";
 import { Image, Text } from "react-native";
 import { MAIN_PRIMARY_COLOUR, expandIcon } from "../../constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Dimensions } from "react-native";
 
 export function ExpandButton({ navigation, trip_id }) {
   return (

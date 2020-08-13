@@ -1,6 +1,5 @@
 import React from "react";
-import { Image, View, Text } from "react-native";
-import { MAIN_PRIMARY_COLOUR, seatAvailabilityIcon } from "../../constants";
+import { View, Text } from "react-native";
 import { TripDetailsDotColumnNoEndSolid } from "./TripDetailsDotColumnNoEndSolid";
 import {
   detailsStationStyles,

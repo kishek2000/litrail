@@ -1,11 +1,6 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { Text, View, SafeAreaView, ScrollView } from "react-native";
-import {
-  MAIN_PRIMARY_COLOUR,
-  DefinedTrips,
-  editIcon,
-  addIcon,
-} from "../../constants";
+import { MAIN_PRIMARY_COLOUR, editIcon, addIcon } from "../../constants";
 import { SavedTripCard } from "../../components/home/SavedTripCard";
 import { EditTripButton } from "../../components/home/EditTripButtons";
 import { TouchableOpacity } from "react-native-gesture-handler";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { TripDetailsDotColumnNoEnd } from "../tripdetails/TripDetailsDotColumnNoEnd";

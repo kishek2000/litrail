@@ -14,11 +14,6 @@ import {
   ScreenHeadingStyles,
   OpalDetails,
 } from "../../constants";
-import {
-  useNavigation,
-  NavigationContainer,
-  StackActions,
-} from "@react-navigation/native";
 import opalIcon from "../../assets/opal.png";
 import { createStackNavigator } from "@react-navigation/stack";
 import { SettingsButton } from "./SettingsButton";

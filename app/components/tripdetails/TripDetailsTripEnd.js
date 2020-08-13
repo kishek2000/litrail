@@ -1,9 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { AntDesign } from "@expo/vector-icons";
 import {
-  detailsStationStyles,
   detailsTimeStyles,
   detailsFirstLastStationStyles,
 } from "./TripDetailStyles";

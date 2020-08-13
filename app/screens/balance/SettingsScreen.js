@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { View, Text, Modal, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { TextInput } from "react-native-gesture-handler";
 import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { FontAwesome } from "@expo/vector-icons";

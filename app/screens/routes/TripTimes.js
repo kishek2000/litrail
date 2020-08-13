@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { View, SafeAreaView, Text } from "react-native";
 import {
   ScreenHeadingStyles,
@@ -6,11 +6,7 @@ import {
   AllTripTimes,
   DefinedTrips,
 } from "../../constants";
-import {
-  TouchableOpacity,
-  FlatList,
-  ScrollView,
-} from "react-native-gesture-handler";
+import { TouchableOpacity, FlatList } from "react-native-gesture-handler";
 import { TripTimeCard } from "../../components/routes/TripTimeCard";
 import { GetAllTimes } from "../../components/routes/GetAllTimes";
 import { useNavigation, useRoute } from "@react-navigation/native";

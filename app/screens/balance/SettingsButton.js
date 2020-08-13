@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, Image } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { Ionicons } from "@expo/vector-icons";
 

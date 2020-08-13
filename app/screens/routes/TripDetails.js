@@ -8,7 +8,6 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { TripStore } from "../../classes/User";
 import { TripDetailsInfoCorner } from "../../components/tripdetails/TripDetailsInfoCorner";
-import { BackButton } from "../../components/tripdetails/BackButton";
 import { ExpandButton } from "../../components/tripdetails/ExpandButton";
 import { TripDetailsLegStart } from "../../components/tripdetails/TripDetailsLegStart";
 import { TripDetailsLegMiddle } from "../../components/tripdetails/TripDetailsLegMiddle";

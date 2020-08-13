@@ -1,7 +1,4 @@
-import React from "react";
-
 import busIcon from "../assets/bus.png";
-
 import walkIcon from "../assets/walk.png";
 
 import seatAvailabilityImage from "../assets/seats.png";

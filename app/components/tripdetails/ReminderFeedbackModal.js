@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import {
-  Image,
-  Text,
-  Modal,
-  View,
-  TouchableOpacity,
-  TextInput,
-} from "react-native";
+import { Text, Modal, View } from "react-native";
 import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { Dimensions } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
 import { Strong } from "./Strong";
 import { CloseModal } from "./CloseModal";
 
