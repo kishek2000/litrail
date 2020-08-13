@@ -6,7 +6,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useRoute } from "@react-navigation/native";
 
 import { TripDetailsExpandedBody } from "../../components/tripdetailsexpanded/TripDetailsExpandedBody";
-import { hintTextStyles } from "../../components/tripdetails/TripDetailTextStyles";
+import { hintTextStyles } from "../../components/tripdetails/TripDetailStyles";
 
 export function TripDetailsExpanded({ navigation }) {
   const route = useRoute();

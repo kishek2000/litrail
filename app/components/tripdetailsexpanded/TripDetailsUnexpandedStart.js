@@ -8,7 +8,7 @@ import {
   expandedStationStyles,
   expandedTimeStyles,
   expandedRouteStyles,
-} from "../../components/tripdetails/TripDetailTextStyles";
+} from "../tripdetails/TripDetailStyles";
 import { MAIN_PRIMARY_COLOUR } from "../../constants";
 
 export function ExpandedTimeTile({ timeInfo }) {

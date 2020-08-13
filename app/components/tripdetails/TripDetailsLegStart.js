@@ -1,7 +1,15 @@
 import React from "react";
-import { Image, View, Text } from "react-native";
-import { MAIN_PRIMARY_COLOUR, seatAvailabilityIcon } from "../../constants";
+import { View, Text } from "react-native";
+import { MAIN_PRIMARY_COLOUR } from "../../constants";
 import { TripDetailsDotColumnNoEnd } from "./TripDetailsDotColumnNoEnd";
+import {
+  detailsTimeStyles,
+  detailsFirstLastStationStyles,
+  detailsRouteStyles,
+  seatAvailabilityStyles,
+} from "./TripDetailStyles";
+import { DetailsTransportIcon } from "./DetailsTransportIcon";
+import { SeatAvailabilityIcon } from "./SeatAvailabilityIcon";
 
 export function TripDetailsLegStart({ legInfo }) {
   const mode = legInfo["mode"];
@@ -18,39 +26,19 @@ export function TripDetailsLegStart({ legInfo }) {
         <View>
           <TripDetailsDotColumnNoEnd dots={12}></TripDetailsDotColumnNoEnd>
         </View>
-        <View>
-          <Text
-            style={{
-              fontFamily: "WorkSans_700Bold",
-              fontSize: 16,
-              color: MAIN_PRIMARY_COLOUR,
-              top: -6,
-            }}
-          >
-            {station_name}
-          </Text>
-          <Text
-            style={{
-              fontFamily: "WorkSans_500Medium",
-              marginTop: -4,
-              fontSize: 10,
-            }}
-          >
-            {time_string}
-          </Text>
+        <View
+          style={{
+            flex: 1,
+          }}
+        >
+          <Text style={detailsFirstLastStationStyles}>{station_name}</Text>
+          <Text style={detailsTimeStyles}>{time_string}</Text>
           <View
             style={{
               flexDirection: "row",
             }}
           >
-            <Image
-              source={legInfo["image"]}
-              style={{
-                width: 32,
-                height: 32,
-                resizeMode: "contain",
-              }}
-            />
+            <DetailsTransportIcon img={legInfo["image"]} />
             <View
               style={{
                 flex: 1,
@@ -59,7 +47,7 @@ export function TripDetailsLegStart({ legInfo }) {
               <Text
                 style={{
                   fontFamily: "WorkSans_500Medium",
-                  fontSize: 16,
+                  fontSize: 10,
                   color: MAIN_PRIMARY_COLOUR,
                 }}
               >
@@ -78,35 +66,19 @@ export function TripDetailsLegStart({ legInfo }) {
       <View
         style={{
           flexDirection: "row",
+          height: 125,
         }}
       >
         <View>
-          <TripDetailsDotColumnNoEnd dots={12}></TripDetailsDotColumnNoEnd>
+          <TripDetailsDotColumnNoEnd dots={12} />
         </View>
         <View
           style={{
             flex: 1,
           }}
         >
-          <Text
-            style={{
-              top: -6,
-              fontFamily: "WorkSans_800ExtraBold",
-              fontSize: 16,
-              color: MAIN_PRIMARY_COLOUR,
-            }}
-          >
-            {station_name}
-          </Text>
-          <Text
-            style={{
-              fontFamily: "WorkSans_500Medium",
-              marginTop: -4,
-              fontSize: 12,
-            }}
-          >
-            {time_string}
-          </Text>
+          <Text style={detailsFirstLastStationStyles}>{station_name}</Text>
+          <Text style={detailsTimeStyles}>{time_string}</Text>
           <View
             style={{
               flexDirection: "row",
@@ -114,23 +86,9 @@ export function TripDetailsLegStart({ legInfo }) {
               marginTop: 12,
             }}
           >
-            <Image
-              source={legInfo["image"]}
-              style={{
-                width: 32,
-                height: 32,
-                marginRight: 8,
-                resizeMode: "contain",
-              }}
-            />
+            <DetailsTransportIcon img={legInfo["image"]} />
             <View style={{ justifyContent: "center", marginTop: -4 }}>
-              <Text
-                style={{
-                  fontFamily: "WorkSans_500Medium",
-                  fontSize: 12,
-                  color: MAIN_PRIMARY_COLOUR,
-                }}
-              >
+              <Text style={detailsRouteStyles}>
                 {route} for {duration}
               </Text>
               <View
@@ -138,21 +96,8 @@ export function TripDetailsLegStart({ legInfo }) {
                   flexDirection: "row",
                 }}
               >
-                <Image
-                  source={seatAvailabilityIcon}
-                  style={{
-                    width: 20,
-                    height: 15,
-                  }}
-                />
-                <Text
-                  style={{
-                    left: 5,
-                    fontFamily: "WorkSans_700Bold",
-                    color: MAIN_PRIMARY_COLOUR,
-                    marginTop: -3,
-                  }}
-                >
+                <SeatAvailabilityIcon />
+                <Text style={seatAvailabilityStyles}>
                   ~ {seats_free} seats free
                 </Text>
               </View>
