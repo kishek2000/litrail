@@ -14,7 +14,7 @@ import { TripDetailsLegMiddle } from "../../components/tripdetails/TripDetailsLe
 import { TripDetailsTripEnd } from "../../components/tripdetails/TripDetailsTripEnd";
 import { ReminderModal } from "../../components/tripdetails/ReminderModal";
 import { ReminderFeedbackModal } from "../../components/tripdetails/ReminderFeedbackModal";
-import { GoBackButton } from "./GoBackButton";
+import { GoBackButton } from "../../components/routes/GoBackButton";
 
 export const TestScreenHeadingStyles = {
   fontSize: Dimensions.get("screen").width * 0.09,

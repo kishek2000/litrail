@@ -1,38 +1,16 @@
 import React, { useState } from "react";
 import { View, Text, Modal, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-import { MAIN_PRIMARY_COLOUR, ScreenHeadingStyles } from "../../constants";
+import {
+  MAIN_PRIMARY_COLOUR,
+  ScreenHeadingStyles,
+  Settings,
+} from "../../constants";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Dimensions } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import { GoBackButton } from "../routes/GoBackButton";
+import { GoBackButton } from "../../components/routes/GoBackButton";
 import { CloseModal } from "../../components/tripdetails/CloseModal";
-
-const Settings = [
-  {
-    label: "Notifications",
-    options: [{ label: "Reminder Notifications", type: "toggle" }],
-  },
-  {
-    label: "Theme",
-    options: [
-      { label: "Dark Mode", type: "toggle" },
-      { label: "Colour-coded Trips", type: "toggle" },
-    ],
-  },
-  {
-    label: "Trips",
-    options: [
-      { label: "Auto-save Trips", type: "toggle" },
-      { label: "Update State/Region", type: "select" },
-    ],
-  },
-  {
-    label: "Payment",
-    options: [{ label: "Update Card Details", type: "modal" }],
-  },
-];
 
 export function SettingsScreen({ navigation }) {
   return (
@@ -167,10 +145,9 @@ function SettingsModal() {
         >
           <View
             style={{
-              margin: 20,
               backgroundColor: "#EEEEEE",
               borderRadius: 20,
-              padding: 20,
+              padding: 24,
               elevation: 5,
               width: Dimensions.get("window").width * 0.9,
               height: Dimensions.get("window").height * 0.6,
@@ -178,16 +155,13 @@ function SettingsModal() {
               justifyContent: "center",
             }}
           >
-            <View
-              style={{
-                alignItems: "center",
-              }}
-            >
+            <View>
               <Text
                 style={{
                   fontFamily: "WorkSans_500Medium",
                   fontSize: 20,
                   color: MAIN_PRIMARY_COLOUR,
+                  alignSelf: "center",
                 }}
               >
                 Update Card Details
@@ -197,6 +171,7 @@ function SettingsModal() {
                   fontFamily: "WorkSans_500Medium",
                   fontSize: 13,
                   color: MAIN_PRIMARY_COLOUR,
+                  alignSelf: "center",
                 }}
               >
                 Update your credit/debit card details.
@@ -216,7 +191,7 @@ function SettingsModal() {
                 style={{
                   height: 35,
                   backgroundColor: "white",
-                  width: "90%",
+                  width: "100%",
                   borderRadius: 24,
                   paddingLeft: 24,
                   fontFamily: "WorkSans_500Medium",
@@ -243,7 +218,7 @@ function SettingsModal() {
                 style={{
                   height: 35,
                   backgroundColor: "white",
-                  width: "90%",
+                  width: "100%",
                   borderRadius: 24,
                   paddingLeft: 24,
                   fontFamily: "WorkSans_400Regular",
@@ -270,7 +245,7 @@ function SettingsModal() {
                 style={{
                   height: 35,
                   backgroundColor: "white",
-                  width: "90%",
+                  width: "100%",
                   borderRadius: 24,
                   paddingLeft: 24,
                   fontFamily: "WorkSans_400Regular",
@@ -291,6 +266,7 @@ function SettingsModal() {
                   alignItems: "center",
                   borderRadius: 20,
                   marginTop: 40,
+                  alignSelf: "center",
                 }}
                 // onPress={() => {}}
               >

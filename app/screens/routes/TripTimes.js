@@ -11,7 +11,7 @@ import { TripTimeCard } from "../../components/routes/TripTimeCard";
 import { GetAllTimes } from "../../components/routes/GetAllTimes";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { TripStore } from "../../classes/User";
-import { GoBackButton } from "./GoBackButton";
+import { GoBackButton } from "../../components/routes/GoBackButton";
 
 export function TripTimes({ setCurrentUserTrips, currentUserTrips }) {
   const navigation = useNavigation();

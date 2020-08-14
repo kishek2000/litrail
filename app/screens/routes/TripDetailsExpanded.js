@@ -7,7 +7,7 @@ import { useRoute } from "@react-navigation/native";
 
 import { TripDetailsExpandedBody } from "../../components/tripdetailsexpanded/TripDetailsExpandedBody";
 import { hintTextStyles } from "../../components/tripdetails/TripDetailStyles";
-import { GoBackButton } from "./GoBackButton";
+import { GoBackButton } from "../../components/routes/GoBackButton";
 
 export function TripDetailsExpanded({ navigation }) {
   const route = useRoute();

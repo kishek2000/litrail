@@ -566,3 +566,28 @@ export const OpalDetails = [
     OpalCurrBalance: 5,
   },
 ];
+
+export const Settings = [
+  {
+    label: "Notifications",
+    options: [{ label: "Reminder Notifications", type: "toggle" }],
+  },
+  {
+    label: "Theme",
+    options: [
+      { label: "Dark Mode", type: "toggle" },
+      { label: "Colour-coded Trips", type: "toggle" },
+    ],
+  },
+  {
+    label: "Trips",
+    options: [
+      { label: "Auto-save Trips", type: "toggle" },
+      { label: "Update State/Region", type: "select" },
+    ],
+  },
+  {
+    label: "Payment",
+    options: [{ label: "Update Card Details", type: "modal" }],
+  },
+];
