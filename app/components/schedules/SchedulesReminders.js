@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { View } from "react-native";
 import { SavedTripCard } from "../home/SavedTripCard";
 import { TripStore } from "../../classes/User";
 import { ReminderFeedbackModal } from "../tripdetails/ReminderFeedbackModal";
