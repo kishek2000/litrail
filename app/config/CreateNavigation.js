@@ -27,8 +27,6 @@ export function CreateNavigation() {
   const [currentUserTrips, setCurrentUserTrips] = useState([]);
   const [currentUserReminders, setCurrentUserReminders] = useState([]);
 
-  console.log(currentUserReminders);
-
   return (
     <NavigationContainer>
       <Tab.Navigator

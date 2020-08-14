@@ -36,6 +36,7 @@ export function ScheduleScreen({
             fontSize: 16,
             color: MAIN_PRIMARY_COLOUR,
             marginBottom: 24,
+            marginTop: 8,
             fontFamily: "WorkSans_400Regular",
             alignSelf: "center",
             textAlign: "center",

@@ -44,7 +44,6 @@ export function TripDetailsUnexpandedStart({
   const time_string = legInfo["startTime"];
   const station_name = legInfo["startStop"];
   const stop_sequence = legInfo["stopSequence"];
-  console.log(stop_sequence);
   const route_string = getRouteString(legInfo);
 
   return (

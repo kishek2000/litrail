@@ -10,7 +10,6 @@ export function ExpandIcon({ setExpanded, legExpanded, section }) {
           type="material"
           size={35}
           onPress={() => {
-            console.log("testing expand");
             setExpanded(section);
           }}
         />

@@ -40,6 +40,20 @@ export function ScheduleSection({
       >
         {text}
       </Text>
+      {text === "Your History" && (
+        <Text
+          style={{
+            fontSize: 16,
+            fontFamily: "WorkSans_400Regular",
+            color: MAIN_PRIMARY_COLOUR,
+            marginBottom: 8,
+            paddingHorizontal: 8,
+          }}
+        >
+          Select a day to see its trip history.
+        </Text>
+      )}
+
       {!calendar && currentUserReminders.length > 0 ? (
         <SchedulesReminders
           currentUserReminders={currentUserReminders}

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { View, Text, Modal, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-import { MAIN_PRIMARY_COLOUR } from "../../constants";
+import { MAIN_PRIMARY_COLOUR, ScreenHeadingStyles } from "../../constants";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Dimensions } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { GoBackButton } from "../routes/GoBackButton";
+import { CloseModal } from "../../components/tripdetails/CloseModal";
 
 const Settings = [
   {
@@ -43,31 +45,13 @@ export function SettingsScreen({ navigation }) {
         width: "100%",
       }}
     >
-      <View
-        style={{ flexDirection: "row", marginTop: 84, alignItems: "center" }}
-      >
-        <TouchableOpacity
-          onPress={() => navigation.navigate("OpalScreen")}
-          style={{ marginRight: 48 }}
-        >
-          <Text style={{ fontSize: 16, fontFamily: "WorkSans_300Light" }}>
-            BACK
-          </Text>
-        </TouchableOpacity>
-        <Text
-          style={{
-            fontSize: 54,
-            fontFamily: "WorkSans_500Medium",
-            color: MAIN_PRIMARY_COLOUR,
-            marginRight: 84,
-          }}
-        >
-          Settings
-        </Text>
+      <GoBackButton navigation={navigation} positionSet={"absolute"} />
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <Text style={ScreenHeadingStyles}>Settings</Text>
       </View>
       <Text
         style={{
-          fontSize: 18,
+          fontSize: 16,
           color: MAIN_PRIMARY_COLOUR,
           marginTop: 8,
           fontFamily: "WorkSans_400Regular",
@@ -91,14 +75,15 @@ function SettingSection({ sectionData }) {
     <View style={{ width: "100%", paddingHorizontal: 8 }}>
       <Text
         style={{
-          fontFamily: "WorkSans_700Bold",
+          fontFamily: "WorkSans_800ExtraBold",
           color: MAIN_PRIMARY_COLOUR,
           fontSize: 10,
+          textTransform: "uppercase",
         }}
       >
         {sectionData["label"]}
       </Text>
-      <View style={{ marginBottom: 8 }} />
+      <View style={{ marginBottom: 12 }} />
       {sectionData["options"].map((option) => (
         <>
           <View
@@ -115,7 +100,7 @@ function SettingSection({ sectionData }) {
             <Text
               style={{
                 fontFamily: "WorkSans_400Regular",
-                fontSize: 16,
+                fontSize: 13,
                 color: MAIN_PRIMARY_COLOUR,
               }}
             >
@@ -183,7 +168,7 @@ function SettingsModal() {
           <View
             style={{
               margin: 20,
-              backgroundColor: "white",
+              backgroundColor: "#EEEEEE",
               borderRadius: 20,
               padding: 20,
               elevation: 5,
@@ -222,6 +207,7 @@ function SettingsModal() {
                   fontSize: 13,
                   color: MAIN_PRIMARY_COLOUR,
                   marginTop: 30,
+                  marginBottom: 8,
                 }}
               >
                 Name on Card
@@ -234,12 +220,13 @@ function SettingsModal() {
                   borderRadius: 24,
                   paddingLeft: 24,
                   fontFamily: "WorkSans_500Medium",
-                  fontSize: 16,
+                  fontSize: 12,
                   color: MAIN_PRIMARY_COLOUR,
-                  elevation: 7,
+                  elevation: 2,
                 }}
                 placeholder="Enter name on card"
-                onChangeText={(input) => {}}
+                keyboardType={"default"}
+                // onChangeText={(input) => {}}
               />
               <Text
                 style={{
@@ -247,6 +234,7 @@ function SettingsModal() {
                   fontSize: 13,
                   color: MAIN_PRIMARY_COLOUR,
                   marginTop: 30,
+                  marginBottom: 8,
                 }}
               >
                 Card Number
@@ -258,20 +246,22 @@ function SettingsModal() {
                   width: "90%",
                   borderRadius: 24,
                   paddingLeft: 24,
-                  fontFamily: "WorkSans_500Medium",
-                  fontSize: 16,
+                  fontFamily: "WorkSans_400Regular",
+                  fontSize: 12,
                   color: MAIN_PRIMARY_COLOUR,
-                  elevation: 7,
+                  elevation: 2,
                 }}
                 placeholder="Enter card number"
-                onChangeText={(input) => {}}
+                keyboardType={"numeric"}
+                // onChangeText={(input) => {}}
               />
               <Text
                 style={{
-                  fontFamily: "WorkSans_500Medium",
+                  fontFamily: "WorkSans_400Regular",
                   fontSize: 13,
                   color: MAIN_PRIMARY_COLOUR,
                   marginTop: 30,
+                  marginBottom: 8,
                 }}
               >
                 Expiry Date
@@ -283,13 +273,14 @@ function SettingsModal() {
                   width: "90%",
                   borderRadius: 24,
                   paddingLeft: 24,
-                  fontFamily: "WorkSans_500Medium",
-                  fontSize: 16,
+                  fontFamily: "WorkSans_400Regular",
+                  fontSize: 12,
                   color: MAIN_PRIMARY_COLOUR,
-                  elevation: 7,
+                  elevation: 2,
                 }}
                 placeholder="Enter expiry date"
-                onChangeText={(input) => {}}
+                keyboardType={"numeric"}
+                // onChangeText={(input) => {}}
               />
               <TouchableOpacity
                 style={{
@@ -299,32 +290,22 @@ function SettingsModal() {
                   justifyContent: "center",
                   alignItems: "center",
                   borderRadius: 20,
-                  marginTop: 50,
+                  marginTop: 40,
                 }}
-                onPress={() => {}}
+                // onPress={() => {}}
               >
                 <Text
                   style={{
                     color: "white",
                     fontFamily: "WorkSans_700Bold",
+                    fontSize: 12,
                   }}
                 >
                   UPDATE
                 </Text>
               </TouchableOpacity>
             </View>
-            <View
-              style={{
-                left: 30,
-              }}
-            >
-              <AntDesign
-                name="close"
-                size={24}
-                color={MAIN_PRIMARY_COLOUR}
-                onPress={() => setModalVisible(false)}
-              />
-            </View>
+            <CloseModal setState={setModalVisible} />
           </View>
         </View>
       </Modal>

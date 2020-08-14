@@ -62,7 +62,7 @@ export function OpalScreen({ navigation }) {
         <Text style={ScreenHeadingStyles}>Balance</Text>
         <Text
           style={{
-            fontSize: 18,
+            fontSize: 16,
             color: MAIN_PRIMARY_COLOUR,
             marginTop: 8,
             fontFamily: "WorkSans_400Regular",
@@ -191,7 +191,7 @@ function DisplayOpalBalance({ userMatched, setUserMatched }) {
         <Text
           style={{
             color: "white",
-            fontSize: 16,
+            fontSize: 12,
             fontFamily: "WorkSans_400Regular",
           }}
         >
@@ -270,10 +270,11 @@ function BalanceModal({
                 >
                   <Text
                     style={{
-                      fontFamily: "WorkSans_400Regular",
-                      fontSize: 16,
+                      fontFamily: "WorkSans_800ExtraBold",
+                      fontSize: 12,
                       marginBottom: 12,
                       color: MAIN_PRIMARY_COLOUR,
+                      textTransform: "uppercase",
                     }}
                   >
                     Debit/Credit Card
@@ -298,10 +299,11 @@ function BalanceModal({
                 <View style={{ marginBottom: 16 }} />
                 <Text
                   style={{
-                    fontSize: 16,
-                    fontFamily: "WorkSans_400Regular",
+                    fontSize: 12,
+                    fontFamily: "WorkSans_800ExtraBold",
                     color: MAIN_PRIMARY_COLOUR,
                     marginBottom: 8,
+                    textTransform: "uppercase",
                   }}
                 >
                   Other
@@ -384,6 +386,7 @@ function OtherPaymentsButton({
         alignItems: "center",
         justifyContent: "center",
         paddingHorizontal: 12,
+        elevation: 1,
       }}
       onPress={() => {
         setCurrentBalance(currentBalance + topUpAmount);
@@ -394,15 +397,16 @@ function OtherPaymentsButton({
       <Image
         source={icon}
         style={{
-          width: 12,
-          height: 12,
+          width: 14,
+          height: 14,
           resizeMode: "contain",
-          marginRight: 4,
+          marginRight: 6,
+          marginBottom: -1,
         }}
       />
       <Text
         style={{
-          fontSize: 16,
+          fontSize: 12,
           color: colour === MAIN_PRIMARY_COLOUR ? "white" : MAIN_PRIMARY_COLOUR,
           fontFamily: "WorkSans_500Medium",
         }}
@@ -432,6 +436,7 @@ function PayButton({
         alignItems: "center",
         justifyContent: "center",
         opacity: detailsEntered === 4 ? 1 : 0.4,
+        elevation: 1,
       }}
       disabled={detailsEntered !== 4}
       onPress={() => {
@@ -443,7 +448,7 @@ function PayButton({
       <Text
         style={{
           color: "white",
-          fontSize: 16,
+          fontSize: 12,
           fontFamily: "WorkSans_700Bold",
         }}
       >
@@ -461,7 +466,11 @@ function CreditDebitInput({ label, type, setDetailsEntered, detailsEntered }) {
     <TextInput
       style={{
         width:
-          type === "numeric" && label !== "Credit Card Number" ? "40%" : "100%",
+          type === "numeric" && label !== "Credit Card Number"
+            ? label === "CV"
+              ? "30%"
+              : "40%"
+            : "100%",
         backgroundColor: "white",
         height: 42,
         borderRadius: 24,
@@ -469,7 +478,7 @@ function CreditDebitInput({ label, type, setDetailsEntered, detailsEntered }) {
         marginBottom: 6,
         marginRight:
           type === "numeric" && label !== "Credit Card Number" ? 6 : 0,
-        fontSize: 16,
+        fontSize: 12,
         fontFamily: "WorkSans_400Regular",
       }}
       value={value}
@@ -499,7 +508,7 @@ function TopUpInput({ setTopUpAmount }) {
         height: 42,
         borderRadius: 24,
         paddingHorizontal: 24,
-        fontSize: 16,
+        fontSize: 12,
         fontFamily: "WorkSans_400Regular",
       }}
       placeholder={"Enter amount..."}
@@ -537,7 +546,7 @@ function TopUpButtons({ setTopUpAmount }) {
               height: 42,
               width: 90,
               borderRadius: 24,
-              elevation: 1,
+              elevation: 2,
               backgroundColor:
                 selected !== option ? "white" : MAIN_PRIMARY_COLOUR,
               marginBottom: 8,
@@ -556,8 +565,9 @@ function TopUpButtons({ setTopUpAmount }) {
           >
             <Text
               style={{
-                fontSize: 20,
+                fontSize: 16,
                 color: selected === option ? "white" : MAIN_PRIMARY_COLOUR,
+                fontFamily: "WorkSans_500Medium",
               }}
             >
               ${option.toFixed(2)}
@@ -630,9 +640,6 @@ function OpalSignIn({
             paddingVertical: 8,
           }}
           onPress={() => {
-            console.log(opalCardNum);
-            console.log(opalCardPass);
-            console.log(OpalDetails);
             const match = OpalDetails.filter((userDetails) => {
               if (
                 userDetails["OpalCardNum"] === opalCardNum &&
@@ -643,8 +650,6 @@ function OpalSignIn({
             });
             if (match.length > 0) {
               setUserMatched(match[0]);
-            } else {
-              // todo error message - invalid user/password.
             }
           }}
         >
@@ -661,7 +666,7 @@ function OpalSignIn({
             style={{
               color: "white",
               fontFamily: "WorkSans_700Bold",
-              marginTop: -1,
+              marginTop: -3.7,
               fontSize: 10,
             }}
           >
@@ -683,7 +688,7 @@ function OpalCardInput({ placeholder, text, setText }) {
         borderRadius: 24,
         paddingLeft: 24,
         fontFamily: "WorkSans_300Light",
-        fontSize: 16,
+        fontSize: 12,
         color: MAIN_PRIMARY_COLOUR,
         marginTop: 8,
       }}

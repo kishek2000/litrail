@@ -9,7 +9,7 @@ import { TripDetailsUnexpandedEnd } from "./TripDetailsUnexpandedEnd";
 export function TripDetailsExpandedBody({ trip_id }) {
   const tripInfo = TripStore.get(trip_id);
   const [legExpanded, setLegExpanded] = useState("start");
-  console.log(tripInfo);
+
   return (
     <View
       style={{
